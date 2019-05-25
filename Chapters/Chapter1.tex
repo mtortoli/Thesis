@@ -31,7 +31,9 @@ Nel breve periodo, ad esempio grazie al \textit{progetto genoma umano}\footnote{
 Nel lungo periodo sarà possibile scoprire eventuali reazioni avverse ai farmaci da individuo ad individuo in base a dei tests, al punto tale che, grazie all'informazione genetica ottenuta attraverso strumenti strumenti informatici, sarà possibile personalizzare l'uso di farmaci, portando ad una migliore efficacia alla terapia individuale, riducendo o addirittura eliminando possibili effetti collaterali.
 
 \section{Aree di ricerca}
-Data la natura eterogenea dei dati biologici, la bioinformatica comprende un vasto numero di aree di ricerca in continua crescita, di seguito presentate.
+Data la natura eterogenea dei dati biologici, la bioinformatica comprende un vasto numero di aree di ricerca in continua crescita ed espansione. Di seguito vengono elencate, assieme ai relativi algoritmi più importanti. 
+\newline
+Sarà possibile notare che alcuni degli algoritmi presentati vengono usati in aree di ricerca diverse.
 
 \subsection{Analisi dei genomi}
 Uno dei principali focus della bioinformatica riguarda l'analisi dei genomi\footnote{Per genoma si intende l'intero materiale genetico di un organismo, composto da DNA o RNA.} degli organismi il cui sequenziamento\footnote{Il sequenziamento è un processo mediante il quale viene determinata la struttura primaria delle macromolecole (composizione atomica e legami), quali il DNA, RNA e proteine.} è già stato completato, dal moscerino della frutta fino all'essere umano. L'analisi dei genomi è un'area di ricerca relativa non solo alla bioinformatica, ma anche alla genomica, ovvero quella disciplina che studia la struttura, il contenuto, la funzione e l'evoluzione del genoma.
@@ -51,6 +53,18 @@ Una volta estratto il DNA, vengono create migliaia e migliaia di copie di un sin
 \newline
 Tra i vari algoritmi utilizzati per l'analisi delle sequenze risultano di particolare importanza gli \textbf{algoritmi di Clustering}, il cui obiettivo è quello di raggruppare i dati delle sequenze in modo veloce e preciso. I clusters giocano un ruolo chiave all'interno della bioinformatica, infatti data la grande quantità di dati da gestire e manipolare, è possibile raggrupparli in insiemi (clusters, appunto) secondo determinati criteri, di modo che gli elementi che sono simili tra di loro stiano nello stesso cluster mentre quelli che sono differenti risiedono in altri clusters. I principali algoritmi di Clustering nella bioinformatica sono il \textit{Clustering gerarchico} e l'\textit{algoritmo k-Means}, che verranno spiegati successivamente.
 
+\subsection{Analisi dell'espressione genica}
+Prima di procedere con la definizione di "Analisi dell'espressione genica", è necessario fare una piccola introduzione. Quando un gene è attivo, esprime un codice genetico, definito \textit{espressione genica}.Successivamente le sequenze che formano tale codice genetico vengono copiate (trascrizione), producendo così RNA messaggero (mRNA), che a sua volta sarà coinvolto per la creazione delle proteine.
+\newline
+Con espressione genica, quindi, si intende la manifestazione fenotipica\footnote{Fenotipo: le caratteristiche manifeste di un organismo.} di uno o più geni, in altre parole quando la sua (o la loro) informazione genetica viene trascritta e tradotta in una proteina.
+\newline
+L'analisi dell'espressione genica si occupa di studiare il quantitativo di RNA messaggero(mRNA) presente in un determinato gene.
+L'approccio ideale è, pertanto, trovare il gene, analizzarlo ed estrarre le informazioni fenotipiche interessate.
+\newline
+In questa area di ricerca il data mining e gli algoritmi di Clustering giocano un ruolo di fondamentale importanza, in quanto i primi consentono estrarre le informazioni mentre i secondi permettono di classificarle in gruppi. Come già riportato nella sezione "Analisi delle sequenze", gli algoritmi di Clustering "Clustering gerarchico" e "algoritmo K-means" risultano di fondamentale importanza.
+\newline
+Ma perché l'analisi dell'espressione genica è importante? Le motivazioni sono molteplici. Prima di tutto, se l'espressione genica di un gene non conosciuto è simile all'espressione genica di un  gene conosciuto, è possibile che essi abbiano funzioni simili o che siano coinvolti nello stesso meccanismo. Questo può portare ad una sorta di "reazione a catena", dove partendo da un gene conosciuto, si scoprono altre funzioni simili di geni non conosciuti. In secondo luogo, è importante anche nel settore della biomedicina, infatti trova applicazione pratica nella lotta contro il tumore, predicendo eventuale metastasi.
+
 \subsection{Filogenetica}
 La filogenetica è quel campo della bioinformatica e della biologia evolutiva\footnote{La biologia evolutiva si occupa dello studio delle origini ed evoluzioni delle specie.} che studia le relazioni evolutive tra vari gruppi di organismi.
 Tradizionalmente si basava sul confronto delle caratteristiche morfologiche degli organismi, oggi invece si usano i dati molecolari delle sequenze, permettendo la costruzione di alberi filogenetici con molta accuratezza.
@@ -67,7 +81,7 @@ Le applicazioni della filogenetica sono molteplici:
 \end{itemize}
 
 \subsection{Bioinformatica strutturale}
-Le macromolecole (DNA, RNA e proteine) svolgono la loro funzione all'interno di un organismo grazie alla loro struttura nello spazio tridimensionale e quindi dell'avvolgersi delle loro sequenze di aminoacidi di cui sono compost. Tuttavia conoscere tale struttura non è affatto banale, ad esempio se prendiamo in considerazione tutti e 20 gli aminoacidi delle proteine ed una proteina composta da 70 aminoacidi, otteniamo $20^{70}(=1.180591620717411303424\times{10^{91}})$ possibili strutture diverse che si possono ottenere (anche se la natura non ne ha selezionate  così tante!). Ed è qui che entra in gioco la bioinformatica strutturale, ovvero quella area di ricerca che si pone l'obiettivo di analizzare e ricostruire, tramite algoritmi, la struttura tridimensionale delle macromolecole.
+Le macromolecole (DNA, RNA e proteine) svolgono la loro funzione all'interno di un organismo grazie alla loro struttura nello spazio tridimensionale e quindi dell'avvolgersi delle loro sequenze di aminoacidi di cui sono composti. Tuttavia conoscere tale struttura non è affatto banale, ad esempio se prendiamo in considerazione tutti e 20 gli aminoacidi delle proteine ed una proteina composta da 70 aminoacidi, otteniamo $20^{70}(=1.180591620717411303424\times{10^{91}})$ possibili strutture diverse che si possono ottenere (anche se la natura non ne ha selezionate  così tante!). Ed è qui che entra in gioco la bioinformatica strutturale, ovvero quella area di ricerca che si pone l'obiettivo di analizzare e ricostruire, tramite algoritmi, la struttura tridimensionale delle macromolecole.
 \newline
 Grazie a ciò è possibile conoscere le interazioni fra macromolecole, fornire dati biologici aggiuntivi e predire\footnote{Con predizione si intende predire la ogni atomo di cui è composta la macromolecola nelle tre dimensioni.} la loro struttura tridimensionale, permettendo quindi di conoscerne le funzionalità, in particolar modo per le proteine. Proprio quest'ultimo obiettivo risulta di particolare importanza non solo per la bioinformatica ma in generale per la biologia stessa, oltre ad essere tutt'ora una grande sfida per la scienza.
 \newline
@@ -75,24 +89,33 @@ In passato sono stati utilizzati vari approcci di tipo computazionale, tra cui g
 \newline
 Gli \textit{algoritmi genetici} sono metodi complessi che hanno il compito di risolvere problemi che si basano sulla selezione naturale, in altre parole, dato un punto di partenza, cercano di scegliere le soluzioni migliori e ricombinarle tra di loro per ottenere una soluzione "ottima". Data una popolazione in input, ad ogni iterazione vengono scelti casualmente degli individui, chiamati genitori, che verranno usati per creare altri individui, chiamati figli, che a loro volta verranno utilizzati nella iterazione successiva, di modo che con il passare delle generazioni si raggiunge la soluzione ottima.
 \newline
-Questi algoritmi risultano particolarmente efficienti nella bioinformatica strutturale per due motivi, il primo è perché riescono a risolvere problemi complessi velocemente, sfruttando la parallelizzazione automatica\footnote{La parallelizzazione è un processo mediante il quale invece di eseguire un task alla volta, viene spezzettato in più "sotto-task" indipendenti, che quindi possono essere eseguiti in contemporanea.} ed il secondo perché sono particolarmente ottimizzati per la ricerca genetica
+Questi algoritmi risultano particolarmente efficienti nella bioinformatica strutturale per due motivi, il primo è perché riescono a risolvere problemi complessi velocemente, sfruttando la parallelizzazione automatica\footnote{La parallelizzazione è un processo mediante il quale invece di eseguire un task alla volta, viene spezzettato in più "sotto-task" indipendenti, che quindi possono essere eseguiti in contemporanea.} ed il secondo perché sono particolarmente ottimizzati per la ricerca genetica.
 \newline
 Da citare \textit{Proteine Data Bank}\cite{proteineDataBank}, un vero e proprio archivio di acidi nucleici e proteine visualizzabili in 3-D, che risulta di fondamentale importanza in questa area di ricerca.
 
-\subsection{Analisi dell'espressione genica}
-Prima di procedere con la definizione di "Analisi dell'espressione genica", è necessario fare una piccola introduzione. Quando un gene è attivo, esprime un codice genetico, definito \textit{espressione genica}.Successivamente le sequenze che formano tale codice genetico vengono copiate (trascrizione), producendo così RNA messaggero (mRNA), che a sua volta sarà coinvolto per la creazione delle proteine.
-\newline
-Con espressione genica, quindi, si intende la manifestazione fenotipica\footnote{Fenotipo: le caratteristiche manifeste di un organismo.} di uno o più geni, in altre parole quando la sua (o la loro) informazione genetica viene trascritta e tradotta in una proteina.
-\newline
-L'analisi dell'espressione genica si occupa di studiare il quantitativo di RNA messaggero(mRNA) presente in un determinato gene.
-L'approccio ideale è, pertanto, trovare il gene, analizzarlo ed estrarre le informazioni fenotipiche interessate.
-\newline
-In questa area di ricerca il data mining e gli algoritmi di Clustering giocano un ruolo di fondamentale importanza, in quanto i primi consentono estrarre le informazioni mentre i secondi permettono di classificarle in gruppi. Come già riportato nella sezione "Analisi delle sequenze", gli algoritmi di Clustering "Clustering gerarchico" e "algoritmo K-means" risultano di fondamentale importanza.
-\newline
-Ma perché l'analisi dell'espressione genica è importante? Le motivazioni sono molteplici. Prima di tutto, se l'espressione genica di un gene non conosciuto è simile all'espressione genica di un  gene conosciuto, è possibile che essi abbiano funzioni simili o che siano coinvolti nello stesso meccanismo. Questo può portare ad una sorta di "reazione a catena", dove partendo da un gene conosciuto, si scoprono altre funzioni simili di geni non conosciuti. In secondo luogo, è importante anche nel settore della biomedicina, infatti trova applicazione pratica nella lotta contro il tumore, predicendo eventuale metastasi.
-
- 
 \subsection{Genetica delle popolazioni}
+Prima di poter definire che cosa è la genetica delle popolazioni, è necessario introdurre alcuni concetti:
+\begin{itemize}
+	\item Popolazione: è un gruppo di organismi (vegetali e non) che vivono nello stesso luogo e che condividono determinate proprietà biologiche, pertanto sono della stessa specie.
+	\item Alleli: ogni gene esiste in due o più possibili "versioni", grazie ai suoi alleli. Gli alleli sono le diverse sequenze possibili per un gene, pertanto la loro combinazione determina il suo carattere ereditario (colore degli capelli, degli occhi, ecc...). Ad esempio, nel caso del gene del colore di un fiore, ci può essere un allele per il colore rosso ed un altro per il giallo. Se il primo risulta dominante, allora il fiore sarà di colore rosso.
+	\item Frequenza genica: misura la frequenza di un allele di un determinato gene presente in una popolazione.
+	\newline
+	Preso in considerazione un gene di una popolazione, infatti, è possibile trovare alleli diversi con frequenze diverse.
+\end{itemize}
+La genetica delle popolazioni, quindi, si occupa di studiare la frequenza dei geni delle popolazioni e della loro variazione nello spazio e nel tempo, dalla loro origine fino alla loro evoluzione.
+\newline
+Poiché in questa area di ricerca vengono coinvolti i processi evolutivi degli organismi viventi, proprio come nella bioinformatica strutturale, gli algoritmi genetici giocano un ruolo chiave (già definiti nella sottosezione 1.2.5). 
+\newline
+\`E possibile dare una sguardo più approfondito a tali algoritmi, individuando cinque fasi fondamentali:
+\begin{enumerate}
+	\item Popolazione iniziale: data una popolazione con un determinato problema, vengono scelti un gruppo di geni, rappresentate tramiti stringhe dell'alfabeto.
+	\item Funzione di fitness: funzione che associa ad ogni individuo di una popolazione un punteggio che varia in base alla sua abilità nel competere con altri individui.
+	\item Selezione: vengono selezionati gli individui con il punteggio della funzione di fitness migliore, affinché passino i propri geni alla generazione successiva.
+	\item Incrocio: per ogni coppia di genitori viene scelto una sorta di punto di scambio tra i loro geni, di modo che i geni dei figli saranno il risultato dell'incrocio tra i geni dei suoi genitori. Questa risulta essere la parte più importante di tali algoritmi.
+	\item Mutazione: in alcuni casi ci possono essere delle mutazioni all'interno dei geni dei figli.
+	\item Terminazione: l'algoritmo termina quando non verranno generati più figli, in quanto il problema di partenza è stato risolto.
+\end{enumerate}
+
 \subsection{Biologia dei sistemi}
 \subsection{Data mining}
 \subsection{Database biologici} %http://www.cusmibio.unimi.it/scaricare/linkdocenti_09.pdf

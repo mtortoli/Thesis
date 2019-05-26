@@ -133,8 +133,31 @@ I temi principali del data mining nella bioinformatica sono tre, di seguito elen
 	\item Nuovi metodi di data mining: nuove ricerche scientifiche richiedono nuovi metodi di estrazione dei dati. Tali metodi devono essere efficienti e scalabili, al fine di poter analizzare al meglio i dati biologici.
 \end{enumerate}
 
-\subsection{Database biologici} %http://www.cusmibio.unimi.it/scaricare/linkdocenti_09.pdf
+\subsection{Database biologici}
+Poiché la biologia, con il passare degli anni, è diventata una scienza ricca di dati, è nata l'esigenza di catalogarli e memorizzarli. \`E proprio da ciò che sono nati i database biologici, ovvero quella collezione di informazioni che comprendono sia pubblicazioni scientifiche che dati provenienti da ricerche, di seguito elencati.
+\begin{itemize}
+	\item Sequenze nucleotidiche (DNA e RNA).
+	\item Sequenze di aminoacidi (proteine).
+	\item Informazioni su geni (dalle espressioni geniche al progetto Genoma Umano).
+	\item Modelli in tre dimensioni delle proteine (ad esempio il Proteine Data Bank\cite{proteineDataBank}).
+\end{itemize}
+Poiché questi dati risultano non solo molto diversi tra loro, ma anche complessi da gestire sia nella loro individualità che in relazione agli altri dati (data la loro natura articolata), la loro modellazione risulta un punto cardine per la creazione di database biologici, nel quale è possibile individuare tre concetti fondamentali.
+\begin{enumerate}
+	\item Ordine delle sequenze: Sia le sequenze nucleotidiche del DNA e RNA che le sequenze di aminoacidi delle proteine possono essere modellate come entità statiche. Questo è dovuto principalmente al fatto che sono delle proprietà interne ad altre entità biologiche e che le sequenze cambiano con il passare del tempo, ma solo leggermente (in base all'evoluzione).
+	\newline
+	Questo concetto è molto importante nella modellazione delle sequenze, in quanto un piccolo cambiamento può avere un grosso impatto sulle entità più grandi.
+	\item Processi di input/output: Poiché nella biologia ci sono molti processi che, partendo da un input, restituiscono un output, è necessario identificare il ruolo di queste entità. Ad esempio basti pensare che partendo con delle sequenze nucleotidiche del DNA si ottengono delle sequenze di aminoacidi delle proteine, grazie ai processi di trascrizione e traduzione.
+	\newline
+	Anche questo concetto risulta avere un ruolo chiave per poter trattare i dati biologici in modo dinamico.
+	\item Relazioni spaziali tra le molecole: come già detto nella sotto-sezione "bioinformatica strutturale", la struttura in tre dimensioni delle macromolecole (in particolar modo le proteine) risulta di fondamentale importanza per comprenderne le funzioni, pertanto, a livello di database, è necessario definire le relazioni tra le varie entità che compongono una macromolecola, di modo che grazie a queste informazioni sia possibile ricostruire il suo modello in 3-D.
+\end{enumerate}
+I database biologici vengono suddivisi in due categorie, ovvero \textit{di primo livello} e \textit{specializzati}. I primi contengono solamente le entità statiche, e quindi le sequenze nucleotidiche e di aminoacidi, mentre i secondi raccolgono informazioni relative alle loro funzioni, alle malattie dovute a mutazioni, pubblicazioni scientifiche, e così via.
+\newline
+Tra i database biologici più famosi è possibile trovare Ensembl\cite{ensembl}, National Center for Biotechnology Information (NCBI)\cite{NCBI} ed il già citato Proteine Data Bank\cite{proteineDataBank}.
+
+
 \subsection{Bioimmagini}
+asdasdasdasdas dasd as asd as as adas a sd asasdasdasdasdas dasd as asd as as adas a sd asasdasdasdasdas dasd as asd as as adas a sd asasdasdasdasdas dasd as asd as as adas a sd as
 %https://academic.oup.com/bioinformatics
 
 

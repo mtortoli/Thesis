@@ -1,103 +1,98 @@
 \chapter{Capitolo 2: La bioinformatica}
 Per molti anni l'informatica è stata una scienza a sé stante, tuttavia negli ultimi decenni, grazie al progresso scientifico e tecnologico, sono nate nuove discipline chiamate genericamente \textbf{X-Informatics}. Queste sono il risultato dell'incontro tra l'informatica ed altre scienze di base (quali la biologia, la chimica, l'astronomia, la geologia etc) e tra queste citiamo la bioinformatica, la chemioinformatica, l'astroinformatica, la geoinformatica e così via.
-Anche se queste discipline sono diverse tra loro, ad esempio i dati raccolti in campo astronomico saranno di natura diversa rispetto quelli raccolti in campo biologico, condividono gli stessi obiettivi:
+Anche se queste discipline sono diverse tra loro, queste condividono gli stessi obiettivi:
 \begin{itemize}
 	\item Processamento ed estrazione delle informazioni
-	\item Interazione con la raccolta dati adattata e personalizzata per l'utente.
-	\item Integrazione dei dati ottenuti tra sorgenti eterogenee.
-	\item Utilizzo trasparente ed efficiente dei dati in base al contesto scientifico, dalla raccolta, all'analisi, fino alla catagolazione.
-	\item Fornire supporto decisionale per l'utente, riducendo così i possibili errori e facilitando l'analisi dei risultati.
+	\item Interazione con la raccolta dati adattata e personalizzata per l'utente
+	\item Integrazione dei dati ottenuti tra sorgenti eterogenee
+	\item Utilizzo trasparente ed efficiente dei dati in base al contesto scientifico, dalla raccolta, all'analisi, fino alla catagolazione
+	\item Fornire supporto decisionale per l'utente, riducendo così i possibili errori e facilitando l'analisi dei risultati
 \end{itemize}
-Tra tutte queste discipline, risulta di particolare importanza la bioinformatica.
+Tra tutte queste discipline risulta di particolare importanza la bioinformatica.
 \section{Che cosa \`e la bioinformatica?}
-Non esiste un unico modo con il quale definire la bioinformatica, infatti è possibile trovare definizioni diverse tra loro in quanto i professionisti non sempre concordano sulla portata del suo uso, sia nel campo della biologia che dell'informatica. Tuttavia una possibile definizione è la seguente:
+Non esiste un unico modo con cui definire la bioinformatica, infatti è possibile trovare definizioni diverse tra loro in quanto i professionisti non sempre concordano sulla portata del suo uso, sia nel campo della biologia che dell'informatica. Tuttavia una possibile definizione è la seguente:
 \begin{center}
 \textit{La bioinformatica è un campo multidisciplinare della scienza che coinvolge la genetica, la biologia molecolare, l'informatica, la matematica e la statistica, rivolta a studiare sistemi biologici utilizzando metodi e modelli informatici e computazionali.}
 \end{center}
-Tra i vari obiettivi precedentemente elencati nell'introduzione al capitolo, va aggiunto quello che risulta l'obiettivo principale di questa disciplina, ovvero quello di aumentare la conoscenza di tutti quei processi ed attori presenti in natura.
+Tra i vari obiettivi precedentemente elencati, va aggiunto quello che risulta essere l'obiettivo principale di questa disciplina, ovvero aumentare la conoscenza di tutti quei processi ed attori presenti in natura.
 \newline
-A prescindere dalla natura del problema da affrontare, è possibile individuare un approccio standard, suddiviso in quattro step:
+A prescindere dal problema in questione, è possibile individuare un approccio standard, suddiviso in quattro step:
 \begin{itemize}
-	\item Studio ed analisi del problema da affrontare.
-	\item Collezionamento ed analisi di dati statistici ottenuti a fronte di dati biologici in input.
-	\item Creazione di modelli ed uso di strumenti matematici che possano essere applicati al problema in esame, al fine di sviluppare un algoritmo.
-	\item Creazione, valutazione e test dell'algoritmo risolutivo del problema.
+	\item Analisi del problema da affrontare
+	\item Collezionamento ed analisi di dati statistici ottenuti a fronte di dati biologici in input
+	\item Creazione di modelli ed uso di strumenti matematici che possano essere applicati al problema in esame, al fine di sviluppare un algoritmo
+	\item Creazione, valutazione e test dell'algoritmo risolutivo del problema
 \end{itemize}
-Una parte fondamentale della bioinformatica consiste in esperimenti che generano dati ad alto throughput (high-throughput data), tra cui la misurazione dei modelli di espressione genica oppure la determinazione della sequenza nucleotidica nel caso del DNA e RNA e aminoacida nel caso delle proteine. Per \textit{high-throughput data} si intendono tutti quei dati biologici ottenuti tramite tecniche automatizzate e quindi non ottenibili attraverso metodi convenzionali.
-Il mining di questi dati può portare a nuove scoperte scientifiche non solo in campo biologico, ma anche medico, sia nel breve che nel lungo periodo.
-\newline
-Nel breve periodo, ad esempio grazie al \textit{progetto genoma umano}\footnote{Il progetto genoma umano (Human Genome Project) è stato uno dei più grandi progetti scientifici degli ultimi anni. L'obiettivo era quello di ottenere la sequenza del genoma umano (e quindi il suo intero DNA) e identificare in esso i geni contenuti. Il progetto è cominciato nel 1990, per poi essere completato nel 2003 ed ulteriori ricerche sono ancora in corso.}, si possono scoprire nuovi geni legati alle malattie e nuovi bersagli molecolari, ovvero quei processi biologici, intesi come proteine, recettori, pathway biochimici etc su cui si può intervenire per modificare il decorso di una malattia, nel lungo periodo sarà possibile scoprire eventuali reazioni avverse ai farmaci da individuo ad individuo in base a dei tests, al punto tale che, grazie all'informazione genetica ottenuta attraverso strumenti informatici, sarà possibile personalizzare l'uso di farmaci, portando ad una migliore efficacia alla terapia individuale, riducendo o addirittura eliminando possibili effetti collaterali.
+Una parte fondamentale della bioinformatica consiste in esperimenti che generano dati ad alto throughput (high-throughput data), tra cui la misurazione dei modelli di espressione genica oppure la determinazione della sequenza nucleotidica nel caso del DNA e RNA e aminoacidica nel caso delle proteine. Per \textit{high-throughput data} si intendono tutti quei dati biologici ottenuti tramite tecniche automatizzate e quindi non ottenibili attraverso metodi convenzionali.
+Il mining di questi dati può portare a nuove scoperte scientifiche non solo in campo biologico, ma anche medico, sia nel breve che nel lungo periodo. Ad esempio grazie all'estrazione dei dati ottenuti dal \textit{progetto genoma umano}\footnote{Il progetto genoma umano (Human Genome Project) è stato uno dei più grandi progetti scientifici degli ultimi anni. L'obiettivo era quello di ottenere la sequenza del genoma umano (e quindi il suo intero DNA) e identificare i geni contenuti in esso. Il progetto è cominciato nel 1990, per poi essere completato nel 2003 ed ulteriori ricerche sono ancora in corso.}, sono stati scoperti nuovi geni legati alle malattie e nuovi bersagli molecolari\footnote{Il bersaglio molecolare è una qualsiasi proteina o enzima su cui si può intervenire per modificare il decorso di una malattia.}. Nel lungo periodo sarà possibile scoprire eventuali reazioni avverse ai farmaci che sono differenti da individuo ad individuo, al punto tale che, grazie all'informazione genetica ottenuta attraverso strumenti informatici, sarà possibile personalizzare l'uso di farmaci, portando ad una migliore efficacia della terapia individuale, riducendo o addirittura eliminando possibili effetti collaterali.
 
 
 \section{Storia}
-Fino agli anni '50 il DNA era ancora una scoperta a "metà", il World Wide Web non era ancora nato e nessuno sentiva l'esigenza di dover creare algoritmi per analizzare e memorizzare i dati biologici, tuttavia, le cose cambiarono dal 1953 in poi, con la scoperta della struttura a doppia elica del DNA. Da quel periodo in poi si sono susseguite una serie di scoperte scientifiche che hanno reso la biologia una scienza molto orientata ai dati.
+Fino agli anni '50 il DNA era ancora una scoperta a "metà", il World Wide Web non era ancora nato e nessuno sentiva l'esigenza di dover creare algoritmi per analizzare e memorizzare i dati biologici. Tuttavia le cose cambiarono dal 1953 in poi, con la scoperta della struttura a doppia elica del DNA. Da quel periodo in poi si sono susseguite una serie di scoperte scientifiche che hanno reso la biologia una scienza molto orientata ai dati.
 \newline
-La bioinformatica nasce verso la fine degli anni '70, quando vengono scoperte le prime sequenze nucleotidiche del DNA, pertanto cominciava a nascere l'esigenza di poter archiviare i dati e consultarli quando necessario. Da quegli anni in poi la bioinformatica è cresciuta insieme alla biologia e tuttora è una scienza in continua evoluzione.
+La bioinformatica nasce verso la fine degli anni '70, con la scoperta delle prime sequenze nucleotidiche del DNA, poiché comincia a nascere l'esigenza di poter archiviare i dati e consultarli quando necessario. Da quegli anni in poi la bioinformatica è cresciuta insieme alla biologia e tuttora è una scienza in continua evoluzione.
 \newline
 \`E possibile trovare altre due date importanti nella storia della bioinformatica:
 \begin{itemize}
-	\item \textit{Anno 1990}: Data di creazione del \textit{Basic Local Alignment Search Tool (BLAST)}\cite{BLAST} ovvero un algoritmo che permette il confronto tra sequenze nucleotidiche e aminoacide.
-	\item \textit{Anno 2003}: Completamento del \textit{progetto Genoma Umano}, che ha permesso la scoperta dell'intero patrimonio genetico dell'essere umano.
+	\item \textit{Anno 1990}: Data di creazione del \textit{Basic Local Alignment Search Tool (BLAST)}\cite{BLAST} ovvero un algoritmo che permette il confronto tra sequenze nucleotidiche e aminoacidiche
+	\item \textit{Anno 2003}: Completamento del \textit{progetto Genoma Umano}, che ha permesso la scoperta dell'intero patrimonio genetico dell'essere umano
 \end{itemize}
 
 
 \section{Aree di ricerca}
-Data la natura eterogenea dei dati biologici, la bioinformatica comprende un vasto numero di aree di ricerca in continua crescita ed espansione che di seguito vengono elencate, assieme ai relativi algoritmi più importanti. 
+Data la natura eterogenea dei dati biologici, la bioinformatica comprende un vasto numero di aree di ricerca in continua crescita. Di seguito verranno elencate le principali, assieme ai relativi algoritmi più importanti. 
 \newline
 Sarà possibile notare che alcuni degli algoritmi presentati vengono usati in aree di ricerca diverse, grazie alla loro scalabilità.
 
 \subsection{Analisi dei genomi}
-Uno dei principali focus della bioinformatica riguarda l'analisi dei genomi\footnote{Per genoma si intende l'intero materiale genetico di un organismo, composto da DNA o RNA.} degli organismi il cui sequenziamento\footnote{Il sequenziamento è un processo mediante il quale viene determinata la struttura primaria delle macromolecole del DNA, RNA (sequenze di nucleotidi) e proteine(sequenze di aminoacidi).} è già stato completato, dal moscerino della frutta fino all'essere umano. L'analisi dei genomi è un'area di ricerca relativa non solo alla bioinformatica, ma anche alla genomica, ovvero quella disciplina che studia la struttura, il contenuto, la funzione e l'evoluzione del genoma.
+Uno dei principali focus della bioinformatica riguarda l'analisi dei genomi\footnote{Per genoma si intende l'intero materiale genetico di un organismo, composto da DNA o RNA.} degli organismi il cui sequenziamento\footnote{Il sequenziamento è un processo mediante il quale viene determinata la struttura primaria delle macromolecole del DNA, RNA (sequenze di nucleotidi) e proteine(sequenze di aminoacidi).} è già stato completato, dal moscerino della frutta fino all'essere umano. L'analisi dei genomi è un'area di ricerca che riguarda non solo la bioinformatica, ma anche la genomica, ovvero quella disciplina che studia la struttura, il contenuto, la funzione e l'evoluzione del genoma.
 \newline
-Perché analizzare i genomi? un gene viene sequenziato per conoscere la sua funzione ed eventualmente per poterla modificare. La conoscenza dell'intero genoma di un organismo fornisce le sequenze di tutti i suoi geni, permettendo così di identificare e manipolare i geni importanti che influenzano il metabolismo, lo sviluppo cellulare e i processi patologici negli umani, animali e nelle piante.
+Perché analizzare i genomi? Un gene viene sequenziato per conoscere la sua funzione ed eventualmente per poterla modificare. La conoscenza dell'intero genoma di un organismo fornisce le sequenze di tutti i suoi geni, permettendo così di identificare e manipolare quelli che influenzano il metabolismo, lo sviluppo cellulare e i processi patologici negli esseri umani, animali e nelle piante.
 \newline
-L'obiettivo in questa area di ricerca per la bioinformatica è quello di identificare e alterare tutti quei geni che abbiano una particolare funzione biologica attraverso strumenti computazionali, ovvero quegli strumenti che permettono la risoluzione di problemi che sarebbero inaccessibili con i tempi e le modalità degli umani.
+L'obiettivo dell'analisi dei genomi è di identificare e modificare i geni che abbiano una particolare funzione biologica attraverso strumenti computazionali, ovvero quelli che permettono la risoluzione di problemi altrimenti inaccessibili con i tempi e le modalità umane.
 
 \subsection{Analisi di sequenze}
 L'analisi delle sequenze di DNA, RNA o proteine è un processo mediante il quale tali macromolecole vengono sottoposte a dei metodi analitici al fine di capirne la struttura e le funzionalità.
 \newline
 Di particolare importanza risulta lo studio delle sequenze di DNA\footnote{Il sequenziamento del DNA consiste nel determinare la sequenza di nucleotidi all'interno di un suo frammento.} che possono essere memorizzate in un computer attraverso una vasta varietà di metodi.
-La memorizzazione avviene attraverso l'uso di caratteristiche identificative di una determinata sequenza di DNA, ad esempio il nome di un gene oppure la fonte, dopodiché vengono salvate all'interno di database che prendono il nome di \textit{database biologici} (vedere sottosezione 2.3.10).
+La memorizzazione avviene attraverso l'uso di caratteristiche identificative di una determinata sequenza di DNA, ad esempio dando un nome al gene o indicandone la fonte, dopodiché vengono salvate all'interno di database che prendono il nome di \textit{database biologici} (vedere sottosezione 2.3.10).
 \newline
-L'analisi delle sequenze di DNA permette di venire a conoscenza dell'informazione genetica che viene trasportata all'interno di un suo segmento, grazie al quale, ad esempio, è possibile individuare i cambiamenti di un gene che possono causare una potenziale malattia.
+Grazie all'analisi delle sequenze genetiche, è possibile individuare le mutazioni di geni alla base di potenziali malattie.
 \newline
-Una volta estratto il DNA, vengono create migliaia e migliaia di copie di un singolo frammento, in quanto da solo non risulterebbe sufficiente. Questi campioni vengono inseriti in dei macchinari chiamati \textit{DNA Sequencer} che svolgono il compito di sequenziamento (del DNA) in modo automatico, infine i dati vengono raccolti ed analizzati.
+Una volta estratto il DNA, vengono create migliaia e migliaia di copie di un singolo frammento e successivamente inserite in macchinari chiamati \textit{DNA Sequencer}. Queste ultime svolgono il sequenziamento del DNA in modo automatico. infine i dati vengono raccolti ed analizzati.
 \newline
-Tra i vari algoritmi utilizzati per l'analisi delle sequenze risultano di particolare importanza gli \textit{algoritmi di Clustering}, il cui obiettivo è quello di raggruppare i dati delle sequenze in modo veloce e preciso. I clusters giocano un ruolo chiave all'interno della bioinformatica, infatti data la grande quantità di dati da gestire e manipolare, è possibile raggrupparli in insiemi (clusters, appunto) secondo determinati criteri, di modo che gli elementi che sono simili tra di loro siano nello stesso cluster mentre quelli che sono differenti risiedono in altri clusters. I principali algoritmi di Clustering nella bioinformatica sono il \textit{Clustering gerarchico} e l'\textit{algoritmo k-Means}, che verranno spiegati successivamente.
+Tra i vari algoritmi utilizzati per l'analisi delle sequenze risultano di particolare importanza gli \textit{algoritmi di Clustering}, il cui obiettivo è quello di raggruppare i dati delle sequenze in modo veloce e preciso. I cluster giocano un ruolo chiave all'interno della bioinformatica, infatti data la grande quantità di dati da gestire, è possibile raggrupparli in insiemi (cluster, appunto) secondo determinati criteri, di modo che gli elementi che sono simili tra di loro siano nello stesso cluster mentre quelli che sono differenti risiedono in altri. I principali algoritmi di Clustering nella bioinformatica sono il \textit{Clustering gerarchico} e l'\textit{algoritmo k-Means}, che verranno spiegati successivamente.
 
 \subsection{Analisi dell'espressione genica}
-Prima di procedere con la definizione di "analisi dell'espressione genica", è necessario fare una piccola introduzione. Quando un gene è attivo, esprime un codice genetico, definito \textit{espressione genica}. Successivamente le sequenze che formano tale codice genetico vengono copiate (trascrizione), producendo così RNA messaggero (mRNA), che a sua volta sarà coinvolto per la creazione delle proteine.
+Quando un gene è attivo, si intende dire che è "espresso", ovvero che è stato prima trascritto in una copia di mRNA (RNA messaggero) e poi tradotto in proteina, con questo concetto si intende \textit{espressione genica}. Questo vuol dire che esistono geni che non vengono mai espressi e pertanto
 \newline
-Con espressione genica, quindi, si intende la manifestazione fenotipica\footnote{Fenotipo: le caratteristiche manifeste di un organismo.} di uno o più geni, in altre parole quando la sua (o la loro) informazione genetica viene trascritta e tradotta in una proteina.
+L'analisi dell'espressione genica quantifica l'attività dell'espressione di migliaia di geni simultaneamente, per capire in quali condizioni alcuni di questi risultano attivi ed altri no.
 \newline
-L'analisi dell'espressione genica si occupa di studiare il quantitativo di RNA messaggero (mRNA) presente in un determinato gene.
-L'approccio ideale è, pertanto, trovare il gene, analizzarlo ed estrarre le informazioni fenotipiche interessate.
+In questa area di ricerca gli algoritmi di data mining e di Clustering giocano un ruolo di fondamentale importanza, in quanto i primi consentono di estrarre le informazioni mentre i secondi permettono di classificarle in gruppi (in particolar modo il Clustering gerarchico e l'algoritmo K-means).
 \newline
-In questa area di ricerca il data mining e gli algoritmi di Clustering giocano un ruolo di fondamentale importanza, in quanto i primi consentono estrarre le informazioni mentre i secondi permettono di classificarle in gruppi. Come già riportato nella sezione "Analisi delle sequenze", gli algoritmi di Clustering "Clustering gerarchico" e "algoritmo K-means" risultano di fondamentale importanza.
-\newline
-Ma perché l'analisi dell'espressione genica è importante? Le motivazioni sono molteplici. Prima di tutto, se l'espressione genica di un gene non conosciuto è simile all'espressione genica di un  gene conosciuto, è possibile che essi abbiano funzioni simili o che siano coinvolti nello stesso meccanismo. Questo può portare ad una sorta di "reazione a catena", dove partendo da un gene conosciuto, si scoprono altre funzioni simili di geni non conosciuti. In secondo luogo, è importante anche nel settore della biomedicina, infatti trova applicazione pratica nella lotta contro il tumore, predicendo eventuale metastasi.
+Ma perché l'analisi dell'espressione genica è importante? Le motivazioni sono molteplici. Prima di tutto, se l'espressione di un gene non noto è simile a quella di un gene conosciuto, è possibile che essi abbiano funzioni simili o che siano coinvolti nello stesso meccanismo biologico. Questo può portare ad una sorta di "reazione a catena", dove partendo da un gene conosciuto, si scoprono altre funzioni simili di geni non conosciuti. In secondo luogo, è importante anche nel settore della biomedicina, predicendo eventuali metastasi tumorali.
 
 \subsection{Analisi ed elaborazione di bioimmagini}
-L'analisi ed elaborazione delle bioimmagini consiste nell'usare metodi informatici per acquisire, analizzare, fare data mining di immagini ottenuti tramite microscopi, con l'obiettivo di risolvere problemi di natura biologica e medica, partendo da un'entità piccola come una molecola fino ad arrivare ad una popolazione di individui.
-Questa area di ricerca si basa principalmente sull'uso di machine learning, in particolar modo sul \textit{pattern recognition}, ovvero lo studio di come le macchine possono imparare a distinguere vari modelli e a prendere delle decisioni in base a specifici pattern, ponendosi come obiettivo principale, nel caso della bioinformatica, la classificazione di organismi.
+L'analisi ed elaborazione delle bioimmagini consiste nell'usare metodi informatici per acquisire, analizzare, fare data mining di immagini ottenute microscopio, con l'obiettivo di risolvere problemi di natura biologica e medica.
+Questa area di ricerca si basa principalmente sul machine learning, in particolar modo sul \textit{pattern recognition}, ovvero lo studio di come le macchine possano imparare a distinguere vari modelli e a prendere delle decisioni in base a specifici pattern, ponendosi come obiettivo principale, nel caso della bioinformatica, la classificazione di organismi.
 
 \subsection{Filogenetica}
-La filogenetica è quel campo della bioinformatica e della biologia evolutiva\footnote{La biologia evolutiva si occupa dello studio delle origini ed evoluzioni delle specie.} che studia le relazioni evolutive tra vari gruppi di organismi.
-Tradizionalmente si basava sul confronto delle caratteristiche morfologiche, oggi invece si usano i dati ottenuti dalle sequenze, permettendo la costruzione di alberi filogenetici con molta accuratezza.
+La filogenetica è quel campo della biologia evolutiva\footnote{La biologia evolutiva si occupa dello studio delle origini ed evoluzione delle specie.} che studia le relazioni evolutive tra vari gruppi di organismi.
+Tradizionalmente si basava sul confronto tra le caratteristiche fenotipiche degli organismi, oggi invece si usano i dati ottenuti tramite sequenziamento genico, permettendo la costruzione di alberi filogenetici estremamente accurati.
 \newline
-\textit{L'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra i vari organismi, la cui invenzione è dovuta a Charles Darwin, nel 1837. Successivamente viene data una spiegazione più dettagliata di questa struttura. Una delle peculiarità è che si possono costruire alberi in base a dati genetici, genomici o morfologici, al fine di descrivere le relazioni che vi sono tra organismi viventi oppure tra specie estinte e specie viventi. Con questa nuova informazione è possibile dare una definizione alternativa alla filogenetica, ovvero come quella disciplina che si occupa di costruire ed analizzare gli alberi filogenetici.
+\textit{L'albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra i vari organismi, la cui invenzione è dovuta a Charles Darwin, nel 1837. Una delle peculiarità di questi diagrammi è la possibilità di costruirli in base a dati genetici, genomici o morfologici, al fine di descrivere le relazioni che vi sono tra organismi viventi oppure tra specie estinte e specie viventi. Con questa nuova informazione è possibile dare una definizione alternativa alla filogenetica, ovvero come quella disciplina che si occupa di costruire ed analizzare gli alberi filogenetici.
 \newline
 Le applicazioni della filogenetica sono molteplici, elencate di seguito.
 \begin{itemize}
-	\item \textit{Bioinformatica e computing}: Gli alberi risultano una struttura dati di fondamentale importanza nel campo dell'informatica e degli algoritmi, infatti, molti di questi sviluppati per la filogenetica sono stati successivamente utilizzati anche in altri settori, in cui hanno trovato impiego.
-	\item \textit{Classificazione}: fornisce dei metodi di classificazione degli organismi viventi in modo efficiente ed accurato.
-	\item \textit{Forense}: può essere usata per valutare delle prove di DNA in casi giudiziari.
-	\item \textit{Identificazione dell'origine degli agenti patogeni}: insieme all'analisi delle sequenze (sottosezione 2.3.2) è possibile studiare ancora più a fondo gli agenti patogeni\footnote{Gli agenti patogeni sono i virus,i  batteri, etc...}, impedendo eventuali epidemie. Infatti, scoprire a quale specie vivente è collegato un determinato agente patogeno fornisce delle informazioni per scoprire quale potrebbe essere una eventuale forma di trasmissione.
-	\item \textit{Conservazione}: fornisce informazioni aggiuntive per impedire la scomparsa di animali o vegetali, garantendone, quindi, la loro conservazione.
+	\item \textit{Bioinformatica e computing}: Gli alberi risultano una struttura dati di fondamentale importanza nel campo dell'informatica e degli algoritmi, infatti, molti di questi sviluppati per la filogenetica sono stati successivamente utilizzati anche in altri settori
+	\item \textit{Classificazione}: fornisce dei metodi di classificazione degli organismi viventi in modo accurato
+	\item \textit{Medicina forense}: può essere usata per valutare delle prove di DNA in casi giudiziari
+	\item \textit{Identificazione dell'origine evolutiva degli agenti patogeni}: è possibile studiare ancora più a fondo gli agenti patogeni\footnote{Gli agenti patogeni sono i virus,i  batteri, etc...}, prevenendo eventuali epidemie. Infatti, scoprire a quale specie vivente è collegato un determinato agente patogeno fornisce delle informazioni per scoprire quale potrebbe essere una eventuale forma di trasmissione
+	\item \textit{Conservazione delle specie}: contribuisce ad impedire l'estinzione di specie animali e vegetali
 \end{itemize}
 
 \subsection{Bioinformatica strutturale}
-Le macromolecole (DNA, RNA e proteine) svolgono la loro funzione all'interno di un organismo grazie alla loro struttura nello spazio tridimensionale e quindi dell'avvolgersi delle loro sequenze di nucleotidi e aminoacidi di cui sono composti. Tuttavia conoscere tale struttura non è affatto banale, ad esempio se prendiamo in considerazione tutti e 20 gli aminoacidi delle proteine ed una proteina composta da 70 aminoacidi, otteniamo $20^{70}(=1.180591620717411303424\times{10^{91}})$ possibili strutture diverse che si possono ottenere (anche se la natura non ne ha selezionate  così tante!). Ed è qui che entra in gioco la bioinformatica strutturale, ovvero quella area di ricerca che si pone l'obiettivo di analizzare e ricostruire, tramite algoritmi, la struttura tridimensionale delle macromolecole.
+Le macromolecole, tra cui DNA, RNA e proteine, svolgono la loro funzione all'interno dei sistemi biologici grazie alla loro conformazione tridimensionale, cioé una forma particolare che assumono nello spazio: questo è particolarmente vero per le proteine che senza specifici ripiegamenti su sé stesse sono prive di qualsiasi funzione. Tuttavia conoscere tale struttura non è affatto facile, basti pensare che in natura esistono 20 diversi tipi di aminoacidi e che se prendiamo una proteina composta da una sequenza di 70 di questi, otteniamo $20^{70}(=1.180591620717411303424\times{10^{91}})$ possibili strutture (anche se la natura non ne ha selezionate  così tante!). Ed è qui che entra in gioco la bioinformatica strutturale, ovvero quella area di ricerca che si pone l'obiettivo di analizzare e ricostruire, tramite algoritmi, la struttura tridimensionale delle macromolecole.
 \newline
 Grazie a questa disciplina è possibile conoscere le interazioni fra macromolecole, fornire dati biologici aggiuntivi e predire\footnote{Con predizione si intende predire ogni atomo di cui è composta la macromolecola nelle tre dimensioni.} la loro struttura tridimensionale, permettendo quindi di conoscerne le funzionalità, in particolar modo per le proteine. Proprio quest'ultimo obiettivo risulta di particolare importanza non solo per la bioinformatica ma in generale per la biologia stessa, oltre ad essere tutt'ora una grande sfida per la scienza.
 \newline
@@ -112,9 +107,9 @@ Da citare \textit{Proteine Data Bank}\cite{proteineDataBank}, un vero e proprio 
 \subsection{Genetica delle popolazioni}
 Prima di poter definire che cosa è la genetica delle popolazioni, è necessario introdurre alcuni concetti, di seguito elencati.
 \begin{itemize}
-	\item \textit{Popolazione}: è un gruppo di organismi (vegetali e non) che vivono nello stesso luogo e che condividono determinate proprietà biologiche, pertanto sono della stessa specie.
-	\item \textit{Alleli}: ogni gene esiste in due o più possibili "versioni", grazie ai suoi alleli. Gli alleli sono le diverse sequenze possibili per un gene, pertanto la loro combinazione determina il suo carattere ereditario (colore degli capelli, degli occhi, ecc...). Ad esempio, nel caso del gene del colore di un fiore, ci può essere un allele per il colore rosso ed un altro per il giallo. Se il primo risulta dominante, allora il fiore sarà di colore rosso.
-	\item \textit{Frequenza genica}: misura la frequenza di un allele di un determinato gene presente in una popolazione.
+	\item \textit{Popolazione}: è un gruppo di organismi (vegetali e non) che vivono nello stesso luogo e che condividono determinate proprietà biologiche, pertanto sono della stessa specie
+	\item \textit{Alleli}: ogni gene esiste in due o più possibili "versioni", grazie ai suoi alleli. Gli alleli sono le diverse sequenze possibili per un gene, pertanto la loro combinazione determina il suo carattere ereditario (colore degli capelli, degli occhi, ecc...). Ad esempio, nel caso del gene del colore di un fiore, ci può essere un allele per il colore rosso ed un altro per il giallo. Se il primo risulta dominante, allora il fiore sarà di colore rosso
+	\item \textit{Frequenza genica}: misura la frequenza di un allele di un determinato gene presente in una popolazione
 	\newline
 	Preso in considerazione un gene di una popolazione, infatti, è possibile trovare alleli diversi con frequenze diverse.
 \end{itemize}
@@ -124,12 +119,12 @@ Poiché in questa area di ricerca vengono coinvolti i processi evolutivi degli o
 \newline
 \`E possibile dare una sguardo più approfondito a tali algoritmi, individuando cinque fasi fondamentali:
 \begin{enumerate}
-	\item \textit{Popolazione iniziale}: data una popolazione con un determinato problema, vengono scelti un gruppo di geni, rappresentati tramiti stringhe dell'alfabeto.
-	\item \textit{Funzione di fitness}: funzione che associa ad ogni individuo di una popolazione un punteggio che varia in base alla sua abilità nel competere con altri individui.
-	\item \textit{Selezione}: vengono selezionati gli individui con il punteggio della funzione di fitness migliore, affinché passino i propri geni alla generazione successiva.
-	\item \textit{Incrocio}: per ogni coppia di genitori viene scelto una sorta di punto di scambio tra i loro geni, di modo che i geni dei figli saranno il risultato dell'incrocio tra i geni dei suoi genitori. Questa risulta essere la parte più importante di tali algoritmi.
-	\item \textit{Mutazione}: in alcuni casi ci possono essere delle mutazioni all'interno dei geni dei figli.
-	\item \textit{Terminazione}: l'algoritmo termina quando non verranno generati più figli, in quanto il problema di partenza è stato risolto.
+	\item \textit{Popolazione iniziale}: data una popolazione con un determinato problema, vengono scelti un gruppo di geni, rappresentati tramiti stringhe dell'alfabeto
+	\item \textit{Funzione di fitness}: funzione che associa ad ogni individuo di una popolazione un punteggio che varia in base alla sua abilità nel competere con altri individui
+	\item \textit{Selezione}: vengono selezionati gli individui con il punteggio della funzione di fitness migliore, affinché passino i propri geni alla generazione successiva
+	\item \textit{Incrocio}: per ogni coppia di genitori viene scelto una sorta di punto di scambio tra i loro geni, di modo che i geni dei figli saranno il risultato dell'incrocio tra i geni dei suoi genitori. Questa risulta essere la parte più importante di tali algoritmi
+	\item \textit{Mutazione}: in alcuni casi ci possono essere delle mutazioni all'interno dei geni dei figli
+	\item \textit{Terminazione}: l'algoritmo termina quando non verranno generati più figli, in quanto il problema di partenza è stato risolto
 \end{enumerate}
 
 \subsection{Biologia dei sistemi}
@@ -144,27 +139,27 @@ Data mining, chiamata anche \textit{Knowledge Discovery} è una tecnica di estra
 \newline
 I temi principali del data mining nella bioinformatica sono tre, di seguito elencati.
 \begin{enumerate}
-	\item \textit{Data Preprocessing e Data Cleaning}: data l'eterogeneità dei dati biologici, è necessario eliminare dal set di dati da controllare tutti quelli che risultano formalmente errati (ad esempio "tipo Macromolecola: RNA, Base: Timina") e quelli che risultano inconsistenti, corrotti o mancanti.
-	\item \textit{Data mining tools}: con il passare degli anni sono stati creati molti strumenti per l'analisi dei dati biologici, quindi, una volta pre-processati e puliti, si possono analizzare grazie proprio a questi strumenti, quali ad esempio \textit{GeneSpring}.
-	\item \textit{Nuovi metodi di data mining}: nuove ricerche scientifiche richiedono nuovi metodi di estrazione dei dati. Tali metodi devono essere efficienti e scalabili, al fine di poter analizzare al meglio i dati biologici.
+	\item \textit{Data Preprocessing e Data Cleaning}: data l'eterogeneità dei dati biologici, è necessario eliminare dal set di dati da controllare tutti quelli che risultano formalmente errati (ad esempio "tipo Macromolecola: RNA, Base: Timina") e quelli che risultano inconsistenti, corrotti o mancanti
+	\item \textit{Data mining tools}: con il passare degli anni sono stati creati molti strumenti per l'analisi dei dati biologici, quindi, una volta pre-processati e puliti, si possono analizzare grazie proprio a questi strumenti, quali ad esempio \textit{GeneSpring}
+	\item \textit{Nuovi metodi di data mining}: nuove ricerche scientifiche richiedono nuovi metodi di estrazione dei dati. Tali metodi devono essere efficienti e scalabili, al fine di poter analizzare al meglio i dati biologici
 \end{enumerate}
 
 \subsection{Database biologici}
 Poiché la biologia, con il passare degli anni, è diventata una scienza ricca di dati, è nata l'esigenza di catalogarli e memorizzarli. \`E proprio da ciò che sono nati i database biologici, ovvero quella collezione di informazioni che comprendono sia pubblicazioni scientifiche che dati provenienti da ricerche, di seguito elencati.
 \begin{itemize}
-	\item Sequenze nucleotidiche (DNA e RNA).
-	\item Sequenze di aminoacidi (proteine).
-	\item Informazioni su geni (dalle espressioni geniche al progetto Genoma Umano).
-	\item Modelli in tre dimensioni delle proteine (ad esempio il Proteine Data Bank\cite{proteineDataBank}).
+	\item Sequenze nucleotidiche (DNA e RNA)
+	\item Sequenze di aminoacidi (proteine)
+	\item Informazioni su geni (dalle espressioni geniche al progetto Genoma Umano)
+	\item Modelli in tre dimensioni delle proteine (ad esempio il Proteine Data Bank\cite{proteineDataBank})
 \end{itemize}
 Poiché questi dati risultano non solo molto diversi tra loro, ma anche complessi da gestire sia nella loro individualità che in relazione agli altri dati (data la loro natura articolata), la loro modellazione risulta un punto cardine per la creazione di database biologici, nel quale è possibile individuare tre concetti fondamentali.
 \begin{enumerate}
 	\item \textit{Ordine delle sequenze}: Sia le sequenze nucleotidiche del DNA e RNA che le sequenze di aminoacidi delle proteine possono essere modellate come entità statiche. Questo è dovuto principalmente al fatto che sono delle proprietà interne ad altre entità biologiche e che le sequenze cambiano con il passare del tempo, ma solo leggermente (in base all'evoluzione).
 	\newline
-	Questo concetto è molto importante nella modellazione delle sequenze, in quanto un piccolo cambiamento può avere un grosso impatto sulle entità più grandi.
+	Questo concetto è molto importante nella modellazione delle sequenze, in quanto un piccolo cambiamento può avere un grosso impatto sulle entità più grandi
 	\item \textit{Processi di input/output}: Poiché nella biologia ci sono molti processi che, partendo da un input, restituiscono un output, è necessario identificare ed etichettare il ruolo di queste entità. Ad esempio basti pensare che, partendo con delle sequenze nucleotidiche del DNA, si ottengono delle sequenze di aminoacidi di proteine, grazie ai processi di trascrizione e traduzione.
 	\newline
-	Anche questo concetto risulta avere un ruolo chiave per poter trattare i dati biologici in modo dinamico.
+	Anche questo concetto risulta avere un ruolo chiave per poter trattare i dati biologici in modo dinamico
 	\item \textit{Relazioni spaziali tra le molecole}: come già detto nella sottosezione "bioinformatica strutturale", la struttura in tre dimensioni delle macromolecole (in particolar modo le proteine) risulta di fondamentale importanza per comprenderne le funzioni, pertanto, a livello di database, è necessario definire le relazioni tra le varie entità che compongono una macromolecola, di modo che grazie a queste informazioni sia possibile ricostruire il suo modello in 3-D.
 \end{enumerate}
 I database biologici vengono suddivisi in due categorie, ovvero \textit{di primo livello} e \textit{specializzati}. I primi contengono solamente le entità statiche, e quindi le sequenze nucleotidiche e di aminoacidi, mentre i secondi raccolgono informazioni relative alle loro funzioni, alle malattie dovute a mutazioni, pubblicazioni scientifiche, e così via.

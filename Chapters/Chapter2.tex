@@ -94,53 +94,53 @@ Le applicazioni della filogenetica sono molteplici, elencate di seguito.
 \subsection{Bioinformatica strutturale}
 Le macromolecole, tra cui DNA, RNA e proteine, svolgono la loro funzione all'interno dei sistemi biologici grazie alla loro conformazione tridimensionale, cioé una forma particolare che assumono nello spazio: questo è particolarmente vero per le proteine che senza specifici ripiegamenti su sé stesse sono prive di qualsiasi funzione. Tuttavia conoscere tale struttura non è affatto facile, basti pensare che in natura esistono 20 diversi tipi di aminoacidi e che se prendiamo una proteina composta da una sequenza di 70 di questi, otteniamo $20^{70}(=1.180591620717411303424\times{10^{91}})$ possibili strutture (anche se la natura non ne ha selezionate  così tante!). Ed è qui che entra in gioco la bioinformatica strutturale, ovvero quella area di ricerca che si pone l'obiettivo di analizzare e ricostruire, tramite algoritmi, la struttura tridimensionale delle macromolecole.
 \newline
-Grazie a questa disciplina è possibile conoscere le interazioni fra macromolecole, fornire dati biologici aggiuntivi e predire\footnote{Con predizione si intende predire ogni atomo di cui è composta la macromolecola nelle tre dimensioni.} la loro struttura tridimensionale, permettendo quindi di conoscerne le funzionalità, in particolar modo per le proteine. Proprio quest'ultimo obiettivo risulta di particolare importanza non solo per la bioinformatica ma in generale per la biologia stessa, oltre ad essere tutt'ora una grande sfida per la scienza.
+Grazie a questa disciplina è possibile conoscere le interazioni fra macromolecole, nuovi dati biologici e predire\footnote{Con predizione si intende la conoscenza di ogni atomo di cui è composta la macromolecola nelle tre dimensioni.} la loro struttura tridimensionale, permettendo quindi di conoscerne le funzionalità, in particolar modo per le proteine. Proprio quest'ultimo obiettivo risulta di particolare importanza non solo per la bioinformatica ma in generale per la biologia stessa, oltre ad essere tutt'ora una grande sfida per la scienza.
 \newline
 In passato sono stati utilizzati vari approcci di tipo computazionale, tra cui gli algoritmi evolutivi, tuttavia non risultavano particolarmente efficaci per questo tipo di problema, al contrario invece degli algoritmi genetici.
 \newline
-Gli \textit{algoritmi genetici} sono metodi complessi che hanno il compito di risolvere problemi che si basano sulla selezione naturale, in altre parole, dato un punto di partenza, cercano di scegliere le soluzioni migliori e ricombinarle tra di loro per ottenere una soluzione "ottima". Data una popolazione in input, ad ogni iterazione vengono scelti casualmente degli individui, chiamati genitori, che verranno usati per creare altri individui, chiamati figli, che a loro volta verranno utilizzati nella iterazione successiva, di modo che con il passare delle generazioni si raggiunge la soluzione ottima.
+Gli \textit{algoritmi genetici} sono metodi complessi che hanno il compito di risolvere problemi basati sulla selezione naturale: data una popolazione in input, ad ogni iterazione vengono scelti casualmente degli individui, chiamati genitori, che verranno usati per creare altri individui, chiamati figli, che a loro volta verranno utilizzati nella iterazione successiva, di modo che con il passare delle generazioni si raggiunge la soluzione ottima.
 \newline
-Questi algoritmi risultano particolarmente efficienti nella bioinformatica strutturale per due motivi, il primo è perché riescono a risolvere problemi complessi velocemente, sfruttando la parallelizzazione automatica\footnote{La parallelizzazione è un processo mediante il quale invece di eseguire un task alla volta, viene spezzettato in più "sotto-task" indipendenti, che quindi possono essere eseguiti in contemporanea.} ed il secondo perché sono particolarmente ottimizzati per la ricerca genetica.
+Questi algoritmi risultano particolarmente efficienti nella bioinformatica strutturale per due motivi, il primo è che riescono a risolvere problemi complessi velocemente, sfruttando la parallelizzazione automatica\footnote{La parallelizzazione è un processo mediante il quale invece di eseguire un task alla volta, viene spezzettato in più "sotto-task" indipendenti, che quindi possono essere eseguiti in contemporanea.} ed il secondo che sono particolarmente ottimizzati per la ricerca genetica.
 \newline
-Da citare \textit{Proteine Data Bank}\cite{proteineDataBank}, un vero e proprio archivio di acidi nucleici e proteine visualizzabili in 3-D, che risulta di fondamentale importanza in questa area di ricerca.
+Da citare \textit{Proteine Data Bank}\cite{proteineDataBank}, un vero e proprio archivio di acidi nucleici e proteine visualizzabili in 3-D.
 
 \subsection{Genetica delle popolazioni}
 Prima di poter definire che cosa è la genetica delle popolazioni, è necessario introdurre alcuni concetti, di seguito elencati.
 \begin{itemize}
-	\item \textit{Popolazione}: è un gruppo di organismi (vegetali e non) che vivono nello stesso luogo e che condividono determinate proprietà biologiche, pertanto sono della stessa specie
-	\item \textit{Alleli}: ogni gene esiste in due o più possibili "versioni", grazie ai suoi alleli. Gli alleli sono le diverse sequenze possibili per un gene, pertanto la loro combinazione determina il suo carattere ereditario (colore degli capelli, degli occhi, ecc...). Ad esempio, nel caso del gene del colore di un fiore, ci può essere un allele per il colore rosso ed un altro per il giallo. Se il primo risulta dominante, allora il fiore sarà di colore rosso
-	\item \textit{Frequenza genica}: misura la frequenza di un allele di un determinato gene presente in una popolazione
+	\item \textit{Popolazione}: è un gruppo di organismi che vivono nello stesso luogo e che condividono determinate proprietà biologiche, pertanto sono della stessa specie
+	\item \textit{Alleli}: sono le diverse sequenze possibili per un gene, pertanto la loro combinazione determina il suo carattere ereditario (colore degli capelli, degli occhi, ecc...). Ad esempio, nel caso del gene del colore di un fiore, ci può essere un allele per il colore rosso ed un altro per il giallo. Se il primo risulta dominante, allora il fiore sarà di colore rosso
+	\item \textit{Frequenza genica}: misura la frequenza con cui un allele genico si presenta in una popolazione
 	\newline
-	Preso in considerazione un gene di una popolazione, infatti, è possibile trovare alleli diversi con frequenze diverse.
+	Preso in considerazione un gene in una popolazione, infatti, è possibile trovare alleli diversi con frequenze diverse.
 \end{itemize}
-La genetica delle popolazioni, quindi, si occupa di studiare la frequenza dei geni delle popolazioni e della loro variazione nello spazio e nel tempo, dalla loro origine fino alla loro evoluzione.
+La genetica delle popolazioni, quindi, si occupa di studiare la frequenza dei geni nelle popolazioni e la loro variazione nello spazio e nel tempo, nel loro percorso evolutivo.
 \newline
-Poiché in questa area di ricerca vengono coinvolti i processi evolutivi degli organismi viventi, proprio come nella bioinformatica strutturale, gli algoritmi genetici giocano un ruolo chiave (già definiti nella sottosezione 2.3.6). 
+Poiché in questa area di ricerca vengono coinvolti i processi evolutivi degli organismi, proprio come nella bioinformatica strutturale, gli algoritmi genetici giocano un ruolo chiave (già definiti nella sottosezione 2.3.6). 
 \newline
 \`E possibile dare una sguardo più approfondito a tali algoritmi, individuando cinque fasi fondamentali:
 \begin{enumerate}
-	\item \textit{Popolazione iniziale}: data una popolazione con un determinato problema, vengono scelti un gruppo di geni, rappresentati tramiti stringhe dell'alfabeto
+	\item \textit{Popolazione iniziale}: data una popolazione con un determinato problema, viene scelto un gruppo di geni, rappresentati da stringhe dell'alfabeto
 	\item \textit{Funzione di fitness}: funzione che associa ad ogni individuo di una popolazione un punteggio che varia in base alla sua abilità nel competere con altri individui
-	\item \textit{Selezione}: vengono selezionati gli individui con il punteggio della funzione di fitness migliore, affinché passino i propri geni alla generazione successiva
-	\item \textit{Incrocio}: per ogni coppia di genitori viene scelto una sorta di punto di scambio tra i loro geni, di modo che i geni dei figli saranno il risultato dell'incrocio tra i geni dei suoi genitori. Questa risulta essere la parte più importante di tali algoritmi
-	\item \textit{Mutazione}: in alcuni casi ci possono essere delle mutazioni all'interno dei geni dei figli
+	\item \textit{Selezione}: vengono selezionati gli individui con il punteggio di fitness migliore, affinché trasmettano i propri geni alla generazione successiva
+	\item \textit{Incrocio}: per ogni coppia di genitori viene scelto un punto di scambio tra i loro geni, di modo che i figli erediteranno informazioni genetiche mescolate (crossing over). Questa risulta essere la parte più importante di tali algoritmi
+	\item \textit{Mutazione}: in alcuni casi ci possono essere delle mutazioni spontanee o indotte dei geni dei figli
 	\item \textit{Terminazione}: l'algoritmo termina quando non verranno generati più figli, in quanto il problema di partenza è stato risolto
 \end{enumerate}
 
 \subsection{Biologia dei sistemi}
-Un sistema biologico è una vera e propria rete di entità biologiche connesse tra di loro, ad esempio, il sistema nervoso di un essere umano è un sistema biologico, composto da un'insieme di entità, ovvero il midollo spinale, i nervi, il cervello ed il cervelletto.
+Un sistema biologico è una vera e propria rete di entità biologiche connesse tra di loro. Ad esempio, il sistema nervoso di un essere umano è un sistema biologico, composto da un'insieme di entità, ovvero il midollo spinale, i nervi, il cervello ed il cervelletto.
 \newline
-La biologia dei sistemi, quindi, è quella area di ricerca che si occupa di studiare i sistemi biologici attraverso metodi computazionali e modelli matematici e statistici. L'approccio alla materia di studio può essere bottom-up, e quindi si inizia dallo studio dei geni come sistemi biologici, proteine, etc, unendo di volta in volta queste entità, arrivando all'organismo nella sua interezza, ma anche al contrario, e quindi un approccio top-down.
+La biologia dei sistemi, quindi, è quella area di ricerca che si occupa di studiare i sistemi biologici attraverso metodi computazionali e modelli matematici e statistici. L'approccio di studio alla materia può essere bottom-up, partendo dai singoli geni fino all'organismo nella sua interezza, oppure viceversa, e quindi top-down.
 \newline
-Le applicazioni della bioinformatica in questa area di ricerca sono molteplici: l'ottenimento di dati ad alto throughput (high-throughput data), ottenuti attraverso tecniche di analisi statistica avanzate, ma soprattutto la creazione di un linguaggio di Markup per i sistemi biologici, ovvero il \textit{Systems Biology Markup Language} (SBML)\cite{SBML}. Tale linguaggio è nato con lo scopo di rappresentare e modellare i sistemi biologici (e non solo) attraverso l'uso delle macchine, grazie anche ad un buon numero di tools nati per supportare ed espandere il suo uso, tra cui il framework \textit{Systems Biology Workbench} (SBW)\cite{SBW}. Il SBW è un insieme di strumenti che permettono di creare, visualizzare e simulare le reti tra le entità che compongono un sistema biologico.
+Le applicazioni della bioinformatica in questa area di ricerca sono molteplici: l'ottenimento di dati ad alto throughput (high-throughput data) attraverso tecniche di analisi statistiche avanzate, e soprattutto la creazione di un linguaggio di Markup per i sistemi biologici, ovvero il \textit{Systems Biology Markup Language} (SBML)\cite{SBML}. Tale linguaggio è nato con lo scopo di rappresentare e modellare i sistemi biologici (e non solo) attraverso l'uso delle macchine, grazie anche ad un buon numero di tools nati per supportare ed espandere il suo uso, tra cui il framework \textit{Systems Biology Workbench} (SBW)\cite{SBW}. Il SBW è un insieme di strumenti che permettono di creare, visualizzare e simulare le reti tra le entità che compongono un sistema biologico.
 
 \subsection{Data mining}
-Data mining, chiamata anche \textit{Knowledge Discovery} è una tecnica di estrazione di dati non conosciuti e potenzialmente utili a fronte di una grande mole di dati. Con il passare del tempo e con il crescere della quantità di dati biologici, data mining sta assumendo sempre di più un ruolo centrale, questo si traduce in molte applicazioni, tra cui la ricerca di dati per predire e conoscere la struttura tridimensionale delle proteine, la scoperta delle "cause genetiche" alla base di una malattia e la facilitazione dell'uso degli algoritmi di clustering di sequenze.
+Data mining, chiamata anche \textit{Knowledge Discovery} è una tecnica di estrazione di dati non conosciuti e potenzialmente utili a fronte di una grande mole di dati. Con il passare del tempo e con il crescere della quantità di dati biologici, il data mining sta assumendo un ruolo sempre più centrale. Questo si traduce in molte applicazioni, tra cui la ricerca di dati per predire e conoscere la struttura tridimensionale delle proteine, la scoperta delle cause genetiche di una malattia e la facilitazione dell'uso degli algoritmi di clustering di sequenze.
 \newline
 I temi principali del data mining nella bioinformatica sono tre, di seguito elencati.
 \begin{enumerate}
-	\item \textit{Data Preprocessing e Data Cleaning}: data l'eterogeneità dei dati biologici, è necessario eliminare dal set di dati da controllare tutti quelli che risultano formalmente errati (ad esempio "tipo Macromolecola: RNA, Base: Timina") e quelli che risultano inconsistenti, corrotti o mancanti
-	\item \textit{Data mining tools}: con il passare degli anni sono stati creati molti strumenti per l'analisi dei dati biologici, quindi, una volta pre-processati e puliti, si possono analizzare grazie proprio a questi strumenti, quali ad esempio \textit{GeneSpring}
+	\item \textit{Data Preprocessing} e \textit{Data Cleaning}: l'eterogeneità delle informazioni biologiche ha reso necessario l'eliminazione dal set di dati da esaminare tutti quelli che risultano formalmente errati (ad esempio "tipo Macromolecola: RNA, Base: Timina") e quelli che risultano inconsistenti, corrotti o mancanti
+	\item \textit{Data mining tools}: con il passare degli anni sono stati creati molti strumenti per l'analisi dei dati biologici, quindi, una volta pre-processati e puliti, si possono analizzare proprio grazie a questi strumenti, quali ad esempio \textit{GeneSpring}
 	\item \textit{Nuovi metodi di data mining}: nuove ricerche scientifiche richiedono nuovi metodi di estrazione dei dati. Tali metodi devono essere efficienti e scalabili, al fine di poter analizzare al meglio i dati biologici
 \end{enumerate}
 
@@ -149,18 +149,16 @@ Poiché la biologia, con il passare degli anni, è diventata una scienza ricca d
 \begin{itemize}
 	\item Sequenze nucleotidiche (DNA e RNA)
 	\item Sequenze di aminoacidi (proteine)
-	\item Informazioni su geni (dalle espressioni geniche al progetto Genoma Umano)
-	\item Modelli in tre dimensioni delle proteine (ad esempio il Proteine Data Bank\cite{proteineDataBank})
+	\item Informazioni su geni (dalla espressione genica al progetto Genoma Umano)
+	\item Modelli delle proteine in 3D (ad esempio il Proteine Data Bank\cite{proteineDataBank})
 \end{itemize}
-Poiché questi dati risultano non solo molto diversi tra loro, ma anche complessi da gestire sia nella loro individualità che in relazione agli altri dati (data la loro natura articolata), la loro modellazione risulta un punto cardine per la creazione di database biologici, nel quale è possibile individuare tre concetti fondamentali.
+Poiché questi dati risultano non solo molto diversi tra loro, ma anche complessi da gestire sia nella loro individualità che in relazione agli altri dati, la loro modellazione è un punto cardine per la creazione di database biologici, nei quali è possibile individuare tre concetti fondamentali.
 \begin{enumerate}
-	\item \textit{Ordine delle sequenze}: Sia le sequenze nucleotidiche del DNA e RNA che le sequenze di aminoacidi delle proteine possono essere modellate come entità statiche. Questo è dovuto principalmente al fatto che sono delle proprietà interne ad altre entità biologiche e che le sequenze cambiano con il passare del tempo, ma solo leggermente (in base all'evoluzione).
+	\item \textit{Ordine delle sequenze}: le sequenze nucleotidiche e aminoacidiche possono essere modellate come entità statiche. Questo è dovuto principalmente al fatto che sono delle proprietà interne ad altre entità biologiche e che cambiano molto lentamente con il passare del tempo (in base all'evoluzione).
 	\newline
 	Questo concetto è molto importante nella modellazione delle sequenze, in quanto un piccolo cambiamento può avere un grosso impatto sulle entità più grandi
-	\item \textit{Processi di input/output}: Poiché nella biologia ci sono molti processi che, partendo da un input, restituiscono un output, è necessario identificare ed etichettare il ruolo di queste entità. Ad esempio basti pensare che, partendo con delle sequenze nucleotidiche del DNA, si ottengono delle sequenze di aminoacidi di proteine, grazie ai processi di trascrizione e traduzione.
-	\newline
-	Anche questo concetto risulta avere un ruolo chiave per poter trattare i dati biologici in modo dinamico
-	\item \textit{Relazioni spaziali tra le molecole}: come già detto nella sottosezione "bioinformatica strutturale", la struttura in tre dimensioni delle macromolecole (in particolar modo le proteine) risulta di fondamentale importanza per comprenderne le funzioni, pertanto, a livello di database, è necessario definire le relazioni tra le varie entità che compongono una macromolecola, di modo che grazie a queste informazioni sia possibile ricostruire il suo modello in 3-D.
+	\item \textit{Processi di input/output}: poiché nella biologia ci sono molti processi che, partendo da un input, restituiscono un output, è necessario identificare ed etichettare il ruolo di queste entità. Ad esempio basti pensare che, partendo con delle sequenze nucleotidiche di DNA, si ottengono delle sequenze di aminoacidiche, grazie ai processi di trascrizione e traduzione
+	\item \textit{Relazioni spaziali tra le molecole}: come già detto nella sottosezione "bioinformatica strutturale", la struttura 3D delle macromolecole (in particolar modo le proteine) è alla base per la comprensione delle loro funzioni, pertanto, a livello di database, è necessario definire le relazioni tra le varie entità che compongono una macromolecola.
 \end{enumerate}
 I database biologici vengono suddivisi in due categorie, ovvero \textit{di primo livello} e \textit{specializzati}. I primi contengono solamente le entità statiche, e quindi le sequenze nucleotidiche e di aminoacidi, mentre i secondi raccolgono informazioni relative alle loro funzioni, alle malattie dovute a mutazioni, pubblicazioni scientifiche, e così via.
 \newline

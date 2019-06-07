@@ -3,25 +3,25 @@ Una delle sfide più importanti della bioinformatica, nonché l'obiettivo princi
 \newline
 Ricordando la definizione di albero, ovvero un grafo non orientato connesso e aciclico \cite{algoritmiEStruttureDati2}, \textit{L'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra i vari organismi \cite{buildingaphylogenictree}. La sua peculiarità consiste nel poterli costruire in base a dati genetici, genomici o morfologici, affinché si possano descrivere le relazioni che vi sono tra organismi viventi oppure tra specie estinte e specie viventi.
 \newline
-TODO: SISTEMARE!!!
+Gli alberi evolutivi possono essere suddivisi in due tipi, di seguito illustrati.
 \newline
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{rooted_tree.jpg}
+ 	\caption{Albero radicato \cite{bioinfalganactivelearningapproachparttwo}.}
+  	\label{fig:RootedTree}
+\end{figure}
 \newline
-\begin{tikzpicture}[sibling distance=10em,
-  every node/.style = {shape=rectangle, rounded corners,
-    draw, align=center,
-    top color=white, bottom color=blue!20}]]
-  \node {Formulas}
-    child { node {single-line} }
-    child { node {multi-line}
-      child { node {aligned at}
-        child { node {relation sign} }
-        child { node {several places} }
-        child { node {center} } }
-      child { node {first left,\\centered,\\last right} } };
-\end{tikzpicture}
+\textit{L'albero radicato} si sviluppa a partire da un nodo speciale, chiamato \textit{radice}
+
 \newpage
-test bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla test
-\newline
+Ordine dei capitoli:
+\begin{itemize}
+	\item Cap 3: alberi evolutivi;
+	\item Cap 4: albero additivo;
+	\item Cap 5: UPGMA (Unweighted Pair Group Method with Arithmetic Mean)
+	\item cap 6: NEIGHBORJOINING
+\end{itemize}
+
 \begin{center}
 \begin{forest}
 for tree={circle,draw, l sep=32pt, s sep=33pt}
@@ -38,19 +38,5 @@ for tree={circle,draw, l sep=32pt, s sep=33pt}
   ] 
 ]
 \end{forest}
+%\label{fig:phyltree}
 \end{center}
-test bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla testtest bla bla bla test
-
-
-
-
-
-\newpage
-Ordine dei capitoli:
-\begin{itemize}
-	\item Cap 3: alberi evolutivi;
-	\item Cap 4: albero additivo;
-	\item Cap 5: UPGMA (Unweighted Pair Group Method with Arithmetic Mean)
-	\item cap 6: NEIGHBORJOINING
-\end{itemize}
-

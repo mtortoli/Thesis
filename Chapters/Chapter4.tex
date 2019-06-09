@@ -1,8 +1,25 @@
 \chapter{Capitolo 4: Algoritmi basati sulla distanza}
-In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al seguente problema:
+In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi senza radice. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima di ciò è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
+
+\section{Matrice delle distanze}
+Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie, la distanza è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{molaCagliari}:
+\begin{enumerate}
+	\item \textit{non negatività}:
+	\[d(x,y)\geq 0\hspace{2em} \forall \: x,y\in R^k\]
+	\item \textit{identità}:
+	\[d(x,y)=0 \; \leftrightarrow \; x=y\]
+	\item \textit{simmetria}:
+	\[d(x,y)=d(y,x)\hspace{2em} \forall \: x,y\in R^k\]
+	\item \textit{disuguaglianza triangolare}:
+	\[d(x,y)\leq d(x,z)+d(y,z)\hspace{2em} \forall \: x,y,z\in R^k\]
+\end{enumerate}
+TODO: parlare del fatto che ci sono diversi modi per calcolare la distanza (inserire quella euclidea se interessata), poi introdurre matrice delle distanze, le proprietà ed un esempio!
+\newpage
+
 \begin{center}
 \textbf{Problema degli alberi basati sulla distanza:}
 \newline
 \textit{Dato in \textbf{input} una matrice delle distanze si ottiene in \textbf{output} un albero evolutivo adattato alla matrice stessa.}
 \end{center}
+Denotando con $d_i,_j(T)$ la distanza evolutiva tra la 
 Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $d_i,_j(T)=D_i,_j$.

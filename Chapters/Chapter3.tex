@@ -1,16 +1,17 @@
 \chapter{Capitolo 3: Albero Evolutivo}
 Una delle sfide più importanti della bioinformatica, nonché l'obiettivo principale della filogenetica, è la costruzione degli alberi evolutivi.
 \newline
-Ricordando la definizione di albero, ovvero un grafo non orientato connesso e aciclico \cite{algoritmiEStruttureDati2}, \textit{L'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra le varie entità biologiche (animali, piante, virus e così via) \cite{buildingaphylogenictree}. La loro peculiarità consiste nel poter utilizzare dati diversi tra loro,  genetici, genomici e morfologici.
+Ricordando la definizione di albero, ovvero un grafo non orientato connesso e aciclico \cite{algoritmiEStruttureDati2}, \textit{L'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra le varie entità biologiche \footnote{I termini albero evolutivo, albero filogenetico e cladogramma sono spesso usati in modo intercambiabile per descrivere la stessa cosa, ovvero le relazioni evolutive tra entità biologiche. Questo perché l'uso del vocabolario non è sempre coerente nella letteratura scientifica, sebbene il contesto sia lo stesso \cite{bioinformaticsforbeginner}.} (animali, piante, virus e così via) \cite{buildingaphylogenictree}. La loro peculiarità consiste nel poter utilizzare dati diversi tra loro,  genetici, genomici e morfologici.
 \newline
 Gli alberi evolutivi possono essere suddivisi in due categorie: alberi radicati e non radicati.
 
-
 \section{Albero radicato}
-\begin{figure}[h!]
-	\includegraphics[width=\linewidth]{rooted_tree.jpg}
- 	\caption{Esempio di albero radicato.}
-  	\label{fig:RootedTree}
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[scale=0.7]{rooted_tree.jpg}
+\end{center}
+\caption{Esempio di albero radicato.}
+\label{Img:RootedTree}
 \end{figure}
 \textit{L'albero radicato} o \textit{albero con radice} è un albero in cui i nodi (o vertici) rappresentano le entità biologiche, mentre gli archi rappresentano la loro evoluzione nel tempo (figura 2) \cite{bioinfalganactivelearningapproachparttwo}. Esso si sviluppa a partire da un nodo speciale, chiamato \textit{radice} (il vertice verde nella figura) e si estende fino alle foglie. I vertici che hanno grado\footnote{Il grado di un vertice \textit{v} è dato dal numero degli archi incidenti su \textit{v} \cite{algoritmiEStruttureDati2}.} maggiore di uno, definiti \textit{nodi interni}, sono gli antenati, mentre quelli con grado esattamente uguale ad uno, definite \textit{foglie}, sono le entità attualmente esistenti. La radice, quindi, è l'antenato comune a tutti i vertici dell'albero.
 \newline

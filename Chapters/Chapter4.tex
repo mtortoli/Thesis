@@ -59,5 +59,16 @@ Adesso è possibile dare una definizione al problema accennato all'inizio del ca
 \textit{Dato in \textbf{input} una matrice delle distanze adattiva si ottiene in \textbf{output} un albero evolutivo semplice.}
 \end{center}
 
-\section{Alberi semplici adattati alle matrici }
-L'obiettivo è quello di costruire un albero semplice $T$ che si adatti alla matrice delle distanze $D$
+\section{Algoritmo per il problema degli alberi basati sulla distanza}
+L'obiettivo è quello di costruire un albero semplice $T$ che si adatti alla matrice delle distanze $D$.
+\newline
+Si prenda in considerazione la matrice delle distanze mostrata nella figura 5:
+\[
+D = \bordermatrix{\text{specie}&u&s&f&b\cr
+                u& 0 & 3 & 7 & 5\cr
+                s& 3 & 0 & 6 & 4\cr
+                f& 7 & 6 & 0 & 2\cr
+                b& 5 & 4 & 2 & 0}
+\]
+Per brevità si definisce ,u=umano, s=scimpanzé, f=foca, b=balena.
+\newline

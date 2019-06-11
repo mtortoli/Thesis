@@ -1,5 +1,5 @@
 \chapter{Capitolo 4: Algoritmi basati sulla distanza}
-In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi senza radice. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima di ciò è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
+In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi senza radice. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
 
 \section{Matrice delle distanze}
 Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie, è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{molaCagliari}:
@@ -36,16 +36,20 @@ Ciascun valore $d_i,_j$ può assumere significati diversi in base al contesto, a
 Dalla figura 5 è possibile notare che la sequenza di DNA della foca risulta molto più simile a quella della balena, in quanto la distanza è $2$, piuttosto che con l'umano, la cui distanza invece è $7$.
 \newpage
 
-TODO:
-\begin{enumerate}
-	\item rileggere bene il paragrafo di sopra
-	\item elencare le priperità degli alberi  (ad esempio "Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $d_i,_j(T)=D_i,_j$." ecc)
-	\item cominciare a spiegare gli algoritmi
-\end{enumerate}
+\section{Problema degli alberi basati sulla distanza}
+Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter conoscere quale è la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco, pertanto la lunghezza del cammino in tale albero è la somma dei suoi pesi. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è dato dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
+\newline
+Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $d_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che le collega (distanza evolutiva), in tal caso la matrice viene definita \textit{additiva}. Qualora invece non esista un albero che si adatti alla matrice, allora è \textit{non additiva}.
+\newline
+Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice delle distanze mostrata nella sezione precedente.
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{unrooted_tree_created_by_figure_5.jpg}
+ 	\caption{Albero evolutivo senza radice costruito a partire dalla matrice \textbf{adattiva} della figura 5.}
+  	\label{fig:EvolutionaryTreeExample}
+\end{figure}
+
 \begin{center}
 \textbf{Problema degli alberi basati sulla distanza:}
 \newline
 \textit{Dato in \textbf{input} una matrice delle distanze si ottiene in \textbf{output} un albero evolutivo adattato alla matrice stessa.}
 \end{center}
-Denotando con $d_i,_j(T)$ la distanza evolutiva tra la 
-Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $d_i,_j(T)=D_i,_j$.

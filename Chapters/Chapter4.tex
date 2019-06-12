@@ -188,3 +188,25 @@ L'albero finale che si ottiene è il seguente:
  	\caption{Albero con tutte le distanze calcolate.}
   	\label{fig:neighborsleaves_4}
 \end{figure}
+\newline
+L'algoritmo è terminato. Tuttavia, vi è una criticità, che viene mostrata nella sezione successiva.
+
+\subsection{Complessità temporale}
+Per calcolare la complessità nel tempo dell'algoritmo possiamo suddividerlo in tre step, di seguito elencati.
+\begin{enumerate}
+	\item \textit{Step 1}: Trovare il minimo elemento in una matrice di dimensione $n \times n$.
+	\newline
+	Si suppone l'utilizzo di un algoritmo di ricerca lineare, la cui complessità nel caso pessimo, dato in input un vettore di lunghezza $n$, è pari a $O(n)$. Poiché questa operazione deve essere effettuata per tutte le $n$ righe, otteniamo che:
+	\[T(step 1)=O(n) \times O(n) \simeq O(n^2)\]
+	\item \textit{Step 2}: Trovare il genitore per ogni coppia di foglie e calcolare la distanza di tutte le $n$ foglie  rispetto al genitore stesso.
+	\newline
+	Questa operazione deve essere fatta $n$ volte, quindi $O(n)$. In seguito dovrà essere aggiornata la matrice; per semplicità si suppone che il costo rimanga invariato, quindi $O(1)$.
+	\[T(step 2)=O(n)+O(1) \simeq O(n)\]
+	\item \textit{Step 3}: Calcolare le distanze tra i genitori trovati nello step precedente.
+	\newline
+	Poiché per ogni coppia di foglie esiste un genitore, allora il costo sarà:
+	\[T(step 3)=O(n/2)\]
+\end{enumerate}
+Adesso basta sommare le tre complessità e si trova quella totale dell'algoritmo:
+\[T(totale)=T(step 1)+T(step 2)+T(step 3)=\]
+\[=O(n^2)+O(n)+O(n/2) \simeq O(n^2) \]

@@ -81,7 +81,7 @@ Poiché l'elemento più piccolo della matrice è $D_{fb}$, la cui distanza evolu
   	\label{fig:neighborsleaves}
 \end{figure}
 \newline
-Come si può calcolare la distanza tra $f$, $p$ ($d_{fp}$) e tra $b$, $p$ ($d_{bp}$) ? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e che $f$, $p$ sono vicini. Il passo successivo dell'algoritmo è mostrato di seguito.
+Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_{bp}$) ? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e che $f$, $p$ sono vicini. Il passo successivo dell'algoritmo è mostrato di seguito.
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=7cm, keepaspectratio]{distance_between_f_b_part_2.jpg}
@@ -91,7 +91,7 @@ Come si può calcolare la distanza tra $f$, $p$ ($d_{fp}$) e tra $b$, $p$ ($d_{b
 \newline
 Nella figura 8 sono state aggiunte le foglie $u$ ed $s$, ma il loro arco è tratteggiato in quanto ancora non è possibile sapere come sono collocate nell'albero.
 \newline
-Viene scelta una casualmente una foglia tra $u$ ed $s$ e viene sfruttato il valore della sua distanza rispetto alle altre foglie per poter calcolare $d_{fp}$ e $d_{bp}$ (in questo caso si sceglie $u$). Per far ciò è quindi necessario scrivere le distanze tra le foglie nel seguente modo:
+Nel passo successivo dell'algoritmo viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfruttato il valore della sua distanza rispetto a $p$ per poter calcolare $d_{fp}$ e $d_{bp}$ (in questo caso si sceglie $u$). Per far ciò è quindi necessario scrivere le distanze tra le foglie nel seguente modo:
 \[d_{fu}=d_{fp}+d_{up}\]
 \[d_{fb}=d_{fp}+d_{bp}\]
 \[d_{bu}=d_{bp}+d_{up}\]
@@ -131,7 +131,7 @@ L'albero corrispondente è:
  	\caption{Albero con le distanze $d_{fp}$, $d_{bp}$, $d_{up}$ e $d_{sp}$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Adesso è necessario fare due modifiche alla matrice D, la prima consiste nel mettere una riga e colonna in più, definite $p$, che rappresentano i valori appena calcolati, ottenendo quindi la seguente matrice:
+Adesso è necessario fare due modifiche alla matrice D, la prima consiste nel mettere una riga e colonna in più, definite $p$, che rappresentano le appena calcolate, ottenendo quindi la seguente matrice:
 \[
 D = \bordermatrix{\text{specie}&u&s&f&b&p\cr
                 u& 0 & 3 & 7 & 5 & 5\cr
@@ -147,16 +147,16 @@ D = \bordermatrix{\text{specie}&u&s&p\cr
                 s& 3 & 0 & 4\cr
                 p&  5 & 4 & 0}
 \]
-Anche se adesso si conoscono le distanze di tutte le foglie con il genitore $p$, rimane comunque da capire se le altre due foglie, ovvero $u$ e $s$ abbiano altri genitori. Si ricorda, infatti che i loro archi sono stati tratteggiati in quanto ancora non si conosce la loro collocazione nell'albero.
+Anche se adesso si conoscono le distanze di tutte le foglie con il genitore $p$, rimane comunque da capire se $u$ e $s$ abbiano altri genitori. Si ricorda, infatti, che i loro archi sono stati tratteggiati in quanto ancora non si conosce la loro collocazione nell'albero.
 Per risolvere questo problema basta applicare ricorsivamente i passi precedenti, quindi si individua l'elemento più piccolo della matrice ($d_{su}$) e si suppone che essi siano vicini e quindi che abbiano un genitore non noto $k$, come mostrato in figura 11.
 \newpage
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=13cm, width=11cm, keepaspectratio]{distance_between_s_u.jpg}
- 	\caption{Albero con le nuove distanze da calcolare.}
+ 	\caption{Albero con il nuovo genitore non noto $k$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto alle altre foglie per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule calcolate a pagina $31$ con i dati attuali, si ottiene:
+Quindi, viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule calcolate a pagina $31$ con i dati attuali, si ottiene:
 \[d_{pk}=\frac{d_{up}+d_{sp}-d_{us}}2=
 \frac{(d_{uk}+d_{pk})+(d_{sk}+d_{pk})-(d_{uk}+d_{sk})}2=\]
 \[=\frac{2d_{pk}}2=d_{pk}
@@ -168,7 +168,7 @@ Quindi si calcola $d_{uk}$:
 %-\frac{(D_{uk}+D_{pk})+(D_{sk}+D_{pk})-(D_{uk}+D_{sk})}2=\]
 %\[=\frac{(D_{up}+D_{us}-D_{sp})}2=2
 %\]
-Stessa cosa per $d_{sk}$:
+E $d_{sk}$:
 \[d_{sp}=d_{sk}+d_{pk} \rightarrow d_{sk}=D_{sp}-D_{pk}=D_{sp}-\frac{D_{up}+D_{sp}-D_{us}}2=\]
 \[=\frac{D_{sp}+D_{us}-D_{up}}2=1\]
 Applicando le distanze trovate all'albero della figura 11, si ottiene:
@@ -179,7 +179,7 @@ Applicando le distanze trovate all'albero della figura 11, si ottiene:
  	\caption{Albero con le distanze $d_{uk}$ e $d_{sk}$ calcolate.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Dopo aver trovato ricorsivamente la distanza delle foglie dai propri genitori e di conseguenza aver aggiornato la matrice, rimane un ultimo passo da completare, ovvero calcolare la distanza tra $k$ e $p$: in precedenza abbiamo calcolato la distanza tra $u$ e $p$ e tra $s$ e $p$, quindi basta sottrarre tali valori a quelli trovati adesso e troviamo $d_{kp}$.
+Dopo aver trovato ricorsivamente la distanza delle foglie dai propri genitori e di conseguenza aver aggiornato la matrice, rimane un ultimo passo da completare, ovvero calcolare la distanza tra $k$ e $p$: in precedenza si era calcolata la distanza tra $u$ e $p$ e tra $s$ e $p$, quindi basta sottrarre tali valori a quelli trovati adesso e troviamo $d_{kp}$.
 \[d_{kp}=d_{sp}-d_{sk}=4-1=d_{up}-d_{uk}=5-2=3\]
 L'albero finale che si ottiene è il seguente:
 \begin{figure}[h!]

@@ -44,25 +44,25 @@ Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ s
 Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice delle distanze mostrata nella sezione precedente.
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{unrooted_tree_created_by_figure_5.jpg}
- 	\caption{Albero evolutivo senza radice costruito a partire dalla matrice \textbf{adattiva} della figura 5.}
+ 	\caption{Albero evolutivo senza radice costruito a partire dalla matrice \textbf{additiva} della figura 5.}
   	\label{fig:EvolutionaryTreeExample}
 \end{figure}
 \newline
 Ci possono essere più alberi che si adattano ad una matrice, quindi come si può scegliere l'albero giusto? Si nota che quello in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}. 
 \newpage
-Una loro caratteristica importante è che per ogni matrice delle distanze adattiva esiste un unico albero semplice che si adatta alla matrice stessa.
+Una loro caratteristica importante è che per ogni matrice delle distanze additiva esiste un unico albero semplice che si adatta alla matrice stessa.
 \newline
 Adesso è possibile dare una definizione al problema accennato all'inizio del capitolo:
 \begin{center}
 \textbf{Problema degli alberi basati sulla distanza:}
 \newline
-\textit{Dato in \textbf{input} una matrice delle distanze adattiva si ottiene in \textbf{output} un albero evolutivo semplice.}
+\textit{Dato in \textbf{input} una matrice delle distanze additiva si ottiene in \textbf{output} un albero evolutivo semplice.}
 \end{center}
 
 \section{Algoritmo per il problema degli alberi basati sulla distanza}
-L'obiettivo è quello di costruire un albero semplice $T$ che si adatti alla matrice delle distanze $D$.
+L'obiettivo è quello di costruire un albero semplice $T$ che si adatti alla matrice delle distanze additiva $D$.
 \newline
-Si prenda in considerazione la matrice delle distanze mostrata nella figura 5 e riportata di seguito\footnote{Per brevità si definisce ,u=umano, s=scimpanzé, f=foca, b=balena.}:
+Si prenda in considerazione la matrice della figura 5, riportata di seguito\footnote{Per brevità si definisce ,u=umano, s=scimpanzé, f=foca, b=balena.}:
 \[
 D = \bordermatrix{\text{specie}&u&s&f&b\cr
                 u& 0 & 3 & 7 & 5\cr
@@ -73,7 +73,7 @@ D = \bordermatrix{\text{specie}&u&s&f&b\cr
 \newline
 L'idea di base dell'algoritmo è che le specie che sono più vicine tra loro nella matrice siano effettivamente i \textit{vicini} nel rispettivo albero e quindi abbiano lo stesso genitore, con $D_i,_j=d_i,_j(T)$.
 \newline
-Poiché l'elemento più piccolo della matrice è $D_{fb}$, la cui distanza evolutiva è $2$, possiamo supporre che $f$ e $b$ siano vicini. Si indica con $p$ il genitore non noto delle due foglie. La situazione è mostrata di seguito.
+Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$, possiamo supporre che $f$ e $b$ siano vicini. Si indica con $p$ il genitore non noto delle due foglie. La situazione è mostrata di seguito.
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=3cm, width=2cm]{distance_between_f_b.jpg}
@@ -91,7 +91,7 @@ Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_
 \newline
 Nella figura 8 sono state aggiunte le foglie $u$ ed $s$, ma il loro arco è tratteggiato in quanto ancora non è possibile sapere come sono collocate nell'albero.
 \newline
-Nel passo successivo dell'algoritmo viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfruttato il valore della sua distanza rispetto a $p$ per poter calcolare $d_{fp}$ e $d_{bp}$ (in questo caso si sceglie $u$). Per far ciò è quindi necessario scrivere le distanze tra le foglie nel seguente modo:
+In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfruttato il valore della sua distanza rispetto a $p$ per poter calcolare $d_{fp}$ e $d_{bp}$ (in questo caso si sceglie $u$). Per far ciò è quindi necessario scrivere le distanze tra le foglie nel seguente modo:
 \[d_{fu}=d_{fp}+d_{up}\]
 \[d_{fb}=d_{fp}+d_{bp}\]
 \[d_{bu}=d_{bp}+d_{up}\]
@@ -101,9 +101,9 @@ Nel passo successivo dell'algoritmo viene scelta casualmente una foglia tra $u$ 
 \frac{d_{up}+d_{up}}2=
 \frac{2d_{up}}2=d_{up}
 \]
-Perché scrivere $d_{up}$ in quel modo? perché non si conosce il peso dei nodi interni, ma solo quello delle foglie, grazie alla matrice di partenza. Ma allora $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$, $d_{bu}=D_{bu}$, quindi si può scrivere $d_{up}$ nel seguente modo:
+Perché scrivere $d_{up}$ in quel modo? perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, ma allora, poiché è additiva, $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$. Quindi, si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
-A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandoli dalle uguaglianze di cui sopra. Per prima cosa si trova $d_{fp}$:
+A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandoli dalle uguaglianze trovate poc'anzi. Per prima cosa si trova $d_{fp}$:
 \[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=
 D_{fu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\]
 \[=\frac{2D_{fu}-D_{fu}-D_{bu}+D_{fb}}2=\frac{D_{fu}+D_{fb}-D_{bu}}2=
@@ -131,7 +131,7 @@ L'albero corrispondente è:
  	\caption{Albero con le distanze $d_{fp}$, $d_{bp}$, $d_{up}$ e $d_{sp}$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Adesso è necessario fare due modifiche alla matrice D, la prima consiste nel mettere una riga e colonna in più, definite $p$, che rappresentano le appena calcolate, ottenendo quindi la seguente matrice:
+Adesso è necessario fare due modifiche alla matrice D, la prima consiste nel mettere una riga e colonna in più, definite $p$, che rappresentano le distanze appena trovate, ottenendo quindi la seguente matrice:
 \[
 D = \bordermatrix{\text{specie}&u&s&f&b&p\cr
                 u& 0 & 3 & 7 & 5 & 5\cr
@@ -140,7 +140,7 @@ D = \bordermatrix{\text{specie}&u&s&f&b&p\cr
                 b& 5 & 4 & 2 & 0 & 0\cr
                 p&  5 & 4 & 2 & 0 & 0}
 \]
-la seconda invece consiste nel togliere le righe e colonne appartenenti a $f$ e $b$, in quanto già aggiunti all'albero e quindi non più utili. Quindi:
+la seconda invece consiste nel togliere le righe e colonne appartenenti a $f$ e $b$, in quanto i rispettivi nodi sono già aggiunti all'albero, pertanto non più utili. Quindi:
 \[
 D = \bordermatrix{\text{specie}&u&s&p\cr
                 u& 0 & 3 & 5\cr
@@ -148,7 +148,7 @@ D = \bordermatrix{\text{specie}&u&s&p\cr
                 p&  5 & 4 & 0}
 \]
 Anche se adesso si conoscono le distanze di tutte le foglie con il genitore $p$, rimane comunque da capire se $u$ e $s$ abbiano altri genitori. Si ricorda, infatti, che i loro archi sono stati tratteggiati in quanto ancora non si conosce la loro collocazione nell'albero.
-Per risolvere questo problema basta applicare ricorsivamente i passi precedenti, quindi si individua l'elemento più piccolo della matrice ($d_{su}$) e si suppone che essi siano vicini e quindi che abbiano un genitore non noto $k$, come mostrato in figura 11.
+Per risolvere questo problema basta applicare ricorsivamente i passi precedenti, quindi si individua l'elemento più piccolo della matrice ($d_{su}$) e si suppone che $s$ e $u$ siano vicini e quindi che abbiano un genitore non noto $k$, come mostrato in figura 11.
 \newpage
 \begin{figure}[h!]
 \centering
@@ -156,12 +156,12 @@ Per risolvere questo problema basta applicare ricorsivamente i passi precedenti,
  	\caption{Albero con il nuovo genitore non noto $k$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Quindi, viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule calcolate a pagina $31$ con i dati attuali, si ottiene:
+Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule di pagina $31$ con i dati attuali, si ottiene:
 \[d_{pk}=\frac{d_{up}+d_{sp}-d_{us}}2=
 \frac{(d_{uk}+d_{pk})+(d_{sk}+d_{pk})-(d_{uk}+d_{sk})}2=\]
 \[=\frac{2d_{pk}}2=d_{pk}
 \]
-Quindi si calcola $d_{uk}$:
+Adesso si può calcolare $d_{uk}$:
 \[d_{up}=d_{uk}+d_{pk} \rightarrow d_{uk}=D_{up}-D_{pk}=D_{up}-\frac{D_{up}+D_{sp}-D_{us}}2=\]
 \[=\frac{D_{up}+D_{us}-D_{sp}}2=2\]
 
@@ -185,6 +185,6 @@ L'albero finale che si ottiene è il seguente:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=13cm, width=11cm, keepaspectratio]{distance_between_s_u_part_4.jpg}
- 	\caption{Albero finale con tutte le distanze calcolate.}
+ 	\caption{Albero con tutte le distanze calcolate.}
   	\label{fig:neighborsleaves_4}
 \end{figure}

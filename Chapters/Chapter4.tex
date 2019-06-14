@@ -258,7 +258,7 @@ D = \bordermatrix{\text{specie}&f&b&u&s\cr
 Quello che si dovrà ottenere è il seguente albero:
 \begin{figure}[h!]
 \centering
-	\includegraphics[height=13cm, width=11cm, keepaspectratio]{additive_tree_1.jpg}
+	\includegraphics[height=12cm, width=10cm, keepaspectratio]{additive_tree_1.jpg}
  	\caption{Albero T ottenuto dalla matrice D.}
   	\label{fig:additivePhylogeny_1}
 \end{figure}
@@ -319,9 +319,67 @@ D^{tagliata_{s}}= \bordermatrix{\text{specie}&f&u\cr
 Il risultato è una matrice $2 \times 2$, quindi si può cominciare a costruire l'albero:
 \begin{figure}[h!]
 \centering
-	\includegraphics[height=13cm, width=11cm, keepaspectratio]{additive_tree_2.jpg}
+	\includegraphics[height=9cm, width=7cm, keepaspectratio]{additive_tree_2.jpg}
  	\caption{Albero ottenuto dalla matrice $D^{tagliata_{s}}$.}
-  	\label{fig:additivePhylogeny_1}
+  	\label{fig:additivePhylogeny_2}
 \end{figure}
 \newline
-Lo step successivo è quello di individuare il punto di $T(D{tagliata_{s}}$ in cui $s$ deve essere inserito. Si consideri la matrice $D^{spoglia_{s}}$.
+Lo step successivo è quello di individuare il punto di $T(D^{tagliata_{s}})$ in cui $s$ deve essere inserito. Per fare ciò si consideri la matrice $D^{spoglia_{s}}$. Dal \textit{teorema del peso degli arti} si ha che:
+\[limbweight(s)=\frac{D^{spoglia_{s}}_{f,s}+D^{spoglia_{s}}_{s,u}-D^{spoglia_{s}}_{f,u}}{2}\]
+Ma poiché $D^{spoglia_{s}}$ è una matrice ottenuta da $D^{tagliata_{b}}$ togliendo il peso dell'arto di $s$, allora $limbweight(s)=0$. Questo significa che:
+\[
+0=\frac{D^{spoglia_{s}}_{f,s}+D^{spoglia_{s}}_{s,u}-D^{spoglia_{s}}_{f,u}}{2} \rightarrow D^{spoglia_{s}}_{f,u}=D^{spoglia_{s}}_{f,s}+D^{spoglia_{s}}_{s,u}
+\]
+Questo significa che $s$ sta tra il cammino di $f$ ed $u$ (come si può notare dalla figura 15), in particolar modo a distanza $D^{spoglia_{s}}_{s,u}$ da $s$, ovvero $6$.
+\newline
+Dato che il punto di attacco sta lungo l'arco\footnote{Il punto di attacco può può essere anche su un vertice già esistente, in tal caso si connette $s$ a tale vertice.}, si crea un nodo interno che rappresenta un genitore non noto $k$ e si aggiunge $s$, il cui arto ha un peso pari a $limbweight(s)=7$.
+\newpage
+Adesso si aggiunge la foglia e si aggiorna il peso degli altri archi, quindi:
+\begin{figure}[h!]
+\centering
+	\includegraphics[height=8cm, width=6cm, keepaspectratio]{additive_tree_3.jpg}
+ 	\caption{Albero con la nuova foglia $s$.}
+  	\label{fig:additivePhylogeny_3}
+\end{figure}
+\newline
+$d_{sk}=7$ è il peso dell'arto di $s$ che è già stato calcolato in precedenza; $d_{uk}=D^{spoglia_{s}}_{s,u}=6$ è ottenuto sottraendo $limbweight(s)=7$ a \newline $D^{tagliata_{b}}_{s,u}=13$; $d_{fk}=15$ è dato da $D^{spoglia_{s}}_{f,u}-d_{uk}=21-6=15$.
+\newline
+Infine si ripetono gli ultimi step dell'algoritmo fino a che non si ottiene l'albero $T$. Quindi individuiamo il punto dell'albero in figura 16 in cui $b$ deve essere inserito.
+\[
+limbweight(b)=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_{f,u}}{2} \rightarrow\]
+\[ \rightarrow limbweight(b)=0,\: quindi\rightarrow 0=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_{f,u}}{2}\rightarrow\]
+\[\rightarrow D^{spoglia_{b}}_{f,u}=D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}
+\]
+Si nota che $b$ sta tra il cammino di $f$ e $u$ (come si può notare dalla figura 16), in particolar modo a distanza $D^{spoglia_{b}}_{f,b}$ da $f$, ovvero $11$. Si crea un nodo interno $p$ e si aggiunge $b$.
+\newpage
+L'albero evolutivo è il seguente:
+\begin{figure}[h!]
+\centering
+	\includegraphics[height=13cm, width=11cm, keepaspectratio]{additive_tree_4.jpg}
+ 	\caption{Albero $T$ ottenuto da $D$.}
+  	\label{fig:additivePhylogeny_4}
+\end{figure}
+\newline
+$d_{bp}=1$ è il peso dell'arto di $b$ che è già stato calcolato in precedenza; $d_{fp}=D^{spoglia_{b}}_{f,b}=11$ è ottenuto sottraendo $limbweight(b)=2$ a $D_{f,b}=13$; $d_{pk}=4$ è dato dalla sottrazione tra $d_{fk}$ (figura 15) e $d_{fp}$ (figura 17), quindi $d_{fk}-d_{fp}=15-11=4$.
+Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato.
+
+\newpage
+\subsection{Complessità temporale}
+Di seguito viene riportato l'algoritmo scritto in pseudocodice. I parametri sono D ed n, che sono rispettivamente la matrice delle distanze adattiva di dimensione $n \times n$ e la foglia $n$.
+
+\begin{framed}\noindent
+  \textbf{AlberoAdditivo($D$, $n$)}\\
+  \textbf{se} $n=2$\\
+  \indent \textbf{Restituisci} l'albero costituito da un arco che collega le due foglie\\
+  pesoArto $\leftarrow$ \textbf{limbweight}(n)\\
+  \textbf{per} $J \leftarrow 1$ \textbf{fino a} $n-1$\\
+  \indent $D_{jn} \leftarrow D_{jn} - pesoArto$\\
+  \indent $D_{nj} \leftarrow D_{jn}$\\
+  ($i$,$n$,$k$) $\leftarrow$ tre foglie tale che $D_{ik}=D_{in}+D_{nk}$\\
+  $x \leftarrow D_{in}$\\
+  \textbf{rimuovi} la riga e la colonna $n$ dalla matrice D \\
+  $T \leftarrow $\textbf{AlberoAdditivo($D$, $n-1$)}\\
+  $v \leftarrow $ il genitore di $n$ che è distante $x$ rispetto ad $i$ in $T$\\
+  %\footnote{In altre parole è il nodo interno che viene inserito prima di poter 	  mettere la foglia (nella figura 17 sono $k$ e $p$.)} \\
+  \textbf{aggiungi} la foglia $n$ a $T$ creando un arto che va tra $v$ ed $n$ il cui peso è \textit{pesoArto}
+\end{framed}

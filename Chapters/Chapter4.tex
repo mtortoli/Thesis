@@ -2,7 +2,7 @@
 In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
 
 \section{Matrice delle distanze}
-Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie, è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{molaCagliari}:
+Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{molaCagliari}:
 \begin{enumerate}
 	\item \textit{non negatività}:
 	\[d(x,y)\geq 0\hspace{2em} \forall \: x,y\in R^k\]
@@ -13,7 +13,7 @@ Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lon
 	\item \textit{disuguaglianza triangolare}:
 	\[d(x,y)\leq d(x,z)+d(y,z)\hspace{2em} \forall \: x,y,z\in R^k\]
 \end{enumerate}
-Date $n$ unità, calcolando la distanza per ogni coppia di elementi\footnote{Ci sono vari modi per calcolare la distanza tra una coppia di elementi, ad esempio attraverso la distanza Euclidea, quella di Manhattan, di Minkowski e così via.} si ottiene una \textit{matrice delle distanze $n \times n$}, definita nel seguente modo \cite{ingrassiaStatistica}:
+Date $n$ unità, calcolando la distanza per ogni coppia di elementi\footnote{Ci sono vari modi per calcolare la distanza tra due elementi, ad esempio attraverso la distanza Euclidea, quella di Manhattan, di Minkowski e così via.} si ottiene una \textit{matrice delle distanze $n \times n$}, definita nel seguente modo \cite{ingrassiaStatistica}:
 \[
 D = \begin{pmatrix}
 0 & d_{12} & d_{13} & \ldots & d_{1n} \\ 
@@ -26,20 +26,20 @@ d_{n1} & d_{n2} & \ldots & \ldots & 0
 \]
 Poiché è costruita a partire dalle distanze, ne eredita le proprietà precedentemente elencate.
 \newline
-Ciascun valore $D_i,_j$ può assumere significati diversi in base al contesto, ad esempio, può indicare il numero di simboli diversi tra i geni $i$ e $j$ nell'allineamento di sequenze di DNA\footnote{'allineamento è il processo attraverso il quale si misura la similarità tra due o più sequenze.}, come mostrato nell'esempio sottostante:
+Ciascun valore $D_i,_j$ può assumere significati diversi in base al contesto, ad esempio può indicare il numero di simboli diversi tra i geni $i$ e $j$ nell'allineamento di sequenze di DNA\footnote{L'allineamento è il processo attraverso il quale si misura la similarità tra due o più sequenze.}, come mostrato nell'esempio sottostante:
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{distance_matrix_example.jpg}
  	\caption{Esempio di matrice delle distanze.}
   	\label{fig:DistanceMatrix}
 \end{figure}
 \newline
-Dalla figura 5 è possibile notare che la sequenza di DNA della foca risulta molto più simile a quella della balena, in quanto la distanza è $2$, piuttosto che con l'umano, la cui distanza invece è $7$.
+Nella figura 5 è possibile notare che la sequenza di DNA della foca risulta molto più simile a quella della balena, in quanto la distanza è $2$, rispetto all'umano, con cui la distanza è $7$.
 \newpage
 
 \section{Problema degli alberi basati sulla distanza}
 Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter conoscere quale è la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco, pertanto la lunghezza del cammino in tale albero è la somma dei suoi pesi. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che li collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è dato dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
 \newline
-Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che le collega (distanza evolutiva), in tal caso la matrice viene definita \textit{additiva}. Qualora invece non esista un albero che si adatti alla matrice, allora è \textit{non additiva}.
+Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che le collega (distanza evolutiva), in tal caso sia la matrice che l'albero vengono definiti \textit{additivi}. Qualora invece non esista un albero che si adatti alla matrice, allora è \textit{non additiva} \cite{UniCaliforniaadditivetree}.
 \newline
 Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice delle distanze mostrata nella sezione precedente.
 \begin{figure}[h!]
@@ -62,7 +62,7 @@ Adesso è possibile dare una definizione al problema accennato all'inizio del ca
 \section{Algoritmo per il problema degli alberi basati sulla distanza}
 L'obiettivo è quello di costruire un albero semplice $T$ che si adatti alla matrice delle distanze additiva $D$.
 \newline
-Si prenda in considerazione la matrice della figura 5, riportata di seguito\footnote{Per brevità si definisce ,u=umano, s=scimpanzé, f=foca, b=balena.}:
+Si prenda in considerazione la matrice della figura 5, riportata di seguito\footnote{Per brevità si definisce u=umano, s=scimpanzé, f=foca, b=balena.}:
 \[
 D = \bordermatrix{\text{specie}&u&s&f&b\cr
                 u& 0 & 3 & 7 & 5\cr
@@ -71,9 +71,9 @@ D = \bordermatrix{\text{specie}&u&s&f&b\cr
                 b& 5 & 4 & 2 & 0}
 \]
 \newline
-L'idea di base dell'algoritmo è che le specie che sono più vicine tra loro nella matrice siano effettivamente i \textit{vicini} nel rispettivo albero e quindi abbiano lo stesso genitore, con $D_i,_j=d_i,_j(T)$.
+L'idea di base dell'algoritmo è che all'elemento più piccolo della matrice corrisponda a delle foglie \textit{vicine} nel rispettivo albero, ovvero che abbiano lo stesso genitore, con $D_i,_j=d_i,_j(T)$.
 \newline
-Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$, possiamo supporre che $f$ e $b$ siano vicini. Si indica con $p$ il genitore non noto delle due foglie. La situazione è mostrata di seguito.
+Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$, si può supporre che $f$ e $b$ siano vicini. Si indica con $p$ il genitore non noto delle due foglie. La situazione è mostrata di seguito.
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=3cm, width=2cm]{distance_between_f_b.jpg}
@@ -101,9 +101,9 @@ In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfrutt
 \frac{d_{up}+d_{up}}2=
 \frac{2d_{up}}2=d_{up}
 \]
-Perché scrivere $d_{up}$ in quel modo? perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, ma allora, poiché è additiva, $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$. Quindi, si può scrivere $d_{up}$ nel seguente modo:
+Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, di conseguenza poiché è additiva, $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$. Quindi si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
-A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandoli dalle uguaglianze trovate poc'anzi. Per prima cosa si trova $d_{fp}$:
+A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandola dalle uguaglianze trovate poc'anzi. Per prima cosa si calcola $d_{fp}$:
 \[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=
 D_{fu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\]
 \[=\frac{2D_{fu}-D_{fu}-D_{bu}+D_{fb}}2=\frac{D_{fu}+D_{fb}-D_{bu}}2=
@@ -121,7 +121,7 @@ Quindi $d_{bp}=0$. Il risultato di questo passo dell'algoritmo è il seguente al
   	\label{fig:neighborsleaves_3}
 \end{figure}
 \newline
-Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$. Questo in realtà è semplice: dalla matrice D sappiamo che $D_{fu}=d_{fu}=7$ e che dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
+Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$: dalla matrice D sappiamo che $D_{fu}=d_{fu}=7$ e dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
 \newline
 L'albero corrispondente è:
 \newpage
@@ -185,16 +185,16 @@ L'albero finale che si ottiene è il seguente:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=13cm, width=11cm, keepaspectratio]{distance_between_s_u_part_4.jpg}
- 	\caption{Albero con tutte le distanze calcolate.}
+ 	\caption{Albero evolutivo semplice con tutte le distanze calcolate.}
   	\label{fig:neighborsleaves_4}
 \end{figure}
 \newline
-L'algoritmo è terminato. Tuttavia, vi è una criticità, che viene mostrata nella sezione successiva.
+L'algoritmo è terminato. Tuttavia vi è una criticità che viene mostrata nella sezione successiva.
 
 \subsection{Complessità temporale}
 Per calcolare la complessità nel tempo dell'algoritmo possiamo suddividerlo in tre step, di seguito elencati.
 \begin{enumerate}
-	\item \textit{Step 1}: Trovare il minimo elemento in una matrice di dimensione $n \times n$.
+	\item \textit{Step 1}: Trovare il minimo in una matrice di dimensione $n \times n$.
 	\newline
 	Si suppone l'utilizzo di un algoritmo di ricerca lineare, la cui complessità nel caso pessimo, dato in input un vettore di lunghezza $n$, è pari a $O(n)$. Poiché questa operazione deve essere effettuata per tutte le $n$ righe, otteniamo che:
 	\[T(step 1)=O(n) \times O(n) \simeq O(n^2)\]
@@ -207,6 +207,13 @@ Per calcolare la complessità nel tempo dell'algoritmo possiamo suddividerlo in 
 	Poiché per ogni coppia di foglie esiste un genitore, allora il costo sarà:
 	\[T(step 3)=O(n/2)\]
 \end{enumerate}
-Adesso basta sommare le tre complessità e si trova quella totale dell'algoritmo:
+Adesso è sufficiente sommare le tre complessità e si trova quella totale dell'algoritmo:
 \[T(totale)=T(step 1)+T(step 2)+T(step 3)=\]
 \[=O(n^2)+O(n)+O(n/2) \simeq O(n^2) \]
+
+\newpage
+
+%\section{Albero Additivo}
+L'algoritmo mostrato nella sezione precedente possiede una criticità, infatti riesce a risolvere il problema degli \textit{alberi basati sulla distanza} solamente se all'elemento più piccolo nella matrice D corrisponde a due foglie \textit{vicine} nell'albero T. Ma questo non è necessariamente vero, infatti ci sono matrici delle distanze che, seppur additive (e quindi $ \forall i,j\in V,D_{ij}=d_{ij}(T)$), non possiedono come elemento più piccolo una coppia di foglie con lo stesso genitore. Si deve, quindi, approcciare il problema in modo diverso: invece di cercare le coppie di foglie vicine in un albero, l'idea di base dell'algoritmo è quella di ridurre la sua dimensione eliminandole di volta in volta. Per far ciò è necessario conoscere il peso degli archi che collegano le foglie ai rispettivi genitori. Questi, prendono il nome di \textit{arti} \cite{bioinfvideoAdditive}. Tale operazione andrà effettuata in termini di matrice delle distanze D, dato che non si conosce l'albero T fino a che l'algoritmo non è completato.
+\newline
+Il primo problema che si pone è quello di calcolare 

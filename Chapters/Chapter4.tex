@@ -209,7 +209,16 @@ Adesso è sufficiente sommare le tre complessità e si trova quella totale dell'
 \[T(totale)=T(step 1)+T(step 2)+T(step 3)=\]
 \[=O(n^2)+O(n)+O(n/2) \simeq O(n^2) \]
 
+\newpage
+
 \section{Albero Additivo}
-L'algoritmo mostrato nella sezione precedente possiede una criticità, infatti riesce a risolvere il problema degli \textit{alberi basati sulla distanza} solamente se all'elemento più piccolo nella matrice D corrisponde a due foglie \textit{vicine} nell'albero T. Ma questo non è necessariamente vero, infatti ci sono matrici delle distanze che, seppur additive (e quindi $ \forall i,j\in V,D_{ij}=d_{ij}(T)$), non possiedono come elemento più piccolo una coppia di foglie con lo stesso genitore. Si deve, quindi, approcciare il problema in modo diverso: invece di cercare le coppie di foglie vicine in un albero, l'idea di base dell'algoritmo è quella di ridurre la sua dimensione eliminandole di volta in volta. Per far ciò è necessario conoscere il peso degli archi che collegano le foglie ai rispettivi genitori. Questi, prendono il nome di \textit{arti} \cite{bioinfvideoAdditive}. Tale operazione andrà effettuata in termini di matrice delle distanze D, dato che non si conosce l'albero T fino a che l'algoritmo non è completato.
+L'algoritmo mostrato nella sezione precedente presenta una criticità, infatti riesce a risolvere il problema degli \textit{alberi basati sulla distanza} solamente se all'elemento più piccolo nella matrice D corrisponde a due foglie \textit{vicine} nell'albero T. Ma questo non è necessariamente vero, infatti ci sono matrici delle distanze che, seppur additive (e quindi $ \forall i,j\in V,D_{ij}=d_{ij}(T)$), non possiedono come elemento più piccolo una coppia di foglie con lo stesso genitore. Si deve, quindi, approcciare il problema in modo diverso: invece di cercare le foglie vicine in un albero, l'idea di base dell'algoritmo è quella di costruirlo aggiungendole una alla volta. Per far ciò è necessario conoscere il peso degli archi che collegano le foglie ai rispettivi genitori. Questi prendono il nome di \textit{arti}. Tutti gli altri sono definiti \textit{archi interni} \cite{bioinfvideoAdditive}. Tale operazione andrà effettuata in termini di matrice delle distanze D, dato che non si conosce l'albero T fino a che l'algoritmo non è completato.
 \newline
-Il primo problema che si pone è quello di calcolare 
+Il primo problema che si pone è quello di calcolare il peso degli arti: data una foglia $j$, si denota con \textit{limbweight(j)} il peso dell'arco che collega $j$ al suo genitore \cite{bioinfvideoAdditive}.
+\begin{center}
+\textbf{Teorema del peso degli arti:}
+\newline
+\textit{Data una matrice delle distanze additiva $D$ ed una foglia $j$, \textit{limbweight(j)} è uguale al valore minimo di $\frac{D_{i,j}+D_{j,k}-D_{i,k}}{2}$ tra le foglie $i$ e $k$\footnote{Si omette la dimostrazione, che è comunque consultabile nel libro \textit{Bioinformatics Algorithms, An Active Learning Approach, Vol II} di Compeau P., Pevzner P.} \cite{bioinfalganactivelearningapproachparttwo}} .
+\end{center}
+
+ Nella sezione precedente si è già calcolato il peso di un arco per una generica foglia $j$, ma poiché adesso non c'è nessuna informazione riguardo al vicino di $j$, risulta necessario espandere la 

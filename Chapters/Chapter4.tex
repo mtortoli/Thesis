@@ -81,7 +81,7 @@ Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$,
   	\label{fig:neighborsleaves}
 \end{figure}
 \newline
-Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_{bp}$) ? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e che $f$, $p$ sono vicini. Il passo successivo dell'algoritmo è mostrato di seguito.
+Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_{bp}$)? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e che $f$, $p$ sono vicini. Il passo successivo dell'algoritmo è mostrato di seguito.
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=7cm, keepaspectratio]{distance_between_f_b_part_2.jpg}
@@ -104,15 +104,13 @@ In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfrutt
 Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, di conseguenza poiché è additiva, $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$. Quindi si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
 A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandola dalle uguaglianze trovate poc'anzi. Per prima cosa si calcola $d_{fp}$:
-\[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=
-D_{fu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\]
-\[=\frac{2D_{fu}-D_{fu}-D_{bu}+D_{fb}}2=\frac{D_{fu}+D_{fb}-D_{bu}}2=
-\frac{7+2-5}2=2\]
+\[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=\]
+\[=D_{fu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\frac{2D_{fu}-D_{fu}-D_{bu}+D_{fb}}2=\]
+\[=\frac{D_{fu}+D_{fb}-D_{bu}}2=\frac{7+2-5}2=2\]
 Quindi $d_{fp}=2$. In modo analogo si calcola $d_{bp}$:
-\[d_{bu}=d_{bp}+d_{up} \rightarrow d_{bp}=d_{bu}-d_{up}=D_{bu}-D_{up}=
-D_{bu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\]
-\[=\frac{2D_{bu}-D_{fu}-D_{bu}+D_{fb}}2=\frac{D_{bu}+D_{fb}-D_{fu}}2=
-\frac{5+2-7}2=0\]
+\[d_{bu}=d_{bp}+d_{up} \rightarrow d_{bp}=d_{bu}-d_{up}=D_{bu}-D_{up}=\]
+\[=D_{bu}-\frac{D_{fu}+D_{bu}-D_{fb}}2=\frac{2D_{bu}-D_{fu}-D_{bu}+D_{fb}}2=\]
+\[\frac{D_{bu}+D_{fb}-D_{fu}}2=\frac{5+2-7}2=0\]
 Quindi $d_{bp}=0$. Il risultato di questo passo dell'algoritmo è il seguente albero:
 \begin{figure}[h!]
 \centering
@@ -211,9 +209,7 @@ Adesso è sufficiente sommare le tre complessità e si trova quella totale dell'
 \[T(totale)=T(step 1)+T(step 2)+T(step 3)=\]
 \[=O(n^2)+O(n)+O(n/2) \simeq O(n^2) \]
 
-\newpage
-
-%\section{Albero Additivo}
+\section{Albero Additivo}
 L'algoritmo mostrato nella sezione precedente possiede una criticità, infatti riesce a risolvere il problema degli \textit{alberi basati sulla distanza} solamente se all'elemento più piccolo nella matrice D corrisponde a due foglie \textit{vicine} nell'albero T. Ma questo non è necessariamente vero, infatti ci sono matrici delle distanze che, seppur additive (e quindi $ \forall i,j\in V,D_{ij}=d_{ij}(T)$), non possiedono come elemento più piccolo una coppia di foglie con lo stesso genitore. Si deve, quindi, approcciare il problema in modo diverso: invece di cercare le coppie di foglie vicine in un albero, l'idea di base dell'algoritmo è quella di ridurre la sua dimensione eliminandole di volta in volta. Per far ciò è necessario conoscere il peso degli archi che collegano le foglie ai rispettivi genitori. Questi, prendono il nome di \textit{arti} \cite{bioinfvideoAdditive}. Tale operazione andrà effettuata in termini di matrice delle distanze D, dato che non si conosce l'albero T fino a che l'algoritmo non è completato.
 \newline
 Il primo problema che si pone è quello di calcolare 

@@ -406,7 +406,7 @@ Gli algoritmi precedentemente elencati mostrano delle criticità, in quanto il p
 \newline
 \`E necessario fare una precisazione: non c'è modo che un albero si adatti ad una matrice \textit{non additiva}, proprio per definizione della stessa, tuttavia è possibile costruire un albero che meglio approssimi la distanza tra le foglie della matrice attraverso uno degli algoritmi più importanti della bioinformatica, ovvero il \textbf{Neighbor-Joining}. Nel caso in cui invece sia \textit{additiva}, allora il \textbf{NJ} costruisce un albero che si adatta ad essa.
 \newline
-Si prenda in considerazione la seguente matrice \textit{non additiva}:
+Si prenda in considerazione la seguente matrice \textit{non additiva}\footnote{Per brevità si definisce u=umano, s=scimpanzé, f=foca, b=balena.}:
 \[
 D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 f& 0 & 3 & 4 & 3\cr
@@ -418,4 +418,34 @@ L'obiettivo è quello di costruire un albero $T$ che meglio approssima le distan
 \newline
 Il \textit{primo} passo dell'algoritmo Neighbor-Joining consiste nel trovare $D^\star$. Dato in input $D$ si definisce $D^\star$ la seguente matrice \cite{neighborjoinrevealed}:
 \[\forall \,f,b\in D,\: \, D^\star(f,b)=(n-2)\cdot D(f,b)-\sum_{k=1}^{n}D(f,k)-\sum_{k=1}^{n}D(b,k)\]
-dove $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$. La sua caratteristica principale è che qualunque sia la matrice delle distanze $D$ in input, l'elemento più piccolo in $D^\star$ corrisponderà \textit{sempre} ad una coppia di foglie vicine nell'albero.
+dove $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$. La sua caratteristica principale è che qualunque sia la matrice delle distanze $D$ in input, l'elemento più piccolo in $D^\star$ corrisponderà \textit{sempre} ad una coppia di foglie vicine nell'albero. Adesso si trovano i valori di $totalDistance$ per ogni riga in $D$:
+\[
+D = \bordermatrix{\text{specie}&f&b&u&s\cr
+                f& 0 & 3 & 4 & 3\cr
+                b& 3 & 0 & 4 & 5\cr
+                u& 4 & 4 & 0 & 2\cr
+                s& 3 & 5 & 2 & 0}\;\;\;\;
+\begin{matrix}
+totalDistance(D_f)=10\\ 
+totalDistance(D_b)=12\\ 
+totalDistance(D_u)=10\\
+totalDistance(D_s)=10
+\end{matrix}
+\]
+Infine si calcolano i valori per creare $D^\star$:
+\begin{itemize}
+	\item $D^\star(f,b)=(4-2)\cdot D(f,b)-totalDistance(D_f)-totalDistance(D_b)=\\=2\cdot3-10-12=-16$
+	\item $D^\star(f,u)=(4-2)\cdot D(f,u)-totalDistance(D_f)-totalDistance(D_u)=\\=2\cdot4-10-10=-12$
+	\item $D^\star(f,s)=(4-2)\cdot D(f,s)-totalDistance(D_f)-totalDistance(D_s)=\\=2\cdot3-10-10=-14$	
+	\item $D^\star(b,u)=(4-2)\cdot D(b,u)-totalDistance(D_b)-totalDistance(D_u)=\\=2\cdot4-12-10=-14$	
+	\item $D^\star(b,s)=(4-2)\cdot D(b,s)-totalDistance(D_b)-totalDistance(D_s)=\\=2\cdot5-12-10=-12$
+	\item $D^\star(u,s)=(4-2)\cdot D(u,s)-totalDistance(D_u)-totalDistance(D_s)=\\=2\cdot2-10-10=-16$
+\end{itemize}
+Quindi la matrice è:
+\[D^\star = \bordermatrix{\text{specie}&f&b&u&s\cr
+                f& 0 & -16 & -12 & -14\cr
+                b& -16 & 0 & -14 & -12\cr
+                u& -12 & -14 & 0 & -16\cr
+                s& -14 & -12 & -16 & 0}
+\]
+Nel \textit{secondo} step si cerca l'elemento minimo in $D^\star$, ovvero $D_{fb}$\footnote{Anche $D_{us}$ è l'elemento più piccolo, tuttavia non si possono scegliere più elementi alla volta.}, le cui foglie $f$ e $b$ sono \textit{vicine}.

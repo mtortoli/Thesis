@@ -219,7 +219,7 @@ Il primo problema che si pone è quello di calcolare il peso degli arti: data un
 \begin{center}
 \textbf{Teorema del peso degli arti:}
 \newline
-\textit{Data una matrice delle distanze additiva $D$ ed una foglia $j$, \textit{limbweight(j)} è uguale al valore minimo di $\frac{D_{j,i}+D_{j,k}-D_{i,k}}{2}$ tra tutte le foglie $i$ e $k$\footnote{Si omette la dimostrazione, che è comunque consultabile al capitolo 7 del libro \textit{Bioinformatics Algorithms, An Active Learning Approach, Vol II} di Compeau P., Pevzner P.} \cite{bioinfalganactivelearningapproachparttwo}} .
+\textit{Data una matrice delle distanze additiva $D$ ed una foglia $j$, \textit{limbweight(j)} è uguale al valore minimo di $\frac{D_{j,i}+D_{j,k}-D_{i,k}}{2}$ tra tutte le foglie $i$ e $k$\footnote{Si omette la dimostrazione, che è consultabile al capitolo 7 del libro \textit{Bioinformatics Algorithms, An Active Learning Approach, Vol II} di Compeau P., Pevzner P.} \cite{bioinfalganactivelearningapproachparttwo}} .
 \end{center}
 
 A titolo esemplificativo si riporta l'applicazione del teorema alla seguente matrice\footnote{Per brevità si definisce f=foca, b=balena, u=umano, s=scimpanzé. Inoltre si ricorda che questi rappresentano le foglie nel rispettivo albero evolutivo $T$.}:
@@ -256,7 +256,7 @@ D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 s& 22 & 13 & 13 & 0}
 \]
 \newpage
-Quello che si dovrà ottenere è il seguente albero:
+L'albero che si intende ottenere è il seguente:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=12cm, width=10cm, keepaspectratio]{additive_tree_1.jpg}
@@ -284,7 +284,7 @@ D^{spoglia_{b}}= \bordermatrix{\text{specie}&f&b&u&s\cr
                 u& 21 & {\color{Blue} 10} & 0 & 13\cr
                 s& 22 & {\color{Blue} 11} & 13 & 0}
 \]
-Poiché la riga e la colonna $b$ non forniscono informazioni aggiuntive, sarebbe inutile tenerle, pertanto si tolgono dalla matrice $D^{spoglia_{b}}$. Il risultato è il seguente:
+Poiché la riga e la colonna $b$ non forniscono informazioni aggiuntive, sarebbe inutile tenerle, pertanto si eliminano dalla matrice $D^{spoglia_{b}}$. Il risultato è il seguente:
 \[
 D^{tagliata_{b}}= \bordermatrix{\text{specie}&f&u&s\cr
                 f& 0 & 21 & 22\cr
@@ -293,7 +293,7 @@ D^{tagliata_{b}}= \bordermatrix{\text{specie}&f&u&s\cr
 \]
 Adesso si può ottenere l'albero evolutivo $T$ eseguendo ricorsivamente i seguenti step:
 \begin{enumerate}
-	\item Scegliere casualmente una foglia $j$, calcolare $limbweight(j)$, costruire $D^{spoglia_{j}}$ e  $D^{tagliata_{j}}$. Ripetere queste operazione fino a che non si ottiene una matrice $D^{tagliata}$ di dimensioni $2 \times 2$.
+	\item Scegliere casualmente una foglia $j$, calcolare $limbweight(j)$, costruire $D^{spoglia_{j}}$ e  $D^{tagliata_{j}}$. Ripetere queste operazioni fino a che non si ottiene una matrice $D^{tagliata}$ di dimensioni $2 \times 2$.
 	\item Costruire un albero $T^{tagliato}$ a partire da $D^{tagliata}$ trovata nello step precedente. All'inizio sarà composto solamente da una coppia di foglie ed un arco che le collega.
 	\item Identificare il punto di $T^{tagliato}$ in cui la foglia $j$ deve essere inserita. Questo passo dell'algoritmo verrà spiegato successivamente.
 	\item Aggiungere la foglia $j$ ed aggiornare il peso degli archi in $T^{tagliato}$. La ripetizione di questo punto e di quello precedente permettono la costruzione dell'albero di volta in volta fino al suo completamento.
@@ -361,7 +361,9 @@ L'albero evolutivo è il seguente:
 \newline
 $d_{bp}=2$ è il peso dell'arto di $b$ che è già stato calcolato in precedenza; $d_{fp}=D^{spoglia_{b}}_{f,b}=11$ è ottenuto sottraendo $limbweight(b)=2$ a $D_{f,b}=13$; $d_{pk}=4$ è dato dalla sottrazione tra $d_{fk}$ (figura 16) e $d_{fp}=D^{spoglia_{b}}_{f,b}$, quindi $d_{fk}-d_{fp}=15-11=4$.
 \newline
-Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato.
+Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato. Tuttavia anche in questo caso vi è una criticità, in quanto riesce a costruire $T$ \textit{se e solo se} la matrice $D$ è additiva, ed in molti casi non è così.
+\newline
+Nella sezione successiva viene mostrato un algoritmo che risolve tale criticità.
 
 \newpage
 \subsection{Complessità temporale}
@@ -394,3 +396,8 @@ Quindi:
 \[=O(n^2)+O(n-1)+O(1) \simeq O(n^2)\]
 Ma \textit{AlberoAdditivo} viene eseguito $n$ volte, ovvero fino a che non si costruisce un albero $T$ con $n$ foglie, pertanto la complessità totale dell'algoritmo è:
 \[T(totale)=T(AlberoAdditivo) \times O(n)=O(n^2) \times O(n)= O(n^3)\]
+
+\section{Algoritmo Neighbor-Joining}
+Gli algoritmi precedentemente elencati mostrano delle criticità, in quanto il primo riesce a costruire l'albero $T$ solo se la matrice additiva $D$ ha come elemento più piccolo una coppia di foglie vicine in $T$, mentre il secondo, anche se risolve questo problema, comunque non riesce a costruire $T$ qualora $D$ non sia additiva.
+\newline
+L'Algoritmo \textit{Neighbor-Joining} non solo permette la costruzione degli alberi anche con matrici non additive ma è anche uno degli algoritmi più importanti nella bioinformatica.

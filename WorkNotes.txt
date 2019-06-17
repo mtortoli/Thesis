@@ -1,7 +1,7 @@
-\newpage
-Ordine dei capitoli:
-\begin{itemize}
-	\item Cap 4: albero additivo;
+TODO BEFORE CONSIGMENT:
+1) Controllare che ogni volta che parlo di un elemento della matrice D abbia scritto D_{ij} e non d_{ij}.
+1-b) analogalmente controllare che ogni volta che parlo di un elemento di un albero non lo faccia con D maiuscolo.
+2) controllare se c'è modo di numerare le formule, almeno mi posso riferire a loro in modo preciso
+
 	\item Cap 5: UPGMA (Unweighted Pair Group Method with Arithmetic Mean)
 	\item cap 6: NEIGHBORJOINING
-\end{itemize}

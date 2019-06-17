@@ -448,6 +448,98 @@ Quindi la matrice è:
                 u& -12 & -14 & 0 & -16\cr
                 s& -14 & -12 & -16 & 0}
 \]
-Nel \textit{secondo} step si cerca l'elemento minimo in $D^\star$, ovvero $D_{fb}$\footnote{Anche $D_{us}$ è l'elemento più piccolo, tuttavia non si possono scegliere più elementi alla volta.}, le cui foglie $f$ e $b$ sono \textit{vicine}.
+Nel \textit{secondo} step si cerca l'elemento minimo in $D^\star$, ovvero $D_{fb}$\footnote{Anche $D_{us}$ è l'elemento più piccolo, tuttavia non si può sceglierne più di uno alla volta.}, le cui foglie $f$ e $b$ sono \textit{vicine}.
 \newline
-Nel \textit{terzo} invece bisogna calcolare il delta blabla
+Nel \textit{terzo} invece si calcola il \textit{delta} tra $totalDistance(D_f)$ e $totalDistance(D_b)$:
+\[\Delta_{fb}=\frac{totalDistance(D_f)-totalDistance(D_b)}{n-2}=\frac{10-12}{4-2}=-1\]
+Questo valore ci serve per il \textit{quarto} step, ovvero per trovare il peso dell'arto di $f$ e $b$:
+\[limbweight(f)=\frac{D_{fb}+\Delta_{fb}}{2}=\frac{3+(-1)}{2}=1\]
+\[limbweight(b)=\frac{D_{fb}-\Delta_{fb}}{2}=\frac{3-(-1)}{2}=2\]
+Poiché si sono ottenute tutte le informazioni necessarie per poter inserire $f$ e $b$ nell'albero, si esegue lo step \textit{cinque}: si inserisce il loro genitore non noto in $D$, ovvero una riga e colonna $p$ tale che $\forall u\in D\setminus \, \{f,b\}, \; D_{up}=\frac{D_{fu}+D_{bu}-D_{fb}}{2}$ e si rimuovono le righe e le colonne di $f$ e $b$. Quindi:
+\[D_{up}=\frac{D_{fu}+D_{bu}-D_{fb}}{2}=\frac{4+4-3}{2}=\frac{5}{2}=2,5\]
+\[D_{sp}=\frac{D_{fs}+D_{bs}-D_{fb}}{2}=\frac{3+5-3}{2}=\frac{5}{2}=2,5\]
+Si può notare che la distanza di entrambe le foglie dal genitore sia la stessa. La matrice risultante è:
+\[
+D = \bordermatrix{\text{specie}&p&u&s\cr
+                p& 0 & 2,5 & 2,5\cr
+                u& 2,5 & 0 & 2\cr
+                s& 2,5 & 2 & 0}
+\]
+I cinque passi sopraelencati devono essere eseguiti fino a che non si ottiene una matrice $2 \times 2$. Quindi si calcolano $totalDistance(D_p)$,\newline $totalDistance(D_u)$, $totalDistance(D_s)$ e si costruisce $D^\star$:
+\[
+\begin{matrix}
+totalDistance(D_p)=5\\ 
+totalDistance(D_u)=4,5\\ 
+totalDistance(D_s)=4,5
+\end{matrix}\;\;\;\;
+D^\star = \bordermatrix{\text{specie}&p&u&s\cr
+                p& 0 & -7 & -7\cr
+                u& -7 & 0 & -7\cr
+                s& -7 & -7 & 0}
+\]
+Si sceglie un elemento minimo in $D^\star$, ($D_{us}$) e si calcola $Delta_{us}$, quindi:
+\[\Delta_{us}=\frac{totalDistance(D_u)-totalDistance(D_s)}{n-2}=\frac{4,5-4,5}{3-2}=0\]
+Si trovano i pesi degli arti di $u$ ed $s$. Poiché il \textit{delta} è uguale a zero, $limbweight(u)$ e $limbweight(s)$ hanno lo stesso valore:
+\[limbweight(u)=\frac{D_{us}+\Delta_{us}}{2}=\frac{2+0}{2}=1\]
+\[limbweight(s)=\frac{D_{us}-\Delta_{us}}{2}=\frac{2-0}{2}=1\]
+Si inserisce il genitore non noto $k$ in $D$ aggiornando i valori della matrice e si eliminano $u$ ed $s$. Quindi:
+\[D_{pk}=\frac{D_{up}+D_{sp}-D_{us}}{2}=\frac{2,5+2,5-2}{2}=\frac{3}{2}=1,5\]
+La matrice che si ottiene è la seguente:
+\[
+D = \bordermatrix{\text{specie}&p&k\cr
+                p& 0 & 1,5\cr
+                k& 1,5 & 0}
+\]
+Poiché $D$ è di dimensione $2 \times 2$, si passa alla costruzione dell'albero.  Dalla matrice Si ricava che $p$ e $k$ sono dei nodi interni legati tramite un arco di peso $1,5$, quindi:
+\begin{figure}[h!]
+\centering
+	\includegraphics[height=7cm, width=5cm, keepaspectratio]{neighbor_joining_1.jpg}
+ 	\caption{Albero $T$ ottenuto da $D$.}
+  	\label{fig:neighbor_joining_1}
+\end{figure}
+\newline
+Come già specificato nei passi precedenti, $p$ e $k$ sono i genitori rispettivamente di $f$, $b$ e $u$, $s$, i cui pesi degli arti sono già stati calcolati, pertanto si può costruire direttamente l'albero evolutivo finale $T$:
+\begin{figure}[h!]
+\centering
+	\includegraphics[height=13cm, width=11cm, keepaspectratio]{neighbor_joining_2.jpg}
+ 	\caption{Albero $T$ ottenuto dalla matrice delle distanze non additiva $D$.}
+  	\label{fig:neighbor_joining_2}
+\end{figure}
+\newline
+Si può notare che l'albero ottenuto non si adatta completamente alla matrice $D$ in quanto, come detto all'inizio della sezione, non è possibile ottenerlo a causa della non additività di $D$. \`E comunque possibile misurare quanto $T$ si adatti alla matrice attraverso la seguente formula \cite{LeastSquaresAlgorithmCompeauVideo}:
+\[Discrepancy(D(T),D)=\sum_{i=1}^{j-1}\sum_{j=i+1}^{n}(D_{ij}(T)-D_{ij})^2\]
+Dove $D(T)$ è la matrice ottenuta da $T$, ovvero:
+\[
+D(T) = \bordermatrix{\text{specie}&f&b&u&s\cr
+                f& 0 & 3 & 3,5 & 3,5\cr
+                b& 3 & 0 & 4,5 & 4,5\cr
+                u& 3,5 & 4,5 & 0 & 2\cr
+                s& 3,5 & 4,5 & 2 & 0}
+\]
+Pertanto $Discrepancy(D(T),D)$ è:
+\[Discrepancy(D(T),D)=(D_{1,2}(T)-D_{1,2})^2+(D_{1,3}(T)-D_{1,3})^2+\]
+\[+(D_{1,4}(T)-D_{1,4})^2+(D_{2,3}(T)-D_{2,3})^2+(D_{2,4}(T)-D_{2,4})^2=\]
+\[=0+(3,5-4)^2+(3,5-3)^2+(4,5-4)^2+(4,5-5)^2+0=1\]
+Poiché il risultato ottenuto è un valore basso rispetto a $D$, significa che $T$ approssima nel miglior modo possibile tale matrice.
+
+
+\newpage
+\subsection{Complessità temporale}
+Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non e $n$ sono il numero delle righe e colonne:
+\begin{framed}\noindent
+  \textbf{NeighborJoining($D$, $n$)}\\
+  \textbf{se} $n=2$\\
+  \indent \textbf{Restituisci} l'albero ottenuto da D costituito da un arco che collega le due foglie\\
+  $D^\star \leftarrow $ matrice ottenuta da $D$\\
+  cerca l'elemento minimo $D^\star_{ij}$ in $D^\star$\\
+  $\Delta_{ij} \leftarrow \frac{totalDistance(D_i)-totalDistance(D_j)}{n-2}$\\
+  $ limbweight(i) \leftarrow \frac{D_{ij}+\Delta_{ij}}{2}  $ \\
+  $ limbweight(j) \leftarrow \frac{D_{ij}-\Delta_{ij}}{2}  $ \\
+  \textbf{aggiungi} $m$ a $D$  tale che $\forall k\in D\setminus \, \{i,j\}, \; D_{km}=D_{mk}=\frac{D_{ki}+D_{kj}-D_{ij}}{2}$
+  \textbf{elimina} $i$ e $j$ da $D$\\
+  $T \leftarrow$ \textbf{NeighborJoining}($D$, $n-1$) \\
+  \textbf{connetti} $m$ alle foglie $i$ e $j$ nell'albero $T$ \\
+  \textbf{assegna} all'arto di $i$ il valore di $limbweight(i)$
+  \textbf{assegna} all'arto di $j$ il valore di $limbweight(j)$
+  Restituisci $T$
+\end{framed}

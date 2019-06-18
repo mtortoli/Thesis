@@ -543,3 +543,17 @@ Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice 
   \textbf{assegna} all'arto di $j$ il valore di $limbweight(j)$
   Restituisci $T$
 \end{framed}
+Ogni volta che l'algoritmo viene richiamato, vengono eseguiti i seguenti step:
+\begin{enumerate}
+	\item Crea $D^\star$ e cerca l'elemento minimo. Supponendo di usare un algoritmo di ricerca lineare, il cui costo nel caso pessimo è $O(n)$ (per un vettore di lunghezza $n$), nel caso di una matrice si ottiene che:
+	\[T(step1)=O(n) \times O(n)=O(n^2)\]
+	\item Calcola il Delta ed i pesi degli arti di $i$ e $j$. A differenza di quanto visto nell'algoritmo "\textit{Albero Additivo}", la complessità di \textit{limbweight} non è $O(n^2)$ ma $O(1)$. Questo perché in questo caso si conosce quale è la foglia e quindi si può applicare applicare direttamente la formula per calcolare il peso del suo arto. Quindi:
+	\[T(step2)=O(1)\]
+	\item Aggiunge il genitore di $i$ e $j$ e calcola la sua distanza rispetto agli altri elementi:
+	\[T(step3)=O(n-2)\simeq O(n)\] 
+\end{enumerate}
+La complessità di \textit{NeighborJoining} è:
+	\[T(NeighborJoining)=T(step1)+T(step2)+T(step3)=\]
+	\[=O(n^2)+O(1)+O(n)\simeq O(n^2)\]
+\textit{NeighborJoining} viene eseguito $n$ volte, quindi la complessità totale è:
+\[T(Totale)=T(NeighborJoining) \times O(n) = O(n^2) \times O(n) = O(n^3) \]

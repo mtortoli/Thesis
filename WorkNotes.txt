@@ -1,34 +1,7 @@
-Domande per l'amorina <3:
-1) posso parlare di virus nel caso degli organismi/forme di vita?
+TODO BEFORE CONSIGMENT:
+1) Controllare che ogni volta che parlo di un elemento della matrice D abbia scritto D_{ij} e non d_{ij}.
+1-b) analogalmente controllare che ogni volta che parlo di un elemento di un albero non lo faccia con D maiuscolo.
+2) controllare se c'è modo di numerare le formule, almeno mi posso riferire a loro in modo preciso
 
-
-TODO: inserire questo nella bibliografia %http://people.brunel.ac.uk/~csstdrg/courses/glasgow_courses/website_bioinformaticsHM/slides/phylo.pdf
-
-
-\newpage
-Ordine dei capitoli:
-\begin{itemize}
-	\item Cap 3: alberi evolutivi;
-	\item Cap 4: albero additivo;
 	\item Cap 5: UPGMA (Unweighted Pair Group Method with Arithmetic Mean)
 	\item cap 6: NEIGHBORJOINING
-\end{itemize}
-
-\begin{center}
-\begin{forest}
-for tree={circle,draw, l sep=32pt, s sep=33pt}
-[k,red 
-    [z,edge label={node[midway,left] {5}}
-      [y,edge label={node[midway,left] {10}} ] 
-      [l,edge label={node[midway,left] {12}}] 
-      [m,edge label={node[midway,right] {7}}]
-    ]
-    [u,edge label={node[midway,right] {2}}
-      [f,edge label={node[midway,left] {1}}] 
-      [h,edge label={node[midway,left] {18}}] 
-      [p,edge label={node[midway,right] {20}}]
-  ] 
-]
-\end{forest}
-%\label{fig:phyltree}
-\end{center}

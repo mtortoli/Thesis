@@ -103,7 +103,7 @@ In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfrutt
 \frac{d_{up}+d_{up}}2=
 \frac{2d_{up}}2=d_{up}
 \]
-Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, di conseguenza poiché è additiva, $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$. Quindi si può scrivere $d_{up}$ nel seguente modo:
+Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, quindi vengono usate queste informazioni per calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$ nell'albero $T$. Inoltre $D$ è additiva, questo significa che la distanza tra le foglie in $T$ è uguale alla distanza tra i rispettivi elementi nella matrice, pertanto $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$\footnote{Si ricorda che $d_{fu}$ è la distanza tra il nodo $f$ ed il nodo $u$ nell'albero $T$, mentre $D_{fu}$ è l'elemento in posizione $f-u$ in $D$.}. Ma allora si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
 A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandola dalle uguaglianze trovate poc'anzi. Per prima cosa si calcola $d_{fp}$:
 \[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=\]

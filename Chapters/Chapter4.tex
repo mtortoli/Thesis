@@ -24,7 +24,7 @@ d_{n1} & d_{n2} & \ldots & \ldots & 0
 \end{pmatrix}
 \hspace{3em}dove\;d(x_i,x_j)=D_i,_j
 \]
-Poiché è costruita a partire dalle distanze, ne eredita le proprietà precedentemente elencate.
+Poiché la matrice è costruita a partire dalle distanze, ne eredita le proprietà precedentemente elencate.
 \newline
 Ciascun valore $D_i,_j$ può assumere significati diversi in base al contesto, ad esempio può indicare il numero di simboli diversi tra i geni $i$ e $j$ nell'allineamento di sequenze di DNA\footnote{L'allineamento è il processo attraverso il quale si misura la similarità tra due o più sequenze.}, come mostrato nell'esempio sottostante:
 \begin{figure}[h!]
@@ -33,13 +33,13 @@ Ciascun valore $D_i,_j$ può assumere significati diversi in base al contesto, a
   	\label{fig:DistanceMatrix}
 \end{figure}
 \newline
-Nella figura 5 è possibile notare che la sequenza di DNA della foca risulta molto più simile a quella della balena, in quanto la distanza è $2$, rispetto all'umano, con cui la distanza è $7$.
+Nella figura 5 è possibile notare che la sequenza di DNA della foca risulta molto più simile a quella della balena, in quanto la distanza è $2$, rispetto a quella dell'umano, con cui la distanza è $7$.
 \newpage
 
 \section{Problema degli alberi basati sulla distanza}
-Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter conoscere quale è la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco, pertanto la lunghezza del cammino in tale albero è la somma dei suoi pesi. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che li collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è dato dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
+Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter calcolare la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco e definire la lunghezza di un cammino in tale albero come la somma dei pesi degli archi che lo compongono. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è data dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
 \newline
-Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che le collega (distanza evolutiva), in tal caso sia la matrice che l'albero vengono definiti \textit{additivi}. Qualora invece non esista un albero che si adatti alla matrice, allora è \textit{non additiva} \cite{UniCaliforniaadditivetree}.
+Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che collega le due foglie in $T$ (distanza evolutiva), in tal caso sia la matrice che l'albero vengono definiti \textit{additivi}. Qualora invece non esista un albero che si adatti alla matrice, allora tale matrice è detta \textit{non additiva} \cite{UniCaliforniaadditivetree}.
 \newline
 Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice delle distanze mostrata nella sezione precedente.
 \begin{figure}[h!]
@@ -50,14 +50,14 @@ Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice
 \newline
 Ci possono essere più alberi che si adattano ad una matrice, quindi come si può scegliere l'albero giusto? Si nota che quello in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}. 
 \newpage
-Una loro caratteristica importante è che per ogni matrice delle distanze additiva esiste un unico albero semplice che si adatta alla matrice stessa.
+Una caratteristica importante è che per ogni matrice delle distanze additiva esiste un unico albero semplice che si adatta alla matrice stessa.
 \newline
-Adesso è possibile dare una definizione al problema accennato all'inizio del capitolo:
-\begin{center}
+Adesso è possibile dare una definizione al problema accennato all'inizio del capitolo, mostrata di seguito.
+\newline
+\newline
 \textbf{Problema degli alberi basati sulla distanza:}
 \newline
-\textit{Dato in \textbf{input} una matrice delle distanze additiva si ottiene in \textbf{output} un albero evolutivo semplice.}
-\end{center}
+\textit{Data in \textbf{input} una matrice delle distanze additiva restituire in \textbf{output} un albero evolutivo semplice.}
 
 \newpage
 
@@ -73,7 +73,7 @@ D = \bordermatrix{\text{specie}&u&s&f&b\cr
                 b& 5 & 4 & 2 & 0}
 \]
 \newline
-L'idea di base dell'algoritmo è che all'elemento più piccolo della matrice corrisponda a delle foglie \textit{vicine} nel rispettivo albero, ovvero che abbiano lo stesso genitore, con $D_i,_j=d_i,_j(T)$.
+L'idea di base dell'algoritmo è che all'elemento più piccolo della matrice corrispondano due foglie \textit{vicine} nel rispettivo albero, ovvero due foglie aventi lo stesso genitore, con $D_i,_j=d_i,_j(T)$.
 \newline
 Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$, si può supporre che $f$ e $b$ siano vicini. Si indica con $p$ il genitore non noto delle due foglie. La situazione è mostrata di seguito.
 \begin{figure}[h!]
@@ -83,7 +83,7 @@ Poiché l'elemento più piccolo della matrice è $D_{fb}$, il cui valore è $2$,
   	\label{fig:neighborsleaves}
 \end{figure}
 \newline
-Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_{bp}$)? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e che $f$, $p$ sono vicini. Il passo successivo dell'algoritmo è mostrato di seguito.
+Come si può calcolare la distanza tra $f$ e $p$ ($d_{fp}$) e tra $b$ e $p$ ($d_{bp}$)? Le uniche informazioni a disposizione sono le distanze tra le quattro foglie presenti nella matrice e l'ipotesi che $f$ e $b$ siano vicine. Il passo successivo dell'algoritmo è mostrato di seguito.
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=7cm, keepaspectratio]{distance_between_f_b_part_2.jpg}

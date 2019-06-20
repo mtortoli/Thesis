@@ -1,7 +1,7 @@
 \chapter{Capitolo 3: Albero Evolutivo}
 Una delle sfide più importanti della bioinformatica, nonché l'obiettivo principale della filogenetica, è la costruzione degli alberi evolutivi.
 \newline
-Ricordando la definizione di albero, ovvero un grafo non orientato connesso e aciclico \cite{algoritmiEStruttureDati2}, \textit{L'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra le varie entità biologiche \footnote{I termini albero evolutivo, albero filogenetico e cladogramma sono spesso usati in modo intercambiabile per descrivere la stessa cosa, ovvero le relazioni evolutive tra entità biologiche. Questo perché l'uso del vocabolario non è sempre coerente nella letteratura scientifica, sebbene il contesto sia lo stesso \cite{bioinformaticsforbeginner}.} (animali, piante, virus e così via) \cite{buildingaphylogenictree}. La loro peculiarità consiste nel poter utilizzare dati diversi tra loro,  genetici, genomici e morfologici.
+Ricordando la definizione di albero, ovvero un grafo non orientato connesso e aciclico \cite{algoritmiEStruttureDati2}, \textit{l'albero evolutivo} o \textit{albero filogenetico} è un diagramma che rappresenta le relazioni evolutive tra le varie entità biologiche \footnote{I termini albero evolutivo, albero filogenetico e cladogramma sono spesso usati in modo intercambiabile per descrivere la stessa cosa, ovvero le relazioni evolutive tra entità biologiche. Questo perché l'uso del vocabolario non è sempre coerente nella letteratura scientifica, sebbene il contesto sia lo stesso \cite{bioinformaticsforbeginner}.} (animali, piante, virus e così via) \cite{buildingaphylogenictree}. La loro peculiarità consiste nel poter utilizzare dati diversi tra loro,  genetici, genomici e morfologici.
 \newline
 Gli alberi evolutivi possono essere suddivisi in due categorie: alberi radicati e non radicati.
 
@@ -23,9 +23,9 @@ Lo scopo dell'albero non è solo quello di conoscere la radice, ma anche i legam
   	\label{fig:RootedTree}
 \end{figure}
 \newline
-Come mostrato nella figura 3, le entità risultano più legati tra loro rispetto agli altri se hanno l'antenato più recente in comune, ad esempio A è più legato a B rispetto a C. La sigla "MRCA", infatti, indica il Most Recent Common Ancestor.
+Come mostrato nella figura 3, le entità risultano più legate tra loro rispetto ad altre se hanno l'antenato più vicino, ad esempio A è più legato a B rispetto a C. La sigla "MRCA", infatti, indica il Most Recent Common Ancestor.
 \newline
-Nel caso in cui non è presente la radice, si parla di albero non radicato.
+Nel caso in cui non sia presente la radice, si parla di albero non radicato.
 \newpage
 
 \section{Albero non radicato}
@@ -46,6 +46,6 @@ Perché usare gli alberi non radicati invece di quelli con radice? Le motivazion
 \section{Metodi per la costruzione degli alberi evolutivi}
 Gli algoritmi utilizzati per la costruzione degli alberi evolutivi possono essere categorizzati in due metodologie:
 \begin{itemize}
-	\item \textit{Metodi basati sulla distanza}: vengono raccolti i dati in una matrice, definita matrice delle distanze. Nel capitolo successivo ne verranno mostrati gli algoritmi;
-	\item \textit{Metodi basati sui caratteri}: vengono usate le sequenze di DNA e di aminoacidi.
+	\item \textit{Metodi basati sulla distanza}: vengono raccolti i dati in una matrice, definita matrice delle distanze. Nel capitolo successivo ne verranno mostrati gli algoritmi.
+	\item \textit{Metodi basati sui caratteri}: vengono usate le sequenze di DNA e di amminoacidi.
 \end{itemize}

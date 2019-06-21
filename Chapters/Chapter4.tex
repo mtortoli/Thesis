@@ -691,9 +691,9 @@ Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o d
 \begin{framed}\noindent
   \textbf{UPGMA($D$, $n$)}\\
    $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento \\
-  \textit{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster di cui sopra\\
-  $age(v)\leftarrow 0 \forall node v \in T$\\
-  \textbf{fino a che} c'è più di un cluster\\
+  \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster di cui sopra\\
+  $age(v)\leftarrow 0 \;\; \forall \; node \; v \in T$\\
+  \textbf{fino a che} c'è più di un cluster in $Clusters$ \\
   \indent \textbf{cerca} i cluster più vicini $X$ e $Y$\\
   \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $X+Y$ elementi\\
   \indent \textbf{aggiungi} un nodo interno $Z$ in $T$\\
@@ -708,3 +708,12 @@ Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o d
   \indent $edgeweight(v, w) \leftarrow age(v) - age(w) $\\
   \textbf{restituisci} $T$
 \end{framed}
+Si evidenzia che:
+\begin{itemize}
+	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e viene messa a zero l'età di tutti i vertici in $T$. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
+	\item Vengono iterate una serie di azioni sugli $n$ cluster calcolati in precedenza, quindi $O(n)$. L'insieme di queste operazioni hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole vengono eseguine $n$ azioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
+	\item Prima di restituire l'albero $T$ viene calcolato l'età di tutti i nodi, che sono $n$, quindi $\rightarrow T(step3)=O(n)$.
+\end{itemize}
+Si può concludere che la complessità totale è:
+\[T(totale)=T(step1)+T(step2)+T(step3)=O(n)+O(n^2)+O(n)\simeq O(n^2)\]
+askdlka  aksdaslka dlajs lajs kjalk jlsj aljs lajs ja asl ajl jasl jals lasj laks jlj aslj 

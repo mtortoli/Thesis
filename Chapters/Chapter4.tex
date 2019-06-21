@@ -369,7 +369,7 @@ Nella sezione successiva viene mostrato un algoritmo che risolve tale criticità
 
 \newpage
 \subsection{Complessità temporale}
-Di seguito viene riportato l'algoritmo scritto in pseudocodice. I parametri sono D ed n, che sono rispettivamente la matrice delle distanze adattiva di dimensione $n \times n$ e la foglia $n$.
+Di seguito viene riportato l'algoritmo scritto in pseudocodice. I parametri sono $D$ ed $n$, che sono rispettivamente la matrice delle distanze adattiva di dimensione $n \times n$ e la foglia $n$.
 
 \begin{framed}\noindent
   \textbf{AlberoAdditivo($D$, $n$)}\\
@@ -683,3 +683,28 @@ Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovame
 \end{figure}
 \end{itemize}
 Poiché abbiamo ottenuto l'abero $T$ e la matrice $D$ è composta da un unico cluster, l'algoritmo è terminato.
+
+\newpage
+
+\subsection{Complessità temporale}
+Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
+\begin{framed}\noindent
+  \textbf{UPGMA($D$, $n$)}\\
+   $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento \\
+  \textit{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster di cui sopra\\
+  $age(v)\leftarrow 0 \forall node v \in T$\\
+  \textbf{fino a che} c'è più di un cluster\\
+  \indent \textbf{cerca} i cluster più vicini $X$ e $Y$\\
+  \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $X+Y$ elementi\\
+  \indent \textbf{aggiungi} un nodo interno $Z$ in $T$\\
+  \indent \textbf{connetti} $Z$ ad $X$ ed $Y$ tramite due archi \\
+  \indent \textbf{calcola} l'età di $Z$\\
+  \indent \textbf{rimuovi} la riga e la colonna di $X$ e di $Y$ dalla matrice $D$ \\
+  \indent \textbf{rimuovi} i cluster $X$ e di $Y$  da dall'insieme $Clusters$ calcolato all'inizio \\
+  \indent \textbf{aggiorna} la matrice $D$, quindi aggiungi una riga ed una colonna $Z$ e calcola la sua distanza tra rispetto a tutti gli altri cluster in $Clusters$ \\
+  \indent \textbf{aggiungi} $Z$ all'insieme $Clusters$ \\
+  $radice \;\; \leftarrow $ il nodo nell'albero $T$ corrispondente all'ultimo cluster rimasto \\
+  \textbf{per ogni} arco $(v, w)$ in $T$\\
+  \indent $edgeweight(v, w) \leftarrow age(v) - age(w) $\\
+  \textbf{restituisci} $T$
+\end{framed}

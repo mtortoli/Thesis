@@ -1,3 +1,35 @@
+\chapter*{Introduzione}
+\addcontentsline{toc}{chapter}{Introduzione} \markboth{INTRODUZIONE}{}
+Con la presente tesi si intende fornire una panoramica sulla bioinformatica, una delle scienze emergenti degli ultimi anni. L'obiettivo è quello di mostrare le applicazioni degli algoritmi alla biologia, in particolar modo lo studio e la costruzione degli \textit{alberi evolutivi}, che sono l'argomento principale.
+\newline
+Quest'ultimi, definiti anche \textit{alberi filogenetici}, sono una risorsa chiave sia nell'informatica che nella biologia in quanto permettono lo studio delle relazioni tra le entità biologiche e mostrano la loro evoluzione nel tempo.
+\newline 
+L'idea di base della struttura dei capitoli è quella di mostrare, innanzitutto, i concetti base di biologia, necessari per comprendere la materia in oggetto, dopodiché viene presentata la bioinformatica e le sue aree di ricerca, infine vengono illustrati gli algoritmi più importanti per la costruzione degli alberi evolutivi. Di seguito si mostra una panoramica di tali capitoli.
+\begin{enumerate}
+	\item \textit{Capitolo 1}: nozioni biologiche di base. Viene dato uno sguardo generale alla classificazione delle forme di vita, dai polisaccaridi fino agli acidi nucleici. Le sezioni successive mostrano il DNA, RNA e proteine. Tutti i concetti di questo capitolo sono funzionali alla comprensione della suddetta tesi. Senza di questi, infatti, non sarebbe possibile capire né contesto né senso di questo studio.
+	\item \textit{Capitolo 2}: introduzione alla bioinformatica. Le sezioni successive, oltre a dare una definizione della materia e a raccontare la sua storia, dalla sua nascita fino ai giorni nostri, illustrano le principali aree di ricerca, dandone una breve spiegazione a ciascuna di essa.
+	\newline
+	Gli alberi evolutivi fanno parte della cosiddetta filogenetica, in quanto studia le relazioni evolutive tra le entità biologiche attraverso la costruzione di tali alberi.
+	\item \textit{Capitolo 3}: viene mostrato l'albero evolutivo, cosa è, a cosa serve e che tipi di alberi si possono costruire. Si parla di albero radicato ed albero non radicato, entrambi con funzioni diverse, in quanto il primo mostra le evoluzioni delle entità biologiche, mentre il secondo mostra come sono legate tra loro. Tale capitolo svolge un ruolo chiave, in quanto vengono poste le basi per il capitolo successivo, che è il "cuore" della presenti tesi.
+	\item \textit{Capitolo 4}: all'inizio di tale capitolo viene posto il problema che sta alla base degli alberi, ovvero il cosiddetto \textit{problema della costruzione degli alberi evolutivi}. Le sezioni successive mostrano come è possibile risolverlo: di volta in volta vengono mostrati algoritmi sempre più efficaci. Quindi si parte dall'idea di base, poi vengono evidenziate le criticità ed infine vengono sviluppati nuovi algoritmi volti a risolvere tali criticità. Il risultato finale di questa ricerca sono due algoritmi, il \textit{Neighbor-Joining} ed il \textit{Unweighted Pair Group Method with Arithmetic Mean (UPGMA)}, dove il primo permette la costruzione di alberi senza radice, mentre il secondo con radice.
+	\newline
+	Tutti gli algoritmi prendono in input una matrice $D$ definita \textit{matrice delle distanze}, in quanto ottenuta calcolando la distanza tra le coppie di elementi di cui è composta.
+\end{enumerate}
+
+\subsection*{Esempio di applicazione}
+Perché gli alberi evolutivi sono così importanti? Perché grazie ad essi è possibile conoscere l'evoluzione delle specie e le relazioni tra le entità biologiche. Per entità non si intendono solamente gli animali o le piante, ma anche la classificazione di virus.
+\newline
+Nei primi anni duemila in Oriente, in particolar modo ad Hong Kong, in Cina, si è espansa a macchia d'olio una malattia infettiva, che nei casi più gravi si è rivelata fatale, ovvero la \textit{SARS} (Severe acute respiratory syndrome) che sta per "sindrome acuta respiratoria grave".
+\newline
+Gli scienziati hanno scoperto che questa malattia è causata da un virus chiamato Coronavirus, che attacca le vie aree sia degli animali che degli umani. All'inizio si era ipotizzato che il virus fosse stato trasmesso agli umani da parte di alcune specie di animali. Ma quali sono questi animali e come è stato possibile?
+\newline
+Attraverso la costruzione dell'albero evolutivo del Coronavirus è stato individuato il responsabile della trasmissione. Nello specifico sono state confrontate le sequenze del virus presente negli animali con quelle degli umani. La corrispondenza migliore è stata ottenuta con la civetta delle palme, un piccolo mammifero dalle fattezze simile all'ermellino. Gli scienziati suppongono che la trasmissione è avvenuta a causa del fatto che in Cina la civetta viene cacciata come cibo. 
+\newline
+In conclusione, tale scoperta ha permesso uno studio più approfondito del virus, oltre ad aver ridotto la sua diffusione.
+
+\newpage
+
+
 \chapter{Capitolo 1: Concetti base di biologia}
 La bioinformatica è una materia che tratta tanto l'informatica quanto la biologia, pertanto è necessario illustrarne gli argomenti più importanti, che verranno spiegati in modo funzionale allo scopo della presente tesi.
 \newline
@@ -11,7 +43,6 @@ Ci sono quattro tipi di macromolecole essenziali per tutte le forme di vita:
 	\item \textit{Acidi nucleici}: DNA e RNA, contengono e trasportano l'informazione genetica.
 \end{itemize}
 Le sezioni successive del capitolo sono dedicate al DNA, RNA e proteine.
-%Di seguito vengono approfonditi il DNA, l'RNA e le proteine.
 \newpage
 
 \section{DNA}

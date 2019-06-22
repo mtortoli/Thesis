@@ -566,7 +566,7 @@ La complessità di \textit{NeighborJoining} è:
 \newpage
 
 \section{Unweighted Pair Group Method with Arithmetic Mean}
-Nelle sezioni precedenti sono stati mostrati degli algoritmi che risolvono il \textit{problema degli alberi basati sulla distanza}. In particolare il Neighbor-Joining si è rivelato il più efficace poiché risolve tutte le criticità e le debolezze relative agli algoritmi precedenti, i quali costruiscono alberi evolutivi \textit{senza radice}.
+Nelle sezioni precedenti sono stati mostrati degli algoritmi che risolvono il \textit{problema degli alberi basati sulla distanza} costruendo alberi evolutivi \textit{senza radice}. In particolare il Neighbor-Joining si è rivelato il più efficace poiché risolve tutte le criticità relative agli algoritmi precedenti.
 \newline
 \textbf{UPGMA (Unweighted Pair Group Method with Arithmetic Mean)} è un algoritmo che, data in input una matrice delle distanze $D$ additiva o non, restituisce un albero \textit{radicato} $T$ in cui tutte le foglie sono alla stessa distanza dalla radice (albero ultrametrico) \cite{understandingBioinf}.
 \newline
@@ -578,7 +578,7 @@ Si riporta di seguito un esempio:
   	\label{fig:rooted_upgma_1}
 \end{figure}
 \newline
-In tale albero i nodi interni rappresentano la \textit{speciazione}, quel processo attraverso il quale si forma una nuova specie. Questo significa che una singola linea evolutiva viene divisa in due \cite{speciationBritannica} e quindi un antenato sarà suddiviso in due discendenti. Si può notare che i numeri in verde accanto ai nodi indicano l'età (in milioni di anni), mentre il peso degli archi è dato dalla differenza tra le età dei nodi. Ad esempio il peso dell'arco che collega $k$ e $p$ è dato dalla differenza delle loro età ($7-6=1$). Poiché le foglie dell'albero rappresentano le specie ancora non suddivise, la loro età è zero.
+In tale albero i nodi interni rappresentano la \textit{speciazione}, quel processo attraverso il quale si forma una nuova specie. Questo significa che una singola linea evolutiva viene divisa in due \cite{speciationBritannica} e quindi un antenato sarà suddiviso in due discendenti. Ad esempio nella figura 20 si può notare che in un certa epoca la specie $m$ si è suddivisa in due specie diverse (a causa di mutazioni), ovvero scimpanzé e bonobo. I numeri in verde accanto ai nodi indicano l'età (in milioni di anni), mentre il peso degli archi è dato dalla differenza tra le età dei nodi, ad esempio il peso dell'arco che collega $k$ e $p$ è dato dalla differenza delle loro età ($7-6=1$) e così via per tutti gli altri archi. Poiché le foglie dell'albero rappresentano le specie ancora non suddivise, la loro età è uguale a zero.
 \newline
 L'algoritmo \textit{UPGMA} può essere diviso in più fasi. Si prenda in considerazione la seguente matrice \textit{non additiva}\footnote{Per brevità si definisce u=umano, s=scimpanzé, f=foca, b=balena.}:
 \[
@@ -602,9 +602,9 @@ Si può notare che è la stessa matrice usata nella sezione dedicata al Neighbor
 \[
 D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}
 \]
-$i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,j}$ è la distanza tra $i$ e $j$, $ \left | X \right | $ e $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}$.
+dove $i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,j}$ è la distanza tra $i$ e $j$, $ \left | X \right | $ e $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}=2$.
 \newline
-\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Nel caso di $D$ il risultato di questo passo è il seguente:
+\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Quindi nel caso in esame, si crea un cluster $\{u, s\}$ tale che $\{u, s\}=u \cup s$. Il risultato di questo passo è il seguente:
 \newpage
 \begin{figure}[h!]
 \centering
@@ -620,7 +620,7 @@ L'albero risultante è:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=11cm,keepaspectratio]{rooted_upgma_4.jpg}
- 	\caption{Albero $T$ dopo aver calcolato l'età dei nodi ed il peso degli archi.}
+ 	\caption{Albero $T$ dopo aver calcolato l'età del nodo \{u, s\} ed il peso degli archi.}
   	\label{fig:rooted_upgma_4}
 \end{figure}
 \newline
@@ -652,14 +652,16 @@ L'albero risultante è:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=11cm,keepaspectratio]{rooted_upgma_6.jpg}
- 	\caption{Albero $T$ dopo aver calcolato l'età dei nodi ed il peso degli archi.}
+ 	\caption{Albero $T$ dopo aver calcolato l'età del nodo $\{f, b\}$ ed il peso degli archi.}
   	\label{fig:rooted_upgma_6}
 \end{figure}
 \newline
 \newline
-\textit{Fase cinque} $\rightarrow$ Si aggiorna la matrice $D$ calcolando la distanza tra i cluster usando la formula $D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}$. La nuova matrice $D$ è:
+\textit{Fase cinque} $\rightarrow$ Si aggiorna la matrice $D$ calcolando la distanza tra i cluster usando la formula $D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}$. La matrice risultante $D$ è:
 \[
-\
+D = \bordermatrix{\text{specie}&\{f, b\}&\{u, s\}\cr
+                \{f, b\}& 0 & {\color{Blue} 4}\cr
+                \{u, s\}& {\color{Blue} 4} & 0}
 \]
 Dove l'elemento $D_{\{f, b\}, \{u, s\}}$ è ottenuto da:
 \[D_{\{f, b\}, \{u, s\}}=\frac{D_{f, \{u, s\}}+D_{b, \{u, s\}}}{2}=\frac{3,5+4,5}{2}=\frac{8}{2}=4\]
@@ -667,7 +669,7 @@ Dove l'elemento $D_{\{f, b\}, \{u, s\}}$ è ottenuto da:
 Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovamente gli step. Quindi si ha che:
 \begin{itemize}
 	\item l'elemento più piccolo è l'unico rimasto, ovvero $D_{\{f, b\}, \{u, s\}}$;
-	\item si crea un nuovo cluster $\{f, b\}, \{u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b\}, \{u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b\}, \{u, s\})-age(\{f, b\})=2-1,5=0$ e $age(\{f, b\}, \{u, s\})-age(\{u, s\})=2-1=1$. 
+	\item si crea un nuovo cluster $\{f, b, u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b, u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b, u, s\})-age(\{f, b\})=2-1,5=0$ e $age(\{f, b, u, s\})-age(\{u, s\})=2-1=1$. 
 	\newline
 	L'albero finale $T$ è:
 	\begin{figure}[h!]
@@ -675,33 +677,34 @@ Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovame
 	\includegraphics[height=12cm, width=14cm,keepaspectratio]{rooted_upgma_7.jpg}
  	\caption{Albero finale con radice $T$ ottenuto dalla matrice $D$.}
   	\label{fig:rooted_upgma_7}
+  	\end{figure}
   	\item si aggiorna la matrice $D$, ottenendo quindi:
   		\[
   		D = \bordermatrix{\text{specie}&\{f, b, u, s\}\cr
                 \{f, b, u ,s\}& 2}
                 \]
-\end{figure}
+dove $D_{\{f, b, u, s\}}=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$.
 \end{itemize}
-Poiché abbiamo ottenuto l'abero $T$ e la matrice $D$ è composta da un unico cluster, l'algoritmo è terminato.
+Poiché abbiamo ottenuto l'albero $T$ e la matrice $D$ è composta da un unico cluster, l'algoritmo è terminato.
 
 \newpage
 
 \subsection{Complessità temporale}
-Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
+Sia $D$ la matrice delle distanze in input e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
 \begin{framed}\noindent
   \textbf{UPGMA($D$, $n$)}\\
-   $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento \\
-  \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster di cui sopra\\
+   $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento di $D$ \\
+  \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster \\
   $age(v)\leftarrow 0 \;\; \forall \; node \; v \in T$\\
   \textbf{fino a che} c'è più di un cluster in $Clusters$ \\
   \indent \textbf{cerca} i cluster più vicini $X$ e $Y$\\
   \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $X+Y$ elementi\\
   \indent \textbf{aggiungi} un nodo interno $Z$ in $T$\\
-  \indent \textbf{connetti} $Z$ ad $X$ ed $Y$ tramite due archi \\
+  \indent \textbf{connetti} $Z$ ad $X$ e a $Y$ tramite due archi \\
   \indent \textbf{calcola} l'età di $Z$\\
   \indent \textbf{rimuovi} la riga e la colonna di $X$ e di $Y$ dalla matrice $D$ \\
-  \indent \textbf{rimuovi} i cluster $X$ e di $Y$  da dall'insieme $Clusters$ calcolato all'inizio \\
-  \indent \textbf{aggiorna} la matrice $D$, quindi aggiungi una riga ed una colonna $Z$ e calcola la sua distanza tra rispetto a tutti gli altri cluster in $Clusters$ \\
+  \indent \textbf{rimuovi} i cluster $X$ e di $Y$  da dall'insieme $Clusters$ \\
+  \indent \textbf{aggiorna} la matrice $D$, quindi aggiungi una riga ed una colonna $Z$ \indent e calcola la sua distanza rispetto a tutti gli altri cluster in $Clusters$ \\
   \indent \textbf{aggiungi} $Z$ all'insieme $Clusters$ \\
   $radice \;\; \leftarrow $ il nodo nell'albero $T$ corrispondente all'ultimo cluster rimasto \\
   \textbf{per ogni} arco $(v, w)$ in $T$\\
@@ -710,9 +713,9 @@ Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o d
 \end{framed}
 Si evidenzia che:
 \begin{itemize}
-	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e viene messa a zero l'età di tutti i vertici in $T$. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
-	\item Vengono iterate una serie di azioni sugli $n$ cluster calcolati in precedenza, quindi $O(n)$. L'insieme di queste operazioni hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole vengono eseguine $n$ azioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
-	\item Prima di restituire l'albero $T$ viene calcolato l'età di tutti i nodi, che sono $n$, quindi $\rightarrow T(step3)=O(n)$.
+	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e viene impostata a zero l'età di tutti i vertici in $T$. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
+	\item Vengono iterate una serie di azioni sui cluster calcolati in precedenza e poiché sono$n$, si ha che $ \rightarrow O(n)$. L'insieme di queste operazioni hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole vengono eseguine $n$ azioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
+	\item Prima di restituire l'albero $T$ viene calcolato il peso di tutti gli archi, che sono $n-1$, quindi $\rightarrow T(step3)=O(n-1) \simeq O(n)$.
 \end{itemize}
 Si può concludere che la complessità totale è:
 \[T(totale)=T(step1)+T(step2)+T(step3)=O(n)+O(n^2)+O(n)\simeq O(n^2)\]

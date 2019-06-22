@@ -634,9 +634,9 @@ D = \bordermatrix{\text{specie}&f&b&\{u, s\}\cr
 Dove i nuovi valori sono ottenuti da:
 \[D_{f, \{u, s\}}=\frac{D_{f,u}+D_{f,s}}{2}=\frac{4+3}{2}=\frac{7}{2}=3,5\]
 \[D_{b, \{u, s\}}=\frac{D_{b,u}+D_{b,s}}{2}=\frac{4+5}{2}=\frac{9}{2}=4,5\]
-A questo punto vanno eseguite le cinque fasi sopraelencate fino a che non otteniamo un unico cluster contenente tutte le specie.
+A questo punto vanno eseguite le cinque fasi sopraelencate fino a che non otteniamo un unico cluster contenente tutte le righe (o colonne) di $D$.
 \newline
-\textit{Fase uno, due e tre} $\rightarrow$  si formano $n$ cluster a partire dalla nuova matrice $D$, si sceglie l'elemento più piccolo (e quindi $D_{f, b}$) e si crea un cluster $\{f, b\}$ a partire da $f$ ed $b$, quindi:
+\textit{Fase uno, due e tre} $\rightarrow$  si formano $n$ cluster a partire dalla nuova matrice $D$, si sceglie l'elemento più piccolo (e quindi $D_{f, b}$) e si crea un cluster $\{f, b\}$ a partire da $f$ e da $b$, quindi:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=6cm, width=9cm,keepaspectratio]{rooted_upgma_5.jpg}
@@ -669,7 +669,7 @@ Dove l'elemento $D_{\{f, b\}, \{u, s\}}$ è ottenuto da:
 Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovamente gli step. Quindi si ha che:
 \begin{itemize}
 	\item l'elemento più piccolo è l'unico rimasto, ovvero $D_{\{f, b\}, \{u, s\}}$;
-	\item si crea un nuovo cluster $\{f, b, u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b, u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b, u, s\})-age(\{f, b\})=2-1,5=0$ e $age(\{f, b, u, s\})-age(\{u, s\})=2-1=1$. 
+	\item si crea un nuovo cluster $\{f, b, u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b, u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b, u, s\})-age(\{f, b\})=2-1,5=0,5$ e $age(\{f, b, u, s\})-age(\{u, s\})=2-1=1$. 
 	\newline
 	L'albero finale $T$ è:
 	\begin{figure}[h!]

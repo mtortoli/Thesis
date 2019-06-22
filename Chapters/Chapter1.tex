@@ -4,12 +4,10 @@ Con la presente tesi si intende fornire una panoramica sulla bioinformatica, sci
 \newline
 Questi ultimi, definiti anche \textit{alberi filogenetici}, sono una risorsa chiave sia nell'informatica che nella biologia, poiché permettono lo studio delle relazioni tra le entità biologiche mostrando la loro evoluzione nel tempo.
 \newline 
- Attraverso la strutturazione in capitoli mostreremo, innanzitutto, i concetti base di biologia, necessari per comprendere la materia in oggetto, dopodiché verrà presentata la bioinformatica e le sue aree di ricerca. Infine verranno illustrati gli algoritmi più importanti per la costruzione degli alberi evolutivi. A seguire una panoramica dei capitoli.
+ Attraverso la strutturazione in capitoli si mostrerà, innanzitutto, i concetti base di biologia, necessari per comprendere la materia in oggetto, dopodiché verrà presentata la bioinformatica e le sue aree di ricerca. Infine verranno illustrati gli algoritmi più importanti per la costruzione degli alberi evolutivi. A seguire una panoramica dei capitoli.
 \begin{enumerate}
 	\item \textit{Capitolo 1}: nozioni biologiche di base. Viene dato uno sguardo generale alla classificazione delle forme di vita, dai polisaccaridi agli acidi nucleici. Le sezioni successive mostrano il DNA, RNA e proteine. Tutti i concetti di questo capitolo sono propedeutici ai contenuti successivi. Senza di questi, infatti, non sarebbe possibile comprende a pieno il senso e lo scopo di questo studio.
 	\item \textit{Capitolo 2}: introduzione alla bioinformatica. Le sezioni successive, oltre a dare una definizione della materia e a raccontare la sua storia dalla nascita fino ai giorni nostri, illustrano le principali aree di ricerca, dandone una breve spiegazione.
-	\newline
-	La filogenetica studia le relazioni evolutive tra le entità biologiche attraverso la costruzione di alberi evolutivi.
 	\item \textit{Capitolo 3}: viene mostrato l'albero evolutivo, a cosa serve e che tipi di alberi si possono costruire. Si parla di albero radicato ed albero non radicato, dalle funzioni differenti: il primo mostra le evoluzioni delle entità biologiche, mentre il secondo mostra come queste ultime sono legate tra loro. In questo capitolo vengono poste le basi concettuali per il successivo, che rappresenta il nucleo della presenti tesi.
 	\item \textit{Capitolo 4}: all'inizio del quarto capitolo viene posto il problema alla base degli alberi, ovvero il cosiddetto \textit{problema della costruzione degli alberi evolutivi}. Le sezioni successive mostrano come è possibile risolverlo: di volta in volta vengono mostrati algoritmi sempre più efficaci. Si parte da un algoritmo di base, poi vengono evidenziate le criticità ed infine vengono sviluppati nuovi algoritmi volti a risolverle. Il risultato finale di questa ricerca sono due algoritmi, il \textit{Neighbor-Joining} ed il \textit{Unweighted Pair Group Method with Arithmetic Mean (UPGMA)}, dove il primo permette la costruzione di alberi senza radice, mentre il secondo di quelli con radice.
 	\newline
@@ -17,17 +15,15 @@ Questi ultimi, definiti anche \textit{alberi filogenetici}, sono una risorsa chi
 \end{enumerate}
 
 \subsection*{Esempio di applicazione}
-Perché gli alberi evolutivi sono importanti? Perché grazie ad essi è possibile conoscere l'evoluzione delle specie e le relazioni tra le entità biologiche. Per entità non ci si riferisce solo agli animali o alle piante, che sono esseri viventi, ma anche ai virus, che sono particelle-parassiti obbligati.
+Perché gli alberi evolutivi sono importanti? Perché grazie ad essi è possibile conoscere l'evoluzione delle specie e le relazioni tra le entità biologiche. Per entità non ci si riferisce solo agli animali, agli umani o alle piante, che sono esseri viventi, ma anche ai virus, che sono particelle-parassiti obbligati \cite{campbellBiology}.
 \newline
-Nei primi anni duemila, ad Hong Kong, si è verificata un'epidemia virale, in alcuni casi fatale, chiamata \textit{SARS} (Severe Acute Respiratory Syndrome), "Sindrome Acuta Respiratoria Grave".
+Nei primi anni duemila, ad Hong Kong, si è verificata un'epidemia virale che in alcuni casi è risultata fatale, chiamata \textit{SARS} (Severe Acute Respiratory Syndrome), "Sindrome Acuta Respiratoria Grave".
 \newline
 Questa malattia è causata da un virus che appartiene alla famiglia dei Coronavirus. Esso colonizza le vie aree degli animali e dell'uomo. All'inizio si era ipotizzato che il virus venisse trasmesso agli umani da alcune specie animali, ma quali in particolare? E in che modo hanno trasmesso l'infezione all'uomo?
 \newline
 Attraverso la costruzione dell'albero evolutivo del Coronavirus è stato individuato l'animale vettore responsabile della trasmissione. Nello specifico sono state confrontate le sequenze del RNA del virus presente negli animali vettori con quelle degli umani infetti. La corrispondenza migliore è stata ottenuta con la civetta delle palme, un piccolo mammifero dalle fattezze simili all'ermellino. Si suppone che la trasmissione sia stata possibile poiché in Cina è usanza cibarsi di questo mammifero.
 \newline
 In conclusione, tale scoperta ha permesso uno studio più approfondito del virus da un lato e ha ridotto la sua diffusione dall'altro.
-
-\newpage
 
 
 \chapter{Capitolo 1: Concetti base di biologia}

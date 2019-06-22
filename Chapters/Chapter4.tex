@@ -1,8 +1,8 @@
 \chapter{Capitolo 4: Algoritmi basati sulla distanza}
-In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
+In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima di definirlo, è necessario introdurre alcuni concetti.
 
 \section{Matrice delle distanze}
-Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{dataMiningInBioinformatics}:
+Dati due punti $x$ e $y$, la \textit{distanza} può essere vista come loro lontananza in uno spazio $k$-dimensionale. Nella fattispecie è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{dataMiningInBioinformatics}:
 \begin{enumerate}
 	\item \textit{non negatività}:
 	\[d(x,y)\geq 0\hspace{2em} \forall \: x,y\in R^k\]
@@ -37,7 +37,7 @@ Nella figura 5 è possibile notare che la sequenza di DNA della foca risulta mol
 \newpage
 
 \section{Problema degli alberi basati sulla distanza}
-Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter calcolare la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco e definire la lunghezza di un cammino in tale albero come la somma dei pesi degli archi che lo compongono. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è data dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
+Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter calcolare la distanza tra due foglie e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco e definire la lunghezza di un cammino in tale albero come la somma dei pesi degli archi che lo compongono. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è data dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
 \newline
 Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che collega le due foglie in $T$ (distanza evolutiva), in tal caso sia la matrice che l'albero vengono definiti \textit{additivi}. Qualora invece non esista un albero che si adatti alla matrice, allora tale matrice è detta \textit{non additiva} \cite{bioinfalganactivelearningapproachparttwo}.
 \newline
@@ -48,9 +48,9 @@ Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice
   	\label{fig:EvolutionaryTreeExample}
 \end{figure}
 \newline
-Ci possono essere più alberi che si adattano ad una matrice, quindi come si può scegliere l'albero giusto? Si nota che quello in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}. 
-\newpage
-Una caratteristica importante è che per ogni matrice delle distanze additiva esiste un unico albero semplice che si adatta alla matrice stessa.
+Si nota che l'albero in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}.
+\newline
+Poiché ci possono essere più alberi che si adattano ad una matrice, come si può scegliere l'albero giusto? Una caratteristica delle matrici delle distanze additive è che per ognuna di essa esiste un \textit{unico} albero semplice che si adatta.
 \newline
 Adesso è possibile dare una definizione al problema accennato all'inizio del capitolo, mostrata di seguito.
 \newline
@@ -103,7 +103,7 @@ In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfrutt
 \frac{d_{up}+d_{up}}2=
 \frac{2d_{up}}2=d_{up}
 \]
-Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, quindi vengono usate queste informazioni per calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$ nell'albero $T$. Inoltre $D$ è additiva, questo significa che la distanza tra le foglie in $T$ è uguale alla distanza tra i rispettivi elementi nella matrice, pertanto $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$\footnote{Si ricorda che $d_{fu}$ è la distanza tra il nodo $f$ ed il nodo $u$ nell'albero $T$, mentre $D_{fu}$ è l'elemento in posizione $f-u$ in $D$.}. Ma allora si può scrivere $d_{up}$ nel seguente modo:
+Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, quindi vengono usate queste informazioni per calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$ nell'albero $T$. Inoltre $D$ è additiva, questo significa che la distanza tra le foglie in $T$ è uguale alla distanza tra i rispettivi elementi nella matrice, pertanto $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$\footnote{Si ricorda che $d_{fu}$ è la distanza tra il nodo $f$ ed il nodo $u$ nell'albero $T$, mentre $D_{fu}$ è l'elemento in posizione $f,u$ in $D$.}. Ma allora si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
 A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandola dalle uguaglianze trovate poc'anzi. Per prima cosa si calcola $d_{fp}$:
 \[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=\]
@@ -121,7 +121,7 @@ Quindi $d_{bp}=0$. Il risultato di questo passo dell'algoritmo è il seguente al
   	\label{fig:neighborsleaves_3}
 \end{figure}
 \newline
-Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$: dalla matrice D sappiamo che $D_{fu}=d_{fu}=7$ e dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
+Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$: dalla matrice D si ha che $D_{fu}=d_{fu}=7$ e dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
 \newline
 L'albero corrispondente è:
 \newpage
@@ -156,7 +156,7 @@ Per risolvere questo problema basta applicare ricorsivamente i passi precedenti,
  	\caption{Albero con il nuovo genitore non noto $k$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule di pagina $31$ con i dati attuali, si ottiene:
+Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule precedentemente utilizzate con i dati attuali, si ottiene:
 \[d_{pk}=\frac{d_{up}+d_{sp}-d_{us}}2=
 \frac{(d_{uk}+d_{pk})+(d_{sk}+d_{pk})-(d_{uk}+d_{sk})}2=\]
 \[=\frac{2d_{pk}}2=d_{pk}
@@ -249,7 +249,7 @@ Tali operazioni hanno una complessità di $O(n^2)$, in quanto ogni $i-esimo$  el
 \newline
 Ora che si è in grado di calcolare il peso degli arti si può illustrare l'algoritmo che risolve la criticità spiegata ad inizio della sezione.
 \newline
-Sia $D$ una matrice delle distanze additiva di dimensione $n\times n$, tale che il suo elemento più piccolo \textbf{non} corrisponda a due foglie \textit{vicine} nel rispettivo albero $T$\footnote{Per capire se l'elemento più piccolo di una matrice corrisponda ad una coppia di foglie vicine nel rispettivo albero è necessario eseguire l'algoritmo della sezione precedente (sezione $4.3$) usando la matrice $D$ in input. In tal caso il peso di alcuni archi sarebbe risultato negativo e quindi non sarebbe possibile costruire $T$. }, ovvero:
+Sia $D$ una matrice delle distanze additiva di dimensione $n\times n$, tale che il suo elemento più piccolo \textbf{non} corrisponda a due foglie \textit{vicine} nel rispettivo albero $T$\footnote{Per capire se l'elemento più piccolo di una matrice corrisponda ad una coppia di foglie vicine nel rispettivo albero è necessario eseguire l'algoritmo della sezione precedente usando la matrice $D$ in input. In tal caso il peso di alcuni archi sarebbe risultato negativo e quindi non sarebbe possibile costruire $T$. }, ovvero:
 \[
 D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 f& 0 & 13 & 21 & 22\cr
@@ -349,7 +349,7 @@ limbweight(b)=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_
 \[ \rightarrow limbweight(b)=0,\: quindi\rightarrow 0=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_{f,u}}{2}\rightarrow\]
 \[\rightarrow D^{spoglia_{b}}_{f,u}=D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}
 \]
-Analogamente al passaggio effettuato poc'anzi, si nota che il punto di attacco di $b$ è lungo l'arco che collega $f$ con $u$, quindi si crea un nodo interno $p$ che rappresenta il genitore di $b$,
+Analogamente al passaggio effettuato poc'anzi, si noti che il punto di attacco di $b$ è lungo l'arco che collega $f$ con $u$, quindi si crea un nodo interno $p$ che rappresenta il genitore di $b$,
 si aggiunge la foglia $b$ connettendola a $p$ tramite un arto di peso pari a
 $limbweight(b)=2$ e si aggiorna il peso degli altri archi.
 \newpage
@@ -363,7 +363,7 @@ L'albero evolutivo è il seguente:
 \newline
 $d_{bp}=2$ è il peso dell'arto di $b$ che è già stato calcolato in precedenza; $d_{fp}=D^{spoglia_{b}}_{f,b}=11$ è ottenuto sottraendo $limbweight(b)=2$ a $D_{f,b}=13$; $d_{pk}=4$ è dato dalla sottrazione tra $d_{fk}$ (figura 16) e $d_{fp}=D^{spoglia_{b}}_{f,b}$, quindi $d_{fk}-d_{fp}=15-11=4$.
 \newline
-Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato. Tuttavia anche in questo caso vi è una criticità, in quanto riesce a costruire $T$ \textit{se e solo se} la matrice $D$ è additiva, ed in molti casi non è così.
+Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato. Tuttavia anche in questo caso vi è una criticità, in quanto l'algoritmo riesce a costruire $T$ \textit{se e solo se} la matrice $D$ è additiva, ed in molti casi non è così.
 \newline
 Nella sezione successiva viene mostrato un algoritmo che risolve tale criticità.
 
@@ -397,7 +397,7 @@ Ogni volta che l'algoritmo richiama sé stesso, vengono eseguite le seguenti ope
 Quindi:
 \[T(AlberoAdditivo)=T(step 1)+T(step 2)+T(step 3)=\]
 \[=O(n^2)+O(n-1)+O(1) \simeq O(n^2)\]
-Ma \textit{AlberoAdditivo} viene eseguito $n$ volte, ovvero fino a che non si costruisce un albero $T$ con $n$ foglie, pertanto la complessità totale dell'algoritmo è:
+\textit{AlberoAdditivo} viene eseguito $n$ volte, ovvero fino a che non si costruisce un albero $T$ con $n$ foglie, pertanto la complessità totale dell'algoritmo è:
 \[T(totale)=T(AlberoAdditivo) \times O(n)=O(n^2) \times O(n)= O(n^3)\]
 
 \newpage
@@ -529,7 +529,7 @@ Il risultato mostra che non c'è una grande discrepanza tra $D(T)$ e $D$, pertan
 
 \newpage
 \subsection{Complessità temporale}
-Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non e $n$ è rispettivo il numero di righe e di colonne:
+Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non additiva e $n$ è rispettivo il numero di righe o di colonne:
 \begin{framed}\noindent
   \textbf{NeighborJoining($D$, $n$)}\\
   \textbf{se} $n=2$\\

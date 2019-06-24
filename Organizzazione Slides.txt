@@ -1,0 +1,11 @@
+Organizzazione slides:
+
+PARTE 1: introduzione biologia - def bioinformatica --> almeno 2 slide
+PARTE 2: alberi evolutivi, matrice delle distanze --> almeno 2 slide
+PARTE 3: 4 algoritmi:
+	PARTE 3.A: Algoritmo per il problema degli alberi basati sulla distanza --> almeno 2 slide
+	PARTE 3.B: Albero additivo --> almeno 3 slide, di cui una per l'algoritmo in pseudocodice e la complessità temporale
+	PARTE 3.C: Neighbor-joining --> almeno 3 slide, di cui una per l'algoritmo in pseudocodice e la complessità temporale
+	PARTE 3.D: UPGMA --> almeno 3 slide, di cui una per l'algoritmo in pseudocodice e la complessità temporale
+	
+Totale minimo --> PARTE1+PARTE2+PARTE3.A+PARTE3.B+PARTE3.C+PARTE3.D = MINIMO 15!!

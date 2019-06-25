@@ -714,12 +714,11 @@ Sia $D$ la matrice delle distanze in input\footnote{Si ricorda che la matrice pu
 Si evidenzia che:
 \begin{itemize}
 	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e l'età di tutti i vertici in $T$ viene impostata uguale a zero. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
-	\item Vengono iterate una serie di azioni sui cluster calcolati in precedenza e poiché in totale sono $n$, si ha che $ \rightarrow O(n)$. L'insieme di queste operazioni ha una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole, vengono eseguite $n$ azioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
+	\item Vengono iterate una serie di operazioni sull'insieme $Clusters$. Poiché è composto da $n$ cluster, si ha che $ \rightarrow O(n)$. L'insieme di queste azioni, a loro volta, hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole, vengono eseguite $n$ operazioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
 	\item Prima di restituire l'albero $T$ viene calcolato il peso di tutti gli archi, che sono $n-1$, quindi $\rightarrow T(step3)=O(n-1) \simeq O(n)$.
 \end{itemize}
 Si può concludere che la complessità totale dell'UPGMA è:
 \[T(totale)=T(step1)+T(step2)+T(step3)=O(n)+O(n^2)+O(n)\simeq O(n^2)\]
-
 
 \chapter*{Ringraziamenti}
 \addcontentsline{toc}{chapter}{Ringraziamenti} \markboth{RINGRAZIAMENTI}{}

@@ -419,10 +419,10 @@ L'obiettivo è quello di costruire un albero $T$ che approssimi al meglio le dis
 \newline
 Il \textit{primo} passo dell'algoritmo Neighbor-Joining consiste nel trovare $D^\star$. Dato in input $D$ si definisce $D^\star$ la seguente matrice \cite{neighborjoinrevealed}:
 \[\forall \,f,b\in D,\: \, D^\star(f,b)=(n-2)\cdot D(f,b)-\sum_{k=1}^{n}D(f,k)-\sum_{k=1}^{n}D(b,k)\]
-dove $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$.
+dove si chiama $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$.
 La sua caratteristica principale è che qualunque sia la matrice delle distanze in input, l'elemento più piccolo della relativa matrice $D^\star$ corrisponde ad una coppia di foglie \textit{vicine} nell'albero $T$. 
 \newline
-Quindi prima si trovano i valori di $totalDistance$ per ogni riga di $D$:
+Quindi prima si calcolano i valori di $totalDistance$ per ogni riga di $D$:
 \[
 D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 f& 0 & 3 & 4 & 3\cr
@@ -510,7 +510,7 @@ Come già specificato nei passi precedenti, $p$ e $k$ sono i genitori rispettiva
   	\label{fig:neighbor_joining_2}
 \end{figure}
 \newline
-Si può notare che l'albero ottenuto non si adatta completamente alla matrice $D$ in quanto, come detto all'inizio della sezione, non è possibile ottenerlo a causa della non additività di $D$. \`E comunque possibile misurare quanto $T$ si adatti alla matrice attraverso la seguente formula \cite{understandingBioinf}:
+Si può notare che l'albero ottenuto non si adatta completamente alla matrice $D$ in quanto, come detto all'inizio della sezione, non esiste un albero che si \textit{adatti} a $D$ a causa della non additività di $D$. \`E comunque possibile misurare quanto $T$ si adatti alla matrice attraverso la seguente formula \cite{understandingBioinf}:
 \[Discrepancy(D(T),D)=\sum_{i=1}^{j-1}\sum_{j=i+1}^{n}(D_{ij}(T)-D_{ij})^2\]
 Dove $D(T)$ è la matrice ottenuta da $T$, ovvero:
 \[
@@ -529,7 +529,7 @@ Il risultato mostra che non c'è una grande discrepanza tra $D(T)$ e $D$, pertan
 
 \newpage
 \subsection{Complessità temporale}
-Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non additiva e $n$ è rispettivo il numero di righe o di colonne:
+Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non additiva e $n$ è il rispettivo il numero di righe e di colonne:
 \begin{framed}\noindent
   \textbf{NeighborJoining($D$, $n$)}\\
   \textbf{se} $n=2$\\
@@ -602,9 +602,9 @@ Si può notare che è la stessa matrice usata nella sezione dedicata al Neighbor
 \[
 D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}
 \]
-dove $i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,j}$ è la distanza tra $i$ e $j$, $ \left | X \right | $ e $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}=2$.
+dove $D_{i,j}$ è la distanza tra l'elemento $i$ del cluster $X$ e l'elemento $j$ del cluster $Y$ e $ \left | X \right | $, $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}=2$.
 \newline
-\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Quindi, nel caso in esame, si crea un cluster $\{u, s\}$ tale che $\{u, s\}=u \cup s$. Il risultato di questo passo è il seguente:
+\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Quindi, nel caso in esame, si crea un cluster $\{u, s\}$ tale che $\{u, s\}=\{u\} \cup \{s\}$. Il risultato di questo passo è il seguente:
 \newpage
 \begin{figure}[h!]
 \centering
@@ -614,8 +614,8 @@ dove $i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,
 \end{figure}
 \textit{Fase quattro} $\rightarrow$ si forma un nodo interno per $Z$ la cui età è $age(Z)=\frac{D_{X,Y}}{2}$ e si calcola il peso degli archi\footnote{Come detto poc'anzi, il peso dell'arco che collega $Z$ ad $X$ è uguale alla differenza tra le loro età.}. Applicato all'esempio si ottiene che:
 \[age(\{u, s\})=\frac{D_{u,s}}{2}=\frac{2}{2}=1\]
-\[edgeweight(\{u, s\},s)=age(\{u, s\})-age(s)=1-0=0\]
-\[edgeweight(\{u, s\},u)=age(\{u, s\})-age(u)=1-0=0\]
+\[edgeweight(\{u, s\},s)=age(\{u, s\})-age(s)=1-0=1\]
+\[edgeweight(\{u, s\},u)=age(\{u, s\})-age(u)=1-0=1\]
 L'albero risultante è:
 \begin{figure}[h!]
 \centering
@@ -693,12 +693,12 @@ Poiché abbiamo ottenuto l'albero $T$ e la matrice $D$ è composta da un unico c
 Sia $D$ la matrice delle distanze in input\footnote{Si ricorda che la matrice può essere additiva o non additiva.} e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
 \begin{framed}\noindent
   \textbf{UPGMA($D$, $n$)}\\
-   $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento di $D$ \\
+   $Clusters \;\; \leftarrow \;\;$ insieme di $n$ cluster, ciascuno di essi composto da un elemento di $D$ \\
   \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster \\
   $age(v)\leftarrow 0 \;\; \forall \; node \; v \in T$\\
   \textbf{fino a che} c'è più di un cluster in $Clusters$ \\
   \indent \textbf{cerca} i cluster più vicini $X$ e $Y$\\
-  \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $X+Y$ elementi\\
+  \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $\left | X \right |+\left | Y \right |$ elementi\\
   \indent \textbf{aggiungi} un nodo interno $Z$ in $T$\\
   \indent \textbf{connetti} $Z$ ad $X$ e $Y$ tramite due archi \\
   \indent \textbf{calcola} l'età di $Z$\\

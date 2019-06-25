@@ -1,8 +1,8 @@
 \chapter{Capitolo 4: Algoritmi basati sulla distanza}
-In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima è necessario introdurre alcuni concetti, tra cui la matrice delle distanze.
+In questo capitolo vengono illustrati i principali algoritmi utilizzati per la costruzione degli alberi evolutivi. L'obiettivo è quello di trovare una soluzione al cosiddetto \textit{problema degli alberi basati sulla distanza}, ma prima di definirlo, è necessario introdurre alcuni concetti.
 
 \section{Matrice delle distanze}
-Dati due punti, $x$ e $y$, la \textit{distanza} può essere vista come loro "lontananza" in uno spazio $k$-dimensionale. Nella fattispecie è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{dataMiningInBioinformatics}:
+Dati due punti $x$ e $y$, la \textit{distanza} può essere vista come loro lontananza in uno spazio $k$-dimensionale. Nella fattispecie è una funzione $d(x,y)$ che possiede le seguenti proprietà \cite{dataMiningInBioinformatics}:
 \begin{enumerate}
 	\item \textit{non negatività}:
 	\[d(x,y)\geq 0\hspace{2em} \forall \: x,y\in R^k\]
@@ -37,7 +37,7 @@ Nella figura 5 è possibile notare che la sequenza di DNA della foca risulta mol
 \newpage
 
 \section{Problema degli alberi basati sulla distanza}
-Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter calcolare la distanza tra due foglie, e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco e definire la lunghezza di un cammino in tale albero come la somma dei pesi degli archi che lo compongono. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è data dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
+Gli algoritmi basati sulla distanza utilizzano la matrice delle distanze per costruire gli alberi evolutivi, dove le foglie corrispondono alle entità biologiche presenti nella matrice, mentre i nodi interni rappresentano gli antenati non noti. Per poter calcolare la distanza tra due foglie e quindi conoscere quanto sono legate tra loro, è necessario associare un valore non negativo (peso) a ciascun arco e definire la lunghezza di un cammino in tale albero come la somma dei pesi degli archi che lo compongono. Si definisce, quindi, la \textit{distanza evolutiva} tra due entità biologiche corrispondenti alle foglie $i$ e $j$ di un albero $T$ come la lunghezza dell'unico cammino che le collega, ed è indicato come $d_i,_j(T)$ \cite{bioinfalganactivelearningapproachparttwo}. In altre parole è data dalla somma dei pesi degli archi che ci sono tra $i$ e $j$.
 \newline
 Si dice che un albero $T$ si \textit{adatta} ad una matrice delle distanze $D$ se per ogni coppia di foglie $i$ e $j$ si ha che $D_i,_j=d_i,_j(T)$, ovvero l'elemento nella riga $i$ e colonna $j$ è uguale alla lunghezza del cammino che collega le due foglie in $T$ (distanza evolutiva), in tal caso sia la matrice che l'albero vengono definiti \textit{additivi}. Qualora invece non esista un albero che si adatti alla matrice, allora tale matrice è detta \textit{non additiva} \cite{bioinfalganactivelearningapproachparttwo}.
 \newline
@@ -48,9 +48,9 @@ Si riporta di seguito un esempio che mostra un albero che si adatta alla matrice
   	\label{fig:EvolutionaryTreeExample}
 \end{figure}
 \newline
-Ci possono essere più alberi che si adattano ad una matrice, quindi come si può scegliere l'albero giusto? Si nota che quello in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}. 
-\newpage
-Una caratteristica importante è che per ogni matrice delle distanze additiva esiste un unico albero semplice che si adatta alla matrice stessa.
+Si nota che l'albero in figura 6 ha tutti i vertici di grado diverso da due e viene definito \textit{albero semplice}.
+\newline
+Poiché ci possono essere più alberi che si adattano ad una matrice, come si può scegliere l'albero giusto? Una caratteristica delle matrici delle distanze additive è che per ognuna di essa esiste un \textit{unico} albero semplice che si adatta.
 \newline
 Adesso è possibile dare una definizione al problema accennato all'inizio del capitolo, mostrata di seguito.
 \newline
@@ -103,7 +103,7 @@ In questo step viene scelta casualmente una foglia tra $u$ ed $s$ e viene sfrutt
 \frac{d_{up}+d_{up}}2=
 \frac{2d_{up}}2=d_{up}
 \]
-Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, quindi vengono usate queste informazioni per calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$ nell'albero $T$. Inoltre $D$ è additiva, questo significa che la distanza tra le foglie in $T$ è uguale alla distanza tra i rispettivi elementi nella matrice, pertanto $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$\footnote{Si ricorda che $d_{fu}$ è la distanza tra il nodo $f$ ed il nodo $u$ nell'albero $T$, mentre $D_{fu}$ è l'elemento in posizione $f-u$ in $D$.}. Ma allora si può scrivere $d_{up}$ nel seguente modo:
+Perché scrivere $d_{up}$ in quel modo? Perché non si conosce il peso dei nodi interni ma solo quello delle foglie grazie alla matrice di partenza, quindi vengono usate queste informazioni per calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$ nell'albero $T$. Inoltre $D$ è additiva, questo significa che la distanza tra le foglie in $T$ è uguale alla distanza tra i rispettivi elementi nella matrice, pertanto $d_{fu}=D_{fu}$, $d_{fb}=D_{fb}$ e $d_{bu}=D_{bu}$\footnote{Si ricorda che $d_{fu}$ è la distanza tra il nodo $f$ ed il nodo $u$ nell'albero $T$, mentre $D_{fu}$ è l'elemento in posizione $f,u$ in $D$.}. Ma allora si può scrivere $d_{up}$ nel seguente modo:
 \[d_{up}=\frac{d_{fu}+d_{bu}-d_{fb}}2=\frac{D_{fu}+D_{bu}-D_{fb}}2\]
 A questo punto si è in grado di calcolare la distanza tra $f$ e $p$ e tra $b$ e $p$, ricavandola dalle uguaglianze trovate poc'anzi. Per prima cosa si calcola $d_{fp}$:
 \[d_{fu}=d_{fp}+d_{up} \rightarrow d_{fp}=d_{fu}-d_{up}=D_{fu}-D_{up}=\]
@@ -121,7 +121,7 @@ Quindi $d_{bp}=0$. Il risultato di questo passo dell'algoritmo è il seguente al
   	\label{fig:neighborsleaves_3}
 \end{figure}
 \newline
-Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$: dalla matrice D sappiamo che $D_{fu}=d_{fu}=7$ e dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
+Il prossimo step consiste nel trovare la distanza tra $u$ e $p$ e tra $s$ e $p$: dalla matrice D si ha che $D_{fu}=d_{fu}=7$ e dai calcoli precedenti che $d_{fp}=2$, quindi $d_{up}=d_{fu}-d_{fp}=7-2=5$. Stesso ragionamento anche per $d_{sp}$, ovvero $d_{sp}=d_{bs}-d_{bp}=4-0=4$.
 \newline
 L'albero corrispondente è:
 \newpage
@@ -156,7 +156,7 @@ Per risolvere questo problema basta applicare ricorsivamente i passi precedenti,
  	\caption{Albero con il nuovo genitore non noto $k$.}
   	\label{fig:neighborsleaves_3}
 \end{figure}
-Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule di pagina $31$ con i dati attuali, si ottiene:
+Viene scelto il nodo $p$ e sfruttato il valore della sua distanza rispetto ad $u$ e $s$ per poter calcolare $d_{uk}$ e $d_{sk}$. Adattando le formule precedentemente utilizzate con i dati attuali, si ottiene:
 \[d_{pk}=\frac{d_{up}+d_{sp}-d_{us}}2=
 \frac{(d_{uk}+d_{pk})+(d_{sk}+d_{pk})-(d_{uk}+d_{sk})}2=\]
 \[=\frac{2d_{pk}}2=d_{pk}
@@ -249,7 +249,7 @@ Tali operazioni hanno una complessità di $O(n^2)$, in quanto ogni $i-esimo$  el
 \newline
 Ora che si è in grado di calcolare il peso degli arti si può illustrare l'algoritmo che risolve la criticità spiegata ad inizio della sezione.
 \newline
-Sia $D$ una matrice delle distanze additiva di dimensione $n\times n$, tale che il suo elemento più piccolo \textbf{non} corrisponda a due foglie \textit{vicine} nel rispettivo albero $T$\footnote{Per capire se l'elemento più piccolo di una matrice corrisponda ad una coppia di foglie vicine nel rispettivo albero è necessario eseguire l'algoritmo della sezione precedente (sezione $4.3$) usando la matrice $D$ in input. In tal caso il peso di alcuni archi sarebbe risultato negativo e quindi non sarebbe possibile costruire $T$. }, ovvero:
+Sia $D$ una matrice delle distanze additiva di dimensione $n\times n$, tale che il suo elemento più piccolo \textbf{non} corrisponda a due foglie \textit{vicine} nel rispettivo albero $T$\footnote{Per capire se l'elemento più piccolo di una matrice corrisponda ad una coppia di foglie vicine nel rispettivo albero è necessario eseguire l'algoritmo della sezione precedente usando la matrice $D$ in input. In tal caso il peso di alcuni archi sarebbe risultato negativo e quindi non sarebbe possibile costruire $T$. }, ovvero:
 \[
 D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 f& 0 & 13 & 21 & 22\cr
@@ -349,7 +349,7 @@ limbweight(b)=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_
 \[ \rightarrow limbweight(b)=0,\: quindi\rightarrow 0=\frac{D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}-D^{spoglia_{b}}_{f,u}}{2}\rightarrow\]
 \[\rightarrow D^{spoglia_{b}}_{f,u}=D^{spoglia_{b}}_{f,b}+D^{spoglia_{b}}_{b,u}
 \]
-Analogamente al passaggio effettuato poc'anzi, si nota che il punto di attacco di $b$ è lungo l'arco che collega $f$ con $u$, quindi si crea un nodo interno $p$ che rappresenta il genitore di $b$,
+Analogamente al passaggio effettuato poc'anzi, si noti che il punto di attacco di $b$ è lungo l'arco che collega $f$ con $u$, quindi si crea un nodo interno $p$ che rappresenta il genitore di $b$,
 si aggiunge la foglia $b$ connettendola a $p$ tramite un arto di peso pari a
 $limbweight(b)=2$ e si aggiorna il peso degli altri archi.
 \newpage
@@ -363,7 +363,7 @@ L'albero evolutivo è il seguente:
 \newline
 $d_{bp}=2$ è il peso dell'arto di $b$ che è già stato calcolato in precedenza; $d_{fp}=D^{spoglia_{b}}_{f,b}=11$ è ottenuto sottraendo $limbweight(b)=2$ a $D_{f,b}=13$; $d_{pk}=4$ è dato dalla sottrazione tra $d_{fk}$ (figura 16) e $d_{fp}=D^{spoglia_{b}}_{f,b}$, quindi $d_{fk}-d_{fp}=15-11=4$.
 \newline
-Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato. Tuttavia anche in questo caso vi è una criticità, in quanto riesce a costruire $T$ \textit{se e solo se} la matrice $D$ è additiva, ed in molti casi non è così.
+Poiché è stato costruito l'albero nella sua interezza, l'algoritmo è terminato. Tuttavia anche in questo caso vi è una criticità, in quanto l'algoritmo riesce a costruire $T$ \textit{se e solo se} la matrice $D$ è additiva, ed in molti casi non è così.
 \newline
 Nella sezione successiva viene mostrato un algoritmo che risolve tale criticità.
 
@@ -397,7 +397,7 @@ Ogni volta che l'algoritmo richiama sé stesso, vengono eseguite le seguenti ope
 Quindi:
 \[T(AlberoAdditivo)=T(step 1)+T(step 2)+T(step 3)=\]
 \[=O(n^2)+O(n-1)+O(1) \simeq O(n^2)\]
-Ma \textit{AlberoAdditivo} viene eseguito $n$ volte, ovvero fino a che non si costruisce un albero $T$ con $n$ foglie, pertanto la complessità totale dell'algoritmo è:
+\textit{AlberoAdditivo} viene eseguito $n$ volte, ovvero fino a che non si costruisce un albero $T$ con $n$ foglie, pertanto la complessità totale dell'algoritmo è:
 \[T(totale)=T(AlberoAdditivo) \times O(n)=O(n^2) \times O(n)= O(n^3)\]
 
 \newpage
@@ -419,10 +419,10 @@ L'obiettivo è quello di costruire un albero $T$ che approssimi al meglio le dis
 \newline
 Il \textit{primo} passo dell'algoritmo Neighbor-Joining consiste nel trovare $D^\star$. Dato in input $D$ si definisce $D^\star$ la seguente matrice \cite{neighborjoinrevealed}:
 \[\forall \,f,b\in D,\: \, D^\star(f,b)=(n-2)\cdot D(f,b)-\sum_{k=1}^{n}D(f,k)-\sum_{k=1}^{n}D(b,k)\]
-dove $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$.
+dove si chiama $totalDistance(D_f)=\sum_{k=1}^{n}D(f,k)$ e $totalDistance(D_b)=$\newline$=\sum_{k=1}^{n}D(b,k)$.
 La sua caratteristica principale è che qualunque sia la matrice delle distanze in input, l'elemento più piccolo della relativa matrice $D^\star$ corrisponde ad una coppia di foglie \textit{vicine} nell'albero $T$. 
 \newline
-Quindi prima si trovano i valori di $totalDistance$ per ogni riga di $D$:
+Quindi prima si calcolano i valori di $totalDistance$ per ogni riga di $D$:
 \[
 D = \bordermatrix{\text{specie}&f&b&u&s\cr
                 f& 0 & 3 & 4 & 3\cr
@@ -510,7 +510,7 @@ Come già specificato nei passi precedenti, $p$ e $k$ sono i genitori rispettiva
   	\label{fig:neighbor_joining_2}
 \end{figure}
 \newline
-Si può notare che l'albero ottenuto non si adatta completamente alla matrice $D$ in quanto, come detto all'inizio della sezione, non è possibile ottenerlo a causa della non additività di $D$. \`E comunque possibile misurare quanto $T$ si adatti alla matrice attraverso la seguente formula \cite{understandingBioinf}:
+Si può notare che l'albero ottenuto non si adatta completamente alla matrice $D$ in quanto, come detto all'inizio della sezione, non esiste un albero che si \textit{adatti} a $D$ a causa della non additività di $D$. \`E comunque possibile misurare quanto $T$ si adatti alla matrice attraverso la seguente formula \cite{understandingBioinf}:
 \[Discrepancy(D(T),D)=\sum_{i=1}^{j-1}\sum_{j=i+1}^{n}(D_{ij}(T)-D_{ij})^2\]
 Dove $D(T)$ è la matrice ottenuta da $T$, ovvero:
 \[
@@ -529,7 +529,7 @@ Il risultato mostra che non c'è una grande discrepanza tra $D(T)$ e $D$, pertan
 
 \newpage
 \subsection{Complessità temporale}
-Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non e $n$ è rispettivo il numero di righe e di colonne:
+Si riporta l'algoritmo Neighbor-Joining in pseudocodice, dove $D$ è la matrice delle distanze additiva o non additiva e $n$ è il rispettivo il numero di righe e di colonne:
 \begin{framed}\noindent
   \textbf{NeighborJoining($D$, $n$)}\\
   \textbf{se} $n=2$\\
@@ -566,7 +566,7 @@ La complessità di \textit{NeighborJoining} è:
 \newpage
 
 \section{Unweighted Pair Group Method with Arithmetic Mean}
-Nelle sezioni precedenti sono stati mostrati degli algoritmi che risolvono il \textit{problema degli alberi basati sulla distanza}. In particolare il Neighbor-Joining si è rivelato il più efficace poiché risolve tutte le criticità e le debolezze relative agli algoritmi precedenti, i quali costruiscono alberi evolutivi \textit{senza radice}.
+Nelle sezioni precedenti sono stati mostrati degli algoritmi che risolvono il \textit{problema degli alberi basati sulla distanza} costruendo alberi evolutivi \textit{senza radice}. In particolare il Neighbor-Joining si è rivelato il più efficace poiché risolve tutte le criticità relative agli algoritmi precedenti.
 \newline
 \textbf{UPGMA (Unweighted Pair Group Method with Arithmetic Mean)} è un algoritmo che, data in input una matrice delle distanze $D$ additiva o non, restituisce un albero \textit{radicato} $T$ in cui tutte le foglie sono alla stessa distanza dalla radice (albero ultrametrico) \cite{understandingBioinf}.
 \newline
@@ -578,7 +578,7 @@ Si riporta di seguito un esempio:
   	\label{fig:rooted_upgma_1}
 \end{figure}
 \newline
-In tale albero i nodi interni rappresentano la \textit{speciazione}, quel processo attraverso il quale si forma una nuova specie. Questo significa che una singola linea evolutiva viene divisa in due \cite{speciationBritannica} e quindi un antenato sarà suddiviso in due discendenti. Si può notare che i numeri in verde accanto ai nodi indicano l'età (in milioni di anni), mentre il peso degli archi è dato dalla differenza tra le età dei nodi. Ad esempio il peso dell'arco che collega $k$ e $p$ è dato dalla differenza delle loro età ($7-6=1$). Poiché le foglie dell'albero rappresentano le specie ancora non suddivise, la loro età è zero.
+In tale albero i nodi interni rappresentano le \textit{speciazioni}, quei processi attraverso i quali si formano nuove specie. Ogni volta che si verifica una speciazione una linea evolutiva viene divisa in due \cite{speciationBritannica} e quindi da un antenato deriveranno due discendenti. Ad esempio nella figura 20 si può notare che in un certa epoca la specie $m$ si è suddivisa in due specie diverse (a causa di mutazioni), ovvero scimpanzé e bonobo. I numeri in verde accanto ai nodi indicano l'età (in milioni di anni), mentre il peso degli archi è dato dalla differenza tra le età dei nodi, ad esempio il peso dell'arco che collega $k$ e $p$ è dato dalla differenza delle loro età ($7-6=1$) e così via per tutti gli altri archi. Poiché le foglie dell'albero rappresentano le specie ancora non suddivise, la loro età è uguale a zero.
 \newline
 L'algoritmo \textit{UPGMA} può essere diviso in più fasi. Si prenda in considerazione la seguente matrice \textit{non additiva}\footnote{Per brevità si definisce u=umano, s=scimpanzé, f=foca, b=balena.}:
 \[
@@ -602,9 +602,9 @@ Si può notare che è la stessa matrice usata nella sezione dedicata al Neighbor
 \[
 D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}
 \]
-$i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,j}$ è la distanza tra $i$ e $j$, $ \left | X \right | $ e $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}$.
+dove $D_{i,j}$ è la distanza tra l'elemento $i$ del cluster $X$ e l'elemento $j$ del cluster $Y$ e $ \left | X \right | $, $ \left | Y \right | $ sono rispettivamente il numero degli elementi in $X$ ed in $Y$. Poiché in questo caso  ciascun cluster è formato da un solo elemento, prendere i due cluster più vicini equivale a scegliere l'elemento più piccolo in $D$, ovvero $D_{u,s}=2$.
 \newline
-\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Nel caso di $D$ il risultato di questo passo è il seguente:
+\textit{Fase tre} $\rightarrow$ si crea un cluster $Z$ che è dato dall'unione di $X$ ed $Y$. Quindi, nel caso in esame, si crea un cluster $\{u, s\}$ tale che $\{u, s\}=\{u\} \cup \{s\}$. Il risultato di questo passo è il seguente:
 \newpage
 \begin{figure}[h!]
 \centering
@@ -614,13 +614,13 @@ $i$ rappresentano gli elementi del cluster $X$, $j$ del cluster $Y$, $D_{i,j}$ �
 \end{figure}
 \textit{Fase quattro} $\rightarrow$ si forma un nodo interno per $Z$ la cui età è $age(Z)=\frac{D_{X,Y}}{2}$ e si calcola il peso degli archi\footnote{Come detto poc'anzi, il peso dell'arco che collega $Z$ ad $X$ è uguale alla differenza tra le loro età.}. Applicato all'esempio si ottiene che:
 \[age(\{u, s\})=\frac{D_{u,s}}{2}=\frac{2}{2}=1\]
-\[edgeweight(\{u, s\},s)=age(\{u, s\})-age(s)=1-0=0\]
-\[edgeweight(\{u, s\},u)=age(\{u, s\})-age(u)=1-0=0\]
+\[edgeweight(\{u, s\},s)=age(\{u, s\})-age(s)=1-0=1\]
+\[edgeweight(\{u, s\},u)=age(\{u, s\})-age(u)=1-0=1\]
 L'albero risultante è:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=11cm,keepaspectratio]{rooted_upgma_4.jpg}
- 	\caption{Albero $T$ dopo aver calcolato l'età dei nodi ed il peso degli archi.}
+ 	\caption{Albero $T$ dopo aver calcolato l'età del nodo \{u, s\} ed il peso degli archi.}
   	\label{fig:rooted_upgma_4}
 \end{figure}
 \newline
@@ -634,9 +634,9 @@ D = \bordermatrix{\text{specie}&f&b&\{u, s\}\cr
 Dove i nuovi valori sono ottenuti da:
 \[D_{f, \{u, s\}}=\frac{D_{f,u}+D_{f,s}}{2}=\frac{4+3}{2}=\frac{7}{2}=3,5\]
 \[D_{b, \{u, s\}}=\frac{D_{b,u}+D_{b,s}}{2}=\frac{4+5}{2}=\frac{9}{2}=4,5\]
-A questo punto vanno eseguite le cinque fasi sopraelencate fino a che non otteniamo un unico cluster contenente tutte le specie.
+A questo punto vanno eseguite le cinque fasi sopraelencate fino a che non otteniamo un unico cluster contenente tutte le righe (o colonne) di $D$.
 \newline
-\textit{Fase uno, due e tre} $\rightarrow$  si formano $n$ cluster a partire dalla nuova matrice $D$, si sceglie l'elemento più piccolo (e quindi $D_{f, b}$) e si crea un cluster $\{f, b\}$ a partire da $f$ ed $b$, quindi:
+\textit{Fase uno, due e tre} $\rightarrow$  si formano $n$ cluster a partire dalla nuova matrice $D$, si sceglie l'elemento più piccolo ($D_{f, b}$) e si crea un cluster $\{f, b\}$ a partire da $f$ e da $b$, quindi:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=6cm, width=9cm,keepaspectratio]{rooted_upgma_5.jpg}
@@ -644,7 +644,7 @@ A questo punto vanno eseguite le cinque fasi sopraelencate fino a che non otteni
   	\label{fig:rooted_upgma_5}
 \end{figure}
 \newline 
-\textit{Fase quattro} $\rightarrow$ si forma un nodo interno per il cluster $\{f, b\}$ e si calcola sia la sua età che il peso dei rispettivi archi, quindi:
+\textit{Fase quattro} $\rightarrow$ si forma un nodo interno per il cluster $\{f, b\}$ e si calcola sia la sua età che il peso dei suoi archi incidenti, quindi:
 \[age(\{f, b\})=\frac{D_{f,b}}{2}=\frac{3}{2}=1,5\]
 \[edgeweight(\{f, b\},b)=age(\{f, b\})-age(b)=1,5-0=1,5\]
 \[edgeweight(\{f, b\},f)=age(\{f, b\})-age(f)=1,5-0=1,5\]
@@ -652,22 +652,24 @@ L'albero risultante è:
 \begin{figure}[h!]
 \centering
 	\includegraphics[height=9cm, width=11cm,keepaspectratio]{rooted_upgma_6.jpg}
- 	\caption{Albero $T$ dopo aver calcolato l'età dei nodi ed il peso degli archi.}
+ 	\caption{Albero $T$ dopo aver calcolato l'età del nodo $\{f, b\}$ ed il peso degli archi.}
   	\label{fig:rooted_upgma_6}
 \end{figure}
 \newline
 \newline
-\textit{Fase cinque} $\rightarrow$ Si aggiorna la matrice $D$ calcolando la distanza tra i cluster usando la formula $D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}$. La nuova matrice $D$ è:
+\textit{Fase cinque} $\rightarrow$ Si aggiorna la matrice $D$ calcolando la distanza tra i cluster usando la formula $D_{X,Y}=\frac{1}{\left | X \right |\cdot \left | Y \right |} \cdot \sum_{i\in X,\: j\in Y}D_{i,j}$. La matrice risultante $D$ è:
 \[
-\
+D = \bordermatrix{\text{specie}&\{f, b\}&\{u, s\}\cr
+                \{f, b\}& 0 & {\color{Blue} 4}\cr
+                \{u, s\}& {\color{Blue} 4} & 0}
 \]
-Dove l'elemento $D_{\{f, b\}, \{u, s\}}$ è ottenuto da:
+dove l'elemento $D_{\{f, b\}, \{u, s\}}$ è ottenuto da:
 \[D_{\{f, b\}, \{u, s\}}=\frac{D_{f, \{u, s\}}+D_{b, \{u, s\}}}{2}=\frac{3,5+4,5}{2}=\frac{8}{2}=4\]
 \newline
-Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovamente gli step. Quindi si ha che:
+Poiché ancora non si è ottenuto un unico cluster contenente tutte le righe (o colonne) di $D$, bisogna eseguire nuovamente gli step. Quindi:
 \begin{itemize}
-	\item l'elemento più piccolo è l'unico rimasto, ovvero $D_{\{f, b\}, \{u, s\}}$;
-	\item si crea un nuovo cluster $\{f, b\}, \{u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b\}, \{u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b\}, \{u, s\})-age(\{f, b\})=2-1,5=0$ e $age(\{f, b\}, \{u, s\})-age(\{u, s\})=2-1=1$. 
+	\item l'elemento più piccolo è $D_{\{f, b\}, \{u, s\}}$;
+	\item si crea un nuovo cluster $\{f, b, u, s\}$ e si forma un nodo interno per esso, che sarà la radice dell'albero $T$. L'età è $age(\{f, b, u, s\})=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$, mentre gli archi sono $age(\{f, b, u, s\})-age(\{f, b\})=2-1,5=0,5$ e $age(\{f, b, u, s\})-age(\{u, s\})=2-1=1$. 
 	\newline
 	L'albero finale $T$ è:
 	\begin{figure}[h!]
@@ -675,44 +677,64 @@ Si poiché ancora non abbiamo ottenuto un solo cluster, bisogna eseguire nuovame
 	\includegraphics[height=12cm, width=14cm,keepaspectratio]{rooted_upgma_7.jpg}
  	\caption{Albero finale con radice $T$ ottenuto dalla matrice $D$.}
   	\label{fig:rooted_upgma_7}
-  	\item si aggiorna la matrice $D$, ottenendo quindi:
+  	\end{figure}
+  	\item si aggiorna la matrice $D$, ottenendo:
   		\[
   		D = \bordermatrix{\text{specie}&\{f, b, u, s\}\cr
                 \{f, b, u ,s\}& 2}
                 \]
-\end{figure}
+dove $D_{\{f, b, u, s\}}=\frac{D_{\{f, b\}, \{u, s\}}}{2}=\frac{4}{2}=2$.
 \end{itemize}
-Poiché abbiamo ottenuto l'abero $T$ e la matrice $D$ è composta da un unico cluster, l'algoritmo è terminato.
+Poiché abbiamo ottenuto l'albero $T$ e la matrice $D$ è composta da un unico cluster, l'algoritmo è terminato.
 
 \newpage
 
 \subsection{Complessità temporale}
-Sia $D$ la matrice delle distanze adattiva in input e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
+Sia $D$ la matrice delle distanze in input\footnote{Si ricorda che la matrice può essere additiva o non additiva.} e $n$ il numero di righe o di colonne in $D$. L'algoritmo UPGMA scritto in pseudocodice è il seguente:
 \begin{framed}\noindent
   \textbf{UPGMA($D$, $n$)}\\
-   $Clusters \;\; \leftarrow \;\; n$ cluster, ciascuno composto da un elemento \\
-  \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster di cui sopra\\
+   $Clusters \;\; \leftarrow \;\;$ insieme di $n$ cluster, ciascuno di essi composto da un elemento di $D$ \\
+  \textbf{costruisci} un grafo $T$ composto da $n$ vertici isolati. Questi rappresentano i cluster \\
   $age(v)\leftarrow 0 \;\; \forall \; node \; v \in T$\\
   \textbf{fino a che} c'è più di un cluster in $Clusters$ \\
   \indent \textbf{cerca} i cluster più vicini $X$ e $Y$\\
-  \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $X+Y$ elementi\\
+  \indent \textbf{unisci} $X$ ed $Y$ in un cluster $Z$ composto da $\left | X \right |+\left | Y \right |$ elementi\\
   \indent \textbf{aggiungi} un nodo interno $Z$ in $T$\\
-  \indent \textbf{connetti} $Z$ ad $X$ ed $Y$ tramite due archi \\
+  \indent \textbf{connetti} $Z$ ad $X$ e $Y$ tramite due archi \\
   \indent \textbf{calcola} l'età di $Z$\\
   \indent \textbf{rimuovi} la riga e la colonna di $X$ e di $Y$ dalla matrice $D$ \\
-  \indent \textbf{rimuovi} i cluster $X$ e di $Y$  da dall'insieme $Clusters$ calcolato all'inizio \\
-  \indent \textbf{aggiorna} la matrice $D$, quindi aggiungi una riga ed una colonna $Z$ e calcola la sua distanza tra rispetto a tutti gli altri cluster in $Clusters$ \\
+  \indent \textbf{rimuovi} i cluster $X$ e $Y$ dall'insieme $Clusters$ \\
+  \indent \textbf{aggiorna} la matrice $D$, quindi aggiungi una riga ed una colonna $Z$ \indent e calcola la sua distanza rispetto a tutti gli altri cluster in $Clusters$ \\
   \indent \textbf{aggiungi} $Z$ all'insieme $Clusters$ \\
-  $radice \;\; \leftarrow $ il nodo nell'albero $T$ corrispondente all'ultimo cluster rimasto \\
+  $radice \; \leftarrow $ il nodo nell'albero $T$ corrispondente all'ultimo cluster rimasto \\
   \textbf{per ogni} arco $(v, w)$ in $T$\\
   \indent $edgeweight(v, w) \leftarrow age(v) - age(w) $\\
   \textbf{restituisci} $T$
 \end{framed}
 Si evidenzia che:
 \begin{itemize}
-	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e viene messa a zero l'età di tutti i vertici in $T$. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
-	\item Vengono iterate una serie di azioni sugli $n$ cluster calcolati in precedenza, quindi $O(n)$. L'insieme di queste operazioni hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole vengono eseguine $n$ azioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
-	\item Prima di restituire l'albero $T$ viene calcolato l'età di tutti i nodi, che sono $n$, quindi $\rightarrow T(step3)=O(n)$.
+	\item Nella fase iniziale viene creato un insieme di $n$ cluster ($Clusters$) e l'età di tutti i vertici in $T$ viene impostata uguale a zero. Poiché quest'ultima operazione viene fatta $n$ volte $\rightarrow T(step1)=O(n)$.
+	\item Vengono iterate una serie di operazioni sull'insieme $Clusters$. Poiché è composto da $n$ cluster, si ha che $ \rightarrow O(n)$. L'insieme di queste azioni, a loro volta, hanno una complessità di $O(n)$, in quanto ad ogni iterazione è necessario aggiornare la matrice $D$ ricalcolando la distanza tra i suoi elementi, che sono $n$. In altre parole, vengono eseguite $n$ operazioni $n$ volte. Questo significa che $\rightarrow T(step2)=O(n) \times O(n) = O(n^2)$.
+	\item Prima di restituire l'albero $T$ viene calcolato il peso di tutti gli archi, che sono $n-1$, quindi $\rightarrow T(step3)=O(n-1) \simeq O(n)$.
 \end{itemize}
-Si può concludere che la complessità totale è:
+Si può concludere che la complessità totale dell'UPGMA è:
 \[T(totale)=T(step1)+T(step2)+T(step3)=O(n)+O(n^2)+O(n)\simeq O(n^2)\]
+
+\chapter*{Ringraziamenti}
+\addcontentsline{toc}{chapter}{Ringraziamenti} \markboth{RINGRAZIAMENTI}{}
+Ringrazio la \textbf{Professoressa Maria Cecilia Verri}, non solo per la sua pazienza e la sua disponibilità, ma anche per avermi ispirato per la stesura di questa tesi.
+\newline
+\newline
+Grazie alla mia \textbf{famiglia}, che mi ha supportato nelle scelte di vita.
+\newline
+\newline
+Un ringraziamento speciale va a \textbf{Letizia}. Questo "figlio" lo dedico anche a te!
+\newline
+\newline
+Grazie a \textbf{Lucia, Anastasia, Serena, Antonio, Diana, Giorgio, Giovanni, Marcella, Marco, Noemi, Renato, Tommaso, Rosanna, Salvatore, Claudia, Emanuele, Francesco e agli altri}. Amici e compagni di "avventure", sono arrivato fin qui grazie anche a voi.
+\newline
+\newline
+Un grazie di cuore va a \textbf{Caterina}. Mi sei sempre stata accanto e mi hai spronato a fare di più. Il tuo aiuto è stato prezioso.
+\newline
+\newline
+Grazie a \textbf{Francesca} e a \textbf{Giacomo}, mi siete sempre stati vicini, anche nei momenti più difficili.
